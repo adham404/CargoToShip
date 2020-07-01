@@ -3,18 +3,18 @@ var simplemaps_worldmap_mapdata={
   main_settings: {
     //General settings
 		width: "responsive", //or 'responsive'
-    background_color: "#AADAFF",
+    background_color: "#1A3365",
     background_transparent: "no",
     popups: "detect",
     // padding: 0,
 
 		//State defaults
 		state_description: "State description",
-    state_color: "#F5F5F5",
+    state_color: "#5C6AC4",
     state_hover_color: "#3B729F",
     state_url: "",
-    border_size: 0.5,
-    border_color: "#FAE7A5",
+    border_size: 0.05,
+    border_color: "#000000",
     all_states_inactive: "no",
     all_states_zoomable: "no",
     current_id: "hello",
@@ -41,7 +41,7 @@ var simplemaps_worldmap_mapdata={
     hide_labels: "no",
 
 		//Zoom settings
-		manual_zoom: "yes",
+		manual_zoom: "no",
     back_image: "no",
     arrow_box: "no",
     navigation_size: "40",

@@ -4,7 +4,8 @@ import App from './App.vue';
 import router from './router';
 import "./plugins/axios";
 import firebase from 'firebase';
-// import simplemaps_worldmap from  "../public/worldmap"
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 
 
 
@@ -25,6 +26,7 @@ firebase.initializeApp(firebaseConfig);
 // firebase.analytics();
 Vue.config.productionTip = false;
 Vue.prototype.$senior_seen = false;
+Vue.use(Vuetify)
 
 
 
