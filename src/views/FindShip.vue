@@ -4,12 +4,14 @@
     <div  class="FindShip">
       <p>Ships</p>
       <div class="ShipItems">
-          <component class="ShipCard" :is="CurrentComponent" v-for="Loop in NumberOfLoops" v-bind:key="Loop"></component>
+          <component class="ShipCard" :is="CurrentComponent" v-for="Loop in NumberOfLoops" v-bind:key="Loop" :IdFlag="Loop">
+              <!-- Pass the directive IdFlag as a unique key to assign the ID to each ship card -->
+          </component>
       </div>
     </div>
     <div class="Filter">
       <p id="FilterTitle">Filters</p>
-      <FilterShip ></FilterShip>
+      <FilterShip></FilterShip>
     </div>
   </div>
 </template>
@@ -73,7 +75,6 @@ export default {
 .Filter{
   width: 48%;
   height: 100%;
-  /* border: 2px solid #ccc; */
 }
 #FilterTitle{
   margin-bottom: 2%;

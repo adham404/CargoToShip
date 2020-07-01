@@ -5,7 +5,7 @@ import router from './router';
 import "./plugins/axios";
 import firebase from 'firebase';
 // import simplemaps_worldmap from  "../public/worldmap"
-
+export const EventBus = new Vue();
 
 
 

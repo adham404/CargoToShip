@@ -2,7 +2,7 @@
   <div :style="CardExpandStyle" class="ShipItem" v-on:click="ShowMore">
   <div class="ItemTitle">
     <img src="../assets/Ship.svg" alt="">
-    <p>Ship Name</p>
+    <p>{{ShipData.Id}}</p>
   </div>
   <hr>
   <div class="ShipItemDetails">
@@ -15,8 +15,8 @@
         <p>Ready to carry Dangerous goods:</p>
         <img src="../assets/Check.svg" alt="">
       </div>
-      <p v-if="ShowMoreTrigger" id="SecCol">Chartering Type: Voyage&time</p>
     </div>
+      <p v-if="ShowMoreTrigger" id="SecCol">Chartering Type: Voyage&time</p>
     <div v-if="ShowMoreTrigger" class="Row">
       <p style="margin-right:18%;">Type of Ship: Container ship </p>
       <p id="SecCol">Build Year: 2001 </p>
@@ -26,8 +26,8 @@
       <div class="AvailableSector">
         <p id="SecCol">Available Sector: </p>
         <ul>
-          <li>Sector 1</li>
-          <li>Sector 1</li>
+          <li>{{ShipData.date}}</li>
+          <li>{{ShipData.Build}}</li>
           <li>Sector 1</li>
         </ul>
       </div>
@@ -38,16 +38,25 @@
 </template>
 
 <script>
+import firebase from 'firebase';
+import { EventBus } from '../main';
 export default {
   data:function(){
     return{
       ShowMoreTrigger:false,  //Triger value to show more details when card is clicked
       CardExpandStyle:{       // Styling Object for the card component to manipulate the styling of the card during the js code
         height:""
-      }
+      },
+      ShipData:{   //Object to hold the ship data
+
+      },
+      Key:""    //Key data property to hold the ID of each card
+
     }
   },
+  props: ['IdFlag'],   //the Number of iteration is passed down to the shipcard
   methods:{
+
     ShowMore: function(){    //When The card is clicked the ShowMoreTrigger is swapped and the extra details are shown and the card expand
       this.ShowMoreTrigger = !this.ShowMoreTrigger;
       if(this.ShowMoreTrigger)
@@ -57,8 +66,19 @@ export default {
       else{
         this.CardExpandStyle.height = 35 + "%";
       }
+      //--------------------------------------------------------------------------
     }
-  }
+  },
+  mounted(){
+    EventBus.$on("ShipDataSent",(Data)=>{   //Recieve Signal from App.vue with the ID of the of Each Card
+      this.Key = Data[this.IdFlag];  //Assign the ID of each card according to it's order to the data property Key
+      let self = this   // To Access Local data properties inside Async() functions
+      //When the Card is created the object retrieve the data from the database According to it's unique ID when the Event signal is transmitted
+      firebase.database().ref('Ships/' + self.Key).once('value').then(function(snapshot){
+        self.ShipData = snapshot.val()
+      })
+    })
+   }
 }
 </script>
 
