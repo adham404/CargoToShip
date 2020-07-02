@@ -2,6 +2,7 @@
     <div id="paypalcontaner" >
         <img src="@/assets/cc-paypal-brands.svg">
         <div>After clicking “Confirm Order”, you will be redirected to PayPal to complete your purchase securely.</div>
+        <slot></slot>
     </div>
     
 </template>
@@ -19,6 +20,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-top: 5vw;
+        margin-bottom: 4vw;
     }
     img{
         width: 15vw;

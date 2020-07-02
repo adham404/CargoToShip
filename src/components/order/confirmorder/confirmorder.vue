@@ -1,28 +1,28 @@
 <template>
     <div id="contaner">
-        <div class="paymenttype" >
+
+            <div class="paymenttype" >
                 <div class="paymentmathed" id="card" v-on:click="()=>{this.show = true}" ><img class="paymentlogo" src="@/assets/credit-card.svg"><div class="paymenttext">Credit Card</div></div>
                 <div class="paymentmathed" id="paypal" v-on:click="()=>{this.show = false}"><img class="paymentlogo" src="@/assets/paypal-icon.svg"><div class="paymenttext">PayPal</div></div>
-        </div>
-        <div id="flex">
-            <creditcardinputdata v-if="show"></creditcardinputdata>
-            <paypal v-if="!show"></paypal>
-
-            <div class="card" id="finalcard">
-                <cargoinfo></cargoinfo>
-                <div id="confirmorder" >Confirm Order</div>
             </div>
-        </div>
+            <div id="fff" >
+                <div id="flex">
+                    <creditcardinputdata v-if="show"></creditcardinputdata>
+                    <paypal v-if="!show"></paypal>
+                </div>
+            </div>
+
+        <div id="555"><div id="confirmorder1" v-on:click="sendnow" >Confirm Order</div></div>
+
     </div>
 </template>
 
 <script>
     import creditcardinputdata from "./creditcardinputdata";
     import paypal from "./paypal";
- import cargoinfo from "@/components/order/confirmorder/orderinfo";
+    import firebase from 'firebase' ;
     export default {
         components: {
-            cargoinfo,
             creditcardinputdata,
             paypal
 
@@ -45,10 +45,28 @@
                     cardcvv : null ,
                     termsandcond : null,
                 },
+                orderid : 549484949949,
+                objectid : "c1331313119",
+                userid : 797798798711,
+
             }
     },
         methods: {
+            sendnow() {
 
+                firebase.database().ref('Orders/' + this.orderid ).set({
+                    OrderID: this.orderid,
+                    ObjectID :this.objectid,
+                    UserID :this.userid,
+
+                });
+                firebase.database().ref('Orders/' + this.orderid ).set({
+                    OrderID: this.orderid,
+                    ObjectID :this.objectid,
+                    UserID :this.userid,
+
+                });
+                 }
         }
     }
 </script>
@@ -56,9 +74,18 @@
 <style scoped >
     @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-    #confirmorder{
-        margin-top: 2vw;
-        margin-left: 7vw;
+
+    #555{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    #confirmorder1{
+
+        cursor: pointer;
+        /*!*margin-top: 2vw;*!*/
         font-weight: bold;
         font-size: 1.2vw;
         background-color: #039be5;
@@ -66,6 +93,9 @@
         padding: 0.4vw 1vw 0.4vw 1vw;
         text-align: center;
         width: 11vw;
+        margin-left: 70%;
+        margin-right: 0;
+
 
     }
     .paymenttext{
@@ -76,6 +106,9 @@
         text-decoration: none;
     }
     #contaner{
+        /*position: absolute;*/
+        display: flex;
+        flex-direction: column;
         font-family: Roboto ;
         width: 77vw;
         height: 40.4vw;
@@ -108,8 +141,13 @@
     }
     #flex{
         display: flex;
-        padding: 2vw 4vw 2vw 4vw ;
 
+        justify-content: space-evenly;
+        padding: 2vw 4vw 0vw 4vw ;
+
+    }
+    #abs{
+        position: absolute;
     }
     #finalcard{
         padding-right: 0;

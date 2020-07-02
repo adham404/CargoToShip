@@ -13,11 +13,7 @@
                     <div class="userdatatext"> {{user.phone}}</div>
                     <img v-on:click="edit('phone')" class="userdataedit" src="@/assets/editicon.svg">
                 </div>
-                <div class="userdetails" >
-                    <div class="userdataheader">Country:</div>
-                    <div class="userdatatext"> {{user.country}}</div>
-                    <img v-on:click="edit('country')" class="userdataedit" src="@/assets/editicon.svg">
-                </div>
+
                 <div v-on:click="edit('password')" id="changepassword" >Change Password</div>
             </div>
             <div id="cridetcardinfo" >
@@ -50,12 +46,15 @@
                 <div class="editdatafilde">
                     <div class="edittitle" >Enter Password</div>
                     <input type="password" value="password" v-model="editdata.password">
+                    <div class="error"  v-if="passrequirederor">Required</div>
                 </div>
                 <div class="editdatafilde">
                     <div class="edittitle">Enter New {{editdata.change}}</div>
-                    <input :type="editdata.datatype" >
+                    <input :type="editdata.datatype" v-model="editdata.newvalue"  >
+                    <div class="error" id="emailerro" v-if="emaileror">Invalid Email</div>
+                    <div class="error" id="requereror" v-if="requirederor">Required</div>
                 </div>
-                <div id="saveedit" v-on:click="save"  > Save</div>
+                <button type="submit" id="saveedit" v-on:click="save"  > Save</button>
             </div>
         </div>
         <div id="recentorders">
@@ -97,31 +96,72 @@
                     newvalue : null,
                     datatype : null,
                     edit : false ,
-                }
+                },
+                savechanges : false,
+                emaileror :false,
+                requirederor : false,
+                passrequirederor : false
+
             }
         },
         methods :{
             edit(p){
+                this.editdata.password = '';
+                this.editdata.newvalue = '';
+                this.requirederor = false;
+                this.emaileror =false;
                this.editdata.change = p ;
                this.editdata.edit = true;
-               if(p == 'country'){
-                   this.editdata.datatype = 'text';
-
-               }else if(p == 'phone'){
-                   this.editdata.datatype = 'number';
+               if(p == 'phone'){
+                   this.editdata.datatype = "number";
+                   this.editdata.newvalue = '';
                }
                else {
                    this.editdata.datatype = p ;
+                   this.editdata.newvalue = '';
+
                }
             },
             save(){
-                this.editdata.edit = false ;
+                if (this.editdata.change == 'email'){
+                    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    if(re.test(this.editdata.newvalue)){
+                        this.savechanges = true;
+                        this.emaileror = false;
+                    }else {
+                        this.emaileror = true ;
+                        this.savechanges = false;
+
+                    }
+
+
+
+                }else {
+                    var dd = this.editdata.newvalue
+                    if (dd.length == 0 ){
+                        this.requirederor =true;
+                    }else {
+                        this.savechanges = true;
+                    }
+                }
+                if (this.editdata.password.length <1){
+                    this.savechanges =false
+                    this.passrequirederor = true
+                }
+                if (this.savechanges){
+                    this.editdata.edit=false;
+                }
             }
         }
     }
 </script>
 
 <style scoped>
+    .error{
+        margin-left: 1vw;
+        font-size: 1vw;
+        color: red;
+    }
     hr{
         margin: 0;
         padding: 0;

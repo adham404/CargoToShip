@@ -1,18 +1,44 @@
 <template>
     <div id="flexcontaner1">
+
+        <div class="card" id="card info" >
+            <div class="flexheader"><div class="number"></div>
+                <div class="titel">Card details</div>
+            </div>
+            <hr/>
+
+            <div>
+                <div class="inputdata" >
+                    <h>Name on card</h>
+                    <input type="text" value="card name"  v-model="idata.cardname" >
+                </div>
+                <div class="inputdata" >
+                    <h>Card Number</h>
+                    <input type="number" value="card number" max="16"  v-model="idata.cardnumber" >
+                </div>
+                <div class="inputdata" >
+                    <h>EXP Date</h>
+                    <input type="month" value="card name"  v-model="idata.cardexpdate" >
+                </div>
+                <div class="inputdata" >
+                    <h>CVV</h>
+                    <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                           type = "number"
+                           maxlength="3"
+                           v-model="idata.cardcvv"
+                    >
+                </div>
+                <div class="termscard" >
+                    <input type="checkbox" id ='inputcheckbox' value="card name"  v-model="idata.termsandcond" > <label>i have read and agree to terms and conditions </label>
+                </div>
+
+            </div>
+        </div>
         <div class="card" id="billingaddress" >
-            <div class="flexheader"><div class="number">1</div>
+            <div class="flexheader"><div class="number"></div>
                 <div class="titel">Billing Address</div>
             </div>
             <hr/>
-            <div class="inputdata" >
-                <h>Full name</h>
-                <input type="text" name="name"  value="Full name"  v-model="idata.name" >
-            </div>
-            <div class="inputdata" >
-                <h>E-mail</h>
-                <input type="text" value="email"  v-model="idata.email" >
-            </div>
             <div class="inputdata" >
                 <h>Address</h>
                 <input type="text" value="Address"  v-model="idata.addres" >
@@ -279,40 +305,9 @@
                 </div>
 
             </div>
-
-        </div>
-        <div class="card" id="card info" >
-            <div class="flexheader"><div class="number">2</div>
-                <div class="titel">Card detailes</div>
-            </div>
-            <hr/>
-
-            <div>
-                <div class="inputdata" >
-                    <h>Name on card</h>
-                    <input type="text" value="card name"  v-model="idata.cardname" >
-                </div>
-                <div class="inputdata" >
-                    <h>Card Number</h>
-                    <input type="number" value="card number" max="16"  v-model="idata.cardnumber" >
-                </div>
-                <div class="inputdata" >
-                    <h>EXP Date</h>
-                    <input type="month" value="card name"  v-model="idata.cardexpdate" >
-                </div>
-                <div class="inputdata" >
-                    <h>CVV</h>
-                    <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                           type = "number"
-                           maxlength="3"
-                           v-model="idata.cardcvv"
-                    >
-                </div>
-                <div class="termscard" >
-                    <input type="checkbox" id ='inputcheckbox' value="card name"  v-model="idata.termsandcond" > <label>i have read and agree to terms and conditions </label>
-                </div>
-
-            </div>
+            <div id="cargopricetitle">The Price</div>
+            <div class="cargoprice">{{price}}$</div>
+            <slot></slot>
         </div>
     </div>
 </template>
@@ -336,6 +331,7 @@
                     cardcvv : null ,
                     termsandcond : null,
                 },
+                price : 6
             }
         },
     }
@@ -354,6 +350,8 @@
     }
     #flexcontaner1{
         display: flex;
+        width: 100%;
+        justify-content: space-around;
 
     }
     input::-webkit-outer-spin-button,
@@ -380,9 +378,7 @@
         width: 23vw ;
         padding-right: 1vw ;
         margin-right: 1vw;
-        border-right: black solid 0.1vw;
         height: 27vw;
-        flex: 10;
     }
     .flexheader{
         display: flex;
@@ -431,6 +427,18 @@
     }
     .termscard{
         font-size: 1.3vw;
+    }
+    .cargoprice{
+        width: 100%;
+        text-align: center;
+        font-size: 4vw;
+        color: darkblue;
+
+    }
+    #cargopricetitle{
+        width: 100%;
+        text-align: center;
+        font-size: 2vw;
     }
 
 
