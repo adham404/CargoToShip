@@ -41,7 +41,7 @@
                     <img id="deleticon" src="@/assets/romoveicon.svg">
                 </div>
                 <div id="addnewcard">
-                    <img src="@/assets/addicon.svg">
+                    <img src="@/assets/plus.svg">
                     <div>Add New Card</div>
                 </div>
 
@@ -122,6 +122,21 @@
 </script>
 
 <style scoped>
+    hr{
+        margin: 0;
+        padding: 0;
+        border-top: 0.1vw black solid;
+    }
+    #contaner{
+        font-family: Roboto ;
+        width: 77vw;
+        height: 40.4vw;
+        background-color: #ECEFF1;
+        margin: auto;
+        border-radius: 3vw;
+        box-shadow: 0px 3px 6px rgba(0,0,0,16%);
+
+    }
     #deleticon{
         width: 1.8vw;
         cursor: pointer;
@@ -133,6 +148,9 @@
     }
     #ordercontanct div{
         margin-bottom: 1.2vw;
+        font-size: 1vw;
+        padding: 0;
+        margin-top: 0;
     }
     #recentordertitle{
         font-size: 1.4vw;
@@ -205,7 +223,8 @@
 
     }
     #profileheader{
-        border-radius: 19px 19px 0 0;
+        font-size: 1.4vw;
+        border-radius: 3vw 3vw 0 0;
         z-index: inherit;
         display: flex;
         align-items: center;
@@ -245,6 +264,7 @@
     }
     .userdatatext{
         margin-right: 1vw;
+        font-size: 1.3vw;
     }
     #changepassword{
         cursor: pointer;
@@ -273,6 +293,7 @@
         align-items: center;
     }
     .carddatatext{
+        margin-bottom: 1vw;
         font-size: 1.2vw;
         margin-left: 2.5vw;
         display: flex;
@@ -283,15 +304,17 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 2vw;
+        margin-bottom: 1vw;
     }
     #addnewcard{
+        margin-left: 2vw;
+        display: flex;
         text-align: center;
+        align-items: center;
         border-radius: 1vw;
-        border: 0.2vw lightslategray solid;
+        box-shadow: 0vw 0.2vw 0.4vw rgba(0,0,0,16%) ;
         padding: 0.2vw;
-        width: 10vw;
-        margin: auto;
+        width: 11vw;
         cursor: pointer;
 
     }
@@ -299,7 +322,8 @@
         font-size: 1.2vw;
     }
     #addnewcard img{
-        width: 2vw;
+        width: 1.7vw;
+        margin: 0.2vw 0.5vw 0.2vw 0.3vw;
     }
 
 </style>

@@ -269,13 +269,13 @@
                 </select>
             </div>
             <div class="flex">
-                <div class="inputdata" >
+                <div id="smallinput" class="inputdata" >
                     <h>City</h>
-                    <input type="text" value="City"  v-model="idata.city" >
+                    <input type="text"  value="City"  v-model="idata.city" >
                 </div>
-                <div class="inputdata" >
+                <div id="smallinput"  class="inputdata" >
                     <h>Zip code</h>
-                    <input type="text" value="Zip code"  v-model="idata.zipcode" >
+                    <input type="text"  value="Zip code"  v-model="idata.zipcode" >
                 </div>
 
             </div>
@@ -309,7 +309,7 @@
                     >
                 </div>
                 <div class="termscard" >
-                    <input type="checkbox" value="card name"  v-model="idata.termsandcond" > <label>i have read and agree to terms and conditions </label>
+                    <input type="checkbox" id ='inputcheckbox' value="card name"  v-model="idata.termsandcond" > <label>i have read and agree to terms and conditions </label>
                 </div>
 
             </div>
@@ -342,6 +342,16 @@
 </script>
 
 <style scoped>
+    #smallinput{
+        flex: 0 0 auto ;
+    }
+
+    #inputcheckbox{
+        height: 1.5vw;
+        width: 1.5vw;
+        margin: 0;
+        border-radius: 0px;
+    }
     #flexcontaner1{
         display: flex;
 
@@ -370,7 +380,9 @@
         width: 23vw ;
         padding-right: 1vw ;
         margin-right: 1vw;
-        border-right: black solid 1px ;
+        border-right: black solid 0.1vw;
+        height: 27vw;
+        flex: 10;
     }
     .flexheader{
         display: flex;
@@ -387,6 +399,7 @@
     }
     hr{
         margin: 0.5vw 0vw 0.5vw 0vw;
+        border-top: 0.2vw gray solid;
 
     }
     .inputdata{
@@ -398,18 +411,20 @@
         font-size: 1.2vw;
     }
     .inputdata input{
-        margin-top: 0.5vw;
+        border-radius: 0.5vw;
+        margin: 0.5vw 0vw 0vw 0vw;
         outline: none;
         height: 2vw;
         border: none;
-        box-shadow: 0px 3px 6px rgba(0,0,0,16%) ;
+        box-shadow: 0vw 0.2vw 0.4vw rgba(0,0,0,16%) ;
     }
     .inputdata select{
-        margin-top: 0.5vw;
+        border-radius: 0.5vw;
+        margin: 0.5vw 0vw 0vw 0vw;
         outline: none;
         height: 2.2vw;
         border: none;
-        box-shadow: 0px 3px 6px rgba(0,0,0,16%) ;
+        box-shadow: 0vw 0.2vw 0.4vw rgba(0,0,0,16%) ;
     }
     .flex input{
         width: 10.2vw;
