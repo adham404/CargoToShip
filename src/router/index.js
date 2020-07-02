@@ -1,41 +1,44 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import creditcardinputdata from "../components/creditcardinputdata";
-import paypal from "../components/paypal";
-import confirmorder from "../components/confirmorder";
+import confirmorder from "../components/order/confirmorder/confirmorder";
 import profile from "../components/profile/profile";
+import orderdata from "../components/order/orderdata/orderdata";
+import ordercontaner from "../components/order/ordercontaner";
 // import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-
   {
-    path : '/orderpayment',
-    name : 'orderpayment',
-    component : confirmorder,
+    path: '/order',
+    name: 'order',
+    redirect: { name: 'orderinfo' },
+    component: ordercontaner,
     children: [
       {
-        path : '',
-        name : 'Creditcard',
-        component : creditcardinputdata,
+        path : 'orderpayment/',
+        name : 'orderpayment',
+        component : confirmorder,
 
       },
       {
-        path : 'paypal',
-        name : 'paypal',
-        component : paypal,
+        path : 'orderinfo/',
+        name : 'orderinfo',
+        component : orderdata,
 
-      },
+      }
+
     ]
-
   },
+
+
   {
     path : '/profile',
     name : 'profile',
     component : profile,
 
   },
+
   // {
   //   path: '/',
   //   name: 'Map',

@@ -6,9 +6,15 @@
 <!--    <p>{{input}}</p>-->
 <!--    <div id="map">-->
 <!--    </div>-->
+      <div id="links" >
+          <div class="link" ><router-link :to="{name :'orderpayment'}" >order</router-link></div>
+          <div class="link" > <router-link to="/profile" >profile</router-link></div>
+          <div class="link" ><router-link :to="{name :'orderinfo'}" >order data</router-link></div>
+      </div>
 
-      <router-link to="/orderpayment" >order         </router-link>
-      <router-link to="/profile" >profile</router-link>
+
+
+
       <router-view></router-view>
 
   </div>
@@ -45,9 +51,27 @@ methods: {
 
 
 
-<style >
+<style  >
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
    body{
        background-color: #039be5;
+       font-family: Roboto sans-serif;
+   }
+    #links{
+        display: flex;
+        justify-content: space-around;
+
+    }
+    .link{
+        color: black;
+        font-family: Roboto sans-serif;
+        font-size: 1.4vw;
+        padding: 1vw;
+
+    }
+   .link a{
+       color: black;
+       text-decoration: none;
    }
 
 </style>

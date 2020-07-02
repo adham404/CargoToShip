@@ -1,15 +1,12 @@
 <template>
     <div id="contaner">
         <div class="paymenttype" >
-            <router-link :to ="{name : 'Creditcard' }">
-                <div class="paymentmathed" id="card" ><img class="paymentlogo" src="@/assets/credit-card.svg"><div class="paymenttext">Credit Card</div></div>
-            </router-link>
-            <router-link :to ="{name : 'paypal' }">
-                <div class="paymentmathed" id="paypal"><img class="paymentlogo" src="@/assets/paypal-icon.svg"><div class="paymenttext">PayPal</div></div>
-            </router-link>
+                <div class="paymentmathed" id="card" v-on:click="()=>{this.show = true}" ><img class="paymentlogo" src="@/assets/credit-card.svg"><div class="paymenttext">Credit Card</div></div>
+                <div class="paymentmathed" id="paypal" v-on:click="()=>{this.show = false}"><img class="paymentlogo" src="@/assets/paypal-icon.svg"><div class="paymenttext">PayPal</div></div>
         </div>
         <div id="flex">
-            <router-view></router-view>
+            <creditcardinputdata v-if="show"></creditcardinputdata>
+            <paypal v-if="!show"></paypal>
 
             <div class="card" id="finalcard">
                 <cargoinfo></cargoinfo>
@@ -20,15 +17,20 @@
 </template>
 
 <script>
- import cargoinfo from "@/components/orderinfo";
+    import creditcardinputdata from "./creditcardinputdata";
+    import paypal from "./paypal";
+ import cargoinfo from "@/components/order/confirmorder/orderinfo";
     export default {
         components: {
             cargoinfo,
+            creditcardinputdata,
+            paypal
 
         },
         name: "confirmorder",
         data(){
             return {
+                show : true,
 
                 idata : {
                     name : null,
@@ -88,7 +90,7 @@
         justify-content: center;
     }
     .paymentmathed{
-
+        cursor: pointer;
         font-size: 1.3vw;
         border: lightgray 0.1vw solid;
         box-shadow: 0vw 0.2vw 0.4vw rgba(0,0,0,16%) ;
