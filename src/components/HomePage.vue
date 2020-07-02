@@ -1,8 +1,6 @@
 <template lang="html">
+  <v-app>
   <div class="app">
-    <div class="Layer1">
-      <div class="" id="map"></div>
-    </div>
     <div class="Layer2">
       <div class="Header">
         <div class="Logo">
@@ -38,9 +36,7 @@
                   <path id="Path_8" data-name="Path 8" d="M38.732,7.467,7,5.063V29.891l31.732-2.4a1.345,1.345,0,0,0,1.33-1.247V8.714a1.345,1.345,0,0,0-1.33-1.247ZM13.807,23.737a1.368,1.368,0,0,1-1.459,1.252,1.368,1.368,0,0,1-1.459-1.252V11.218a1.368,1.368,0,0,1,1.459-1.252,1.368,1.368,0,0,1,1.459,1.252Zm7.779-.835a1.476,1.476,0,0,1-2.917,0V12.052a1.476,1.476,0,0,1,2.917,0Zm7.779-.835a1.476,1.476,0,0,1-2.917,0V12.887a1.476,1.476,0,0,1,2.917,0Zm6.807-.417a1.476,1.476,0,0,1-2.917,0V13.721a1.476,1.476,0,0,1,2.917,0Z" fill="#fff"/>
                 </g>
               </svg>
-
             </div>
-
           </div>
           <div class="Toggle">
             <div class="slideButton">
@@ -70,23 +66,64 @@
         </div>
 
       </div>
+
+    </div>
+    <div class="Layer1">
+      <div class="map" >
+          <div id="map">
+
+          </div>
+
+      </div>
       <div class="Controls">
+        <v-btn
+           v-model="fab"
+           color="blue darken-2"
+           dark
+           fab
+         >
+           <v-icon>mdi-magnify</v-icon>
+         </v-btn>
         <div class="VerticalNav">
         </div>
-        
+        <AddFab/>
       </div>
-    </div>
+      </div>
   </div>
-
+</v-app>
 </template>
 
 <script>
+import AddFab from '@/components/AddFab.vue'
 export default {
+  components: {
+    AddFab
+  }
 
 }
 </script>
 
 <style lang="css" scoped>
+.map{
+  width: 90%;
+  background-color: brown;
+}
+.Controls{
+  /* position: absolute; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 10%;
+  z-index: 1;
+  /* background-color: red; */
+}
+.app{
+  width: 100vw;
+  height: 100vh;
+  background-color: grey;
+}
+
 .CargoButton svg{
   height: 2.5vw;
   width: 2vw;
@@ -136,8 +173,8 @@ export default {
   flex-direction: row;
   justify-content: space-between;
 }
-
 #SignUp{
+  background-color: blue;
   position: absolute;
   border-radius: 25px;
   border: none;
@@ -165,17 +202,18 @@ export default {
   justify-content: center;
   align-items: center;
   width: 20%;
-  background-color: red;
+  /* background-color: red; */
 }
 .Logo h1{
   font-family: Quicksand, sans-serif;
-  font-weight: 10;
-  font-size: 2vw;
+  font-weight: 400;
+  font-size: 2.1vw;
+  color: white
   /* z-index: 3;
   position: absolute; */
 }
 .Logo svg{
-  height: 3.5vw;
+  height: 4.5vw;
   border: solid 10px transparent;
 }
 
@@ -184,72 +222,83 @@ export default {
   justify-content: center;
   align-items: center;
   width: 20%;
-  background-color: pink;
+  /* background-color: pink; */
 }
 .StatsToggle{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 30%;
-  background-color: purple;
+  /* background-color: purple; */
 }
 .Stats{
   width: 40%;
-  background-color: yellow;
+  /* background-color: yellow; */
 }
 .Toggle{
   display: flex;
   justify-content: center;
   width: 40%;
-  background-color: yellow;
+  /* background-color: yellow; */
 }
 .Layer1{
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  z-index: -2
+  /* position: absolute; */
+  /* height: 100vh; */
+  /* width: 100vw; */
+  /* z-index: 0; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* background-color: green; */
+  height: 87vh;
+
 }
 .Layer2{
-  position: absolute;
-  height: 100vh;
+
+  /* position: relative; */
+  height: 7vw;
   width: 100vw;
-  z-index: -1;
+  background-color: transparent;
+  /* z-index: 1; */
+
 }
 #map{
+  /* padding-top: 20%; */
   position: absolute;
-  width: 80%;
-  height: 100%;
-  overflow: hidden;
-  overflow-y: hidden;
+  /* z-index: 0; */
+  width: 100vw;
+  height: 100vh;
+  /* height: 200vh; */
+  /* margin-top: -7%; */
+  /* margin-left: -0.5%; */
+  /* margin-left: -1% */
+  /* left: -3%; */
+  /* height: 50%; */
+  /* overflow: hidden; */
+  /* overflow-y: hidden; */
 }
 .Header{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  height: 15%;
-  background-color: blue;
+  height: 100%;
+  /* background-color: blue; */
 }
 
 .Header img{
   width: 13vw;
 
 }
-.Controls{
-  display: flex;
-  flex-direction: column;
-  background-color: green;
-  height: 80%;
-}
 .VerticalNav{
-  position: absolute;
-  background-color: red;
+  background-color: blue;
   width: 3.2vw;
   height: 25vw;
-  z-index: 0;
-  top: 20%;
   border: none;
   border-radius: 5vw;
 
 }
+
+
+
 </style>

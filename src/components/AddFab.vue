@@ -3,7 +3,7 @@
   v-model="fab"
   :top="top"
   :bottom="bottom"
-  :right="right"
+  
   :left="left"
   :direction= "direction"
   :open-on-hover="hover"
@@ -17,7 +17,7 @@
       fab
     >
       <v-icon v-if="fab">mdi-close</v-icon>
-      <v-icon >mdi-account-circle</v-icon>
+      <v-icon v-else>mdi-account-circle</v-icon>
     </v-btn>
   </template>
   <v-btn
@@ -54,13 +54,13 @@ export default {
     direction: 'left',
     fab: false,
     fling: false,
-    hover: false,
+    hover: true,
     tabs: null,
     top: false,
     right: true,
     bottom: true,
     left: false,
-    transition: 'slide-y-reverse-transition',
+    transition: 'slide-x-reverse-transition',
     }
   },
   computed: {
@@ -92,8 +92,5 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.v-speed-dial{
-  margin-left: 50%;
-  margin-top: 20%;
-}
+
 </style>

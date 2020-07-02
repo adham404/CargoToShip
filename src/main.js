@@ -4,8 +4,7 @@ import App from './App.vue';
 import router from './router';
 import "./plugins/axios";
 import firebase from 'firebase';
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
+import vuetify from './plugins/vuetify';
 
 
 
@@ -26,7 +25,6 @@ firebase.initializeApp(firebaseConfig);
 // firebase.analytics();
 Vue.config.productionTip = false;
 Vue.prototype.$senior_seen = false;
-Vue.use(Vuetify)
 
 
 
@@ -34,5 +32,6 @@ Vue.use(Vuetify)
 
 new Vue({
   router,
+  vuetify,
   render: h => h(App)
 }).$mount('#app');
