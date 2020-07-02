@@ -1,6 +1,6 @@
 <template>
     <div id="paypalcontaner" >
-        <img src="../assets/cc-paypal-brands.svg">
+        <img src="@/assets/cc-paypal-brands.svg">
         <div>After clicking “Confirm Order”, you will be redirected to PayPal to complete your purchase securely.</div>
     </div>
     

@@ -20,8 +20,7 @@
 </template>
 
 <script>
- import cargoinfo from "./orderinfo";
- // import creditcardinputdata from "./creditcardinputdata";
+ import cargoinfo from "@/components/orderinfo";
     export default {
         components: {
             cargoinfo,
