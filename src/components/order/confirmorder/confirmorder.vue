@@ -45,9 +45,9 @@
                     cardcvv : null ,
                     termsandcond : null,
                 },
-                orderid : 549484949949,
-                objectid : "c1331313119",
-                userid : 797798798711,
+                orderid : 41814841841,
+                objectid : "841848441",
+                userid : 844848484,
 
             }
     },
@@ -60,12 +60,7 @@
                     UserID :this.userid,
 
                 });
-                firebase.database().ref('Orders/' + this.orderid ).set({
-                    OrderID: this.orderid,
-                    ObjectID :this.objectid,
-                    UserID :this.userid,
 
-                });
                  }
         }
     }
