@@ -28,12 +28,13 @@
         padding:0.8vw 0.8vw 0.3vw 0.8vw;
         border-radius: 1.5vw 1.5vw 0vw 0vw;
         opacity: 36%;
-
     }
     #linkscont{
         margin-left: 15vw;
-        margin-bottom: 0.3vw;
-        z-index: -1;
+        /*height:2.7vw ;*/
+        display: flex;
+        justify-content: start;
+        align-items: center;
     }
     .router-link-active{
        opacity: 100%;

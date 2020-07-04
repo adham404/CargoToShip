@@ -6,33 +6,13 @@
         </div>
         <div class="line" ></div>
         <div class="datacontaner" >
-            <div class="datacard">
-                <div class="dataheader">Chartering Type : </div>
-                <div class="datatext">{{shipdata.typeofship}}</div>
+            <div  v-for=" item in shipfulldata"  v-bind:key="item.title" >
+                <div class="datacard" v-if="item.type =='t/v' || item.type =='t'"  >
+                    <div  class="dataheader">{{item.title}} </div>
+                    <div  class="datatext">{{item.data}}</div>
+                </div>
             </div>
-            <div class="datacard">
-                <div class="dataheader">Type Of Ship : </div>
-                <div class="datatext">{{shipdata.charteringtype}}</div>
-            </div>
-            <div class="datacard">
-                <div class="dataheader">Hold Volume: </div>
-                <div class="datatext">{{shipdata.holdvolume}} M³</div>
-            </div>
-            <div class="datacard">
-                <div class="dataheader">Year Of Build : </div>
-                <div class="datatext">{{shipdata.yearofbuild}}</div>
-            </div>
-            <div class="datacard">
-                <div class="dataheader">Availability Date : </div>
-                <div class="datatext">
-                    <div>from : {{shipdata.availabilitydate[0]}}</div> <br>
-                    <div>to : {{shipdata.availabilitydate[1]}}</div>
-                     </div>
-            </div>
-            <div class="datacard">
-                <div class="dataheader">Availability Sector : </div>
-                <div class="datatext">{{shipdata.availabilitysector}}</div>
-            </div>
+
         </div>
 
     </div>
@@ -41,6 +21,7 @@
 <script>
     export default {
         name: "shipdata",
+
         data:()=>{
             return{
                 shipdata : {
@@ -93,7 +74,8 @@
                     MMSIno :  {data :'text' , title : "MMSI NO" , type : "t" },
                 }
             }
-        }
+        },
+
     }
 </script>
 
@@ -124,7 +106,7 @@
         border-top: 0.1vw gray solid;
     }
     .datacard{
-        font-size: 1.2vw;
+        font-size: 1vw;
         display: flex;
         justify-content: start;
         align-items: start;
@@ -137,7 +119,6 @@
         flex-direction: column;
         /*justify-content: end;*/
         flex-wrap: wrap ;
-        border-bottom: 1px black solid ;
         height: 28vw;
     }
     .dataheader{

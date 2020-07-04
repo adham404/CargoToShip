@@ -5,6 +5,9 @@ import router from './router';
 import "./plugins/axios";
 import firebase from 'firebase';
 // import simplemaps_worldmap from  "../public/worldmap"
+import vuetify from '@/plugins/vuetify' // path to vuetify export
+
+
 
 
 
@@ -32,5 +35,6 @@ Vue.prototype.$senior_seen = false;
 
 new Vue({
   router,
+  vuetify,
   render: h => h(App)
 }).$mount('#app');
