@@ -4,9 +4,13 @@
     <div  class="FindShip">
       <p>Ships</p>
       <div class="ShipItems">
-          <component class="ShipCard" :is="CurrentComponent" v-for="Loop in NumberOfLoops" v-bind:key="Loop" :IdFlag="Loop">
+          <component  class="ShipCard" v-for="Id in FilteredIds" v-bind:key="Id" :is="CurrentComponent"  :IdFlag="Id">
               <!-- Pass the directive IdFlag as a unique key to assign the ID to each ship card -->
           </component>
+          <!-- <p>
+            {{FilteredIds[0]}}
+          </p> -->
+          <button  type="button" name="button">Trigger</button>
       </div>
     </div>
     <div class="Filter">
@@ -19,19 +23,31 @@
 <script>
 import ShipCard from '../components/ShipCard';  //Import The ShipCard Component
 import FilterShip from '../components/FilterShip'; //Import the Filter ship form Component
-// import { EventBus } from '../main.js';
+import { EventBus } from '../main.js';
+// import firebase from 'firebase';
+
 export default {
   data: function(){
     return{
-      NumberOfLoops:5,  //Testing Loop for number of cards
-      CurrentComponent:"ShipCard"  //Current Component that  hold either the cargo card or the ship card
+      // NumberOfLoops:5,  //Testing Loop for number of cards
+      CurrentComponent:"ShipCard",  //Current Component that  hold either the cargo card or the ship card
+      SearchText:"",  //Filter the listed array according to this search item
+      FilteredIds:""  //Data Object that holds the ID of each card
     }
   },
   components:{
     ShipCard,
     FilterShip
+  },
+  methods:{
+
+  },
+  mounted(){
+    EventBus.$on("SendFilter",(value)=>{
+      this.FilteredIds = value;
+    })  //Recieve the Signal from the Child component Filter.vue with the ID of the filtered objects
   }
-  }
+}
 </script>
 
 <style lang="css" scoped>

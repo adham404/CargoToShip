@@ -2,12 +2,12 @@
   <div class="FilterForm">
   <div class="FirstSection">
     <div class="Location">
-      <label for="Location">Location</label>
+      <label for="Location">Location {{Possible}}</label>
       <input id="Location" type="text" name="" value="">
     </div>
     <div class="TypeOfShip">
       <label for="TypeOfShip">Type of Ship</label>
-      <input id="TypeOfShip" type="text" name="" value="">
+      <input v-model="ShipType" @input="Filter" id="TypeOfShip" type="text" name="" value="">
     </div>
   </div>
   <div class="CharteringType">
@@ -79,8 +79,43 @@
 </template>
 
 <script>
+import { EventBus } from "../main";
+import firebase from 'firebase';
 
 export default {
+  data: function() {
+    return{
+      ShipType:"",  //Data Property that holds Search term for testing purposes
+      FilteredIds:""
+    }
+
+  },
+  methods:{
+    Filter: function(){
+      var database =  firebase.database();   //Create a Database object to simply use it
+      var ref = database.ref('Ships');  //Create an instance of our Table as a ref object
+      if(this.ShipType=="")
+      {
+        ref.on('value',this.gotData,this.errData);  //Assign the query selectors and the filteration to the ref object and by using the "on" method we will retrieve from the database everytime something is updated in the database and by using the 'value' event we indicate that we want the value of the filtered object and pass it to gotData() function in case there is value and pass to errData() function in case there is an error
+      }
+      else{
+        ref.orderByChild("Type").equalTo(this.ShipType).on('value',this.gotData,this.errData);  //Assign the query selectors and the filteration to the ref object and by using the "on" method we will retrieve from the database everytime something is updated in the database and by using the 'value' event we indicate that we want the value of the filtered object and pass it to gotData() function in case there is value and pass to errData() function in case there is an error
+      }
+    },
+    gotData: function(data){  //This Function handles the filtered data object retrieved from the database
+      var Ships = data.val();  //Ships hold the whole data object
+      this.FilteredIds = Object.keys(Ships); //FilteredIds object holds the IDs of the filtered object
+      EventBus.$emit("SendFilter",this.FilteredIds);
+      console.log(this.FilteredIds);
+    },
+    errData: function(err){ //This Function output an error if an error exists
+      console.log('Error!')
+      console.log(err);
+    }
+  },
+  mounted(){
+    this.Filter();
+  }
 }
 </script>
 

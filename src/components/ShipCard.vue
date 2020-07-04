@@ -16,9 +16,9 @@
         <img src="../assets/Check.svg" alt="">
       </div>
     </div>
-      <p v-if="ShowMoreTrigger" id="SecCol">Chartering Type: Voyage&time</p>
+    <p v-if="ShowMoreTrigger" id="SecCol">Chartering Type: Voyage&time</p>
     <div v-if="ShowMoreTrigger" class="Row">
-      <p style="margin-right:18%;">Type of Ship: Container ship </p>
+      <p style="margin-right:18%;">Type of Ship: {{ShipData.Type}} </p>
       <p id="SecCol">Build Year: 2001 </p>
     </div>
     <div v-if="ShowMoreTrigger" class="Row">
@@ -39,7 +39,7 @@
 
 <script>
 import firebase from 'firebase';
-import { EventBus } from '../main';
+// import { EventBus } from '../main';
 export default {
   data:function(){
     return{
@@ -70,14 +70,14 @@ export default {
     }
   },
   mounted(){
-    EventBus.$on("ShipDataSent",(Data)=>{   //Recieve Signal from App.vue with the ID of the of Each Card
-      this.Key = Data[this.IdFlag];  //Assign the ID of each card according to it's order to the data property Key
+     //Recieve Signal from App.vue with the ID of the of Each Card
+      this.Key = this.IdFlag;  //Assign the ID of each card according to it's order to the data property Key
       let self = this   // To Access Local data properties inside Async() functions
       //When the Card is created the object retrieve the data from the database According to it's unique ID when the Event signal is transmitted
       firebase.database().ref('Ships/' + self.Key).once('value').then(function(snapshot){
         self.ShipData = snapshot.val()
+        // console.log(self.ShipData);
       })
-    })
    }
 }
 </script>
