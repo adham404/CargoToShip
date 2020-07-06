@@ -6,7 +6,9 @@
         <button class="buttoncontrol" v-on:click="addship">addship</button><br>
         <button class="buttoncontrol" v-on:click="addcargo">addcargo</button><br>
         <button class="buttoncontrol" v-on:click="signout">logout</button><br>
-        <button class="buttoncontrol" v-on:click="whatisthedate">date</button><br>
+        <button class="buttoncontrol" v-on:click="whatisthedate">Date</button><br>
+        <button class="buttoncontrol" v-on:click="addorder">Add Order</button><br>
+        <button class="buttoncontrol" v-on:click="getcaro">getcargo</button><br>
     </div>
 </template>
 
@@ -80,8 +82,8 @@
                 }
             },
             whatisthedate(){
-                console.log(new Date().toString())
-                console.log(Math.floor((Math.random() * 100) + 1))
+                let timenow = new Date(2018, 1, 6, 1, 33, 30, 0).getTime()
+                console.log(new Date(timenow))
             },
             addcargo(){
                 let user = firebase.auth().currentUser
@@ -155,7 +157,30 @@
                     UserID : user.uid,
                 })
                 console.log('shipadded')
+            },
+            getcaro(){
+                firebase.database().ref('/Cargo').orderByChild( '/UserID').equalTo("X3ToOZ1qy9bBuinnZbngj2").once('value').then(function(snapshot){
+                    snapshot.forEach(function(child){
+                        const post = child.val();
+                        console.log(post)
+                    })
+            });
+            },
+            addorder(){
+                let user = firebase.auth().currentUser
+                let objid = 'c24'
+                let dateid = new Date().getTime()
+                let id = `o${dateid}${Math.floor((Math.random() * 100) + 1)}`
+                firebase.database().ref('Orders/' + id ).set({
+                    OrderID :id,
+                    ObjectID : objid,
+                    UserID : user.uid,
+                    OrderTime : new Date().getTime(),
+                    Active : false,
+                })
+                console.log('orderadded')
             }
+
         }
     }
 </script>
