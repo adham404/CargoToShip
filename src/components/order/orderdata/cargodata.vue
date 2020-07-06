@@ -6,40 +6,11 @@
         </div>
         <div class="line" ></div>
         <div class="datacontaner" >
-            <div class="datacard">
-                <div class="dataheader">Cargo Type : </div>
-                <div class="datatext">{{cargodata.cargotype}}</div>
-            </div>
-            <div class="datacard">
-                <div class="dataheader">Cargo Description : </div>
-                <div class="datatext">{{cargodata.cargodescription}}</div>
-            </div>
-            <div class="datacard">
-                <div class="dataheader">Dangers Goods: </div>
-                <div class="datatext">{{cargodata.dangersgoods}}</div>
-            </div>
-            <div class="datacard">
-                <div class="dataheader">Quantity : </div>
-                <div class="datatext">{{cargodata.quantity}}</div>
-            </div>
-            <div class="datacard">
-                <div class="dataheader">Laoding Port : </div>
-                <div class="datatext">{{cargodata.laodingport}}</div>
-            </div>
-            <div class="datacard">
-                <div class="dataheader">Discharing Port : </div>
-                <div class="datatext">{{cargodata.discharingport}}</div>
-            </div>
-            <div class="datacard">
-                <div class="dataheader">Availability Date : </div>
-                <div class="datatext">
-                    <div>from : {{cargodata.availabilitydate[0]}}</div> <br>
-                    <div>to : {{cargodata.availabilitydate[1]}}</div>
+            <div  v-for=" item in cargofulldata"  v-bind:key="item.title">
+                <div class="datacard" v-if="item.data && item.title "  >
+                    <div class="dataheader">{{item.title}} </div>
+                    <div class="datatext">{{item.data}}</div>
                 </div>
-            </div>
-            <div class="datacard">
-                <div class="dataheader">Freight : </div>
-                <div class="datatext">{{cargodata.freight}}</div>
             </div>
         </div>
 
@@ -47,19 +18,69 @@
 </template>
 
 <script>
+    import firebase from "firebase";
+
     export default {
         name: "cargodata",
+        mounted() {
+            let self = this
+            let cargoid = 'c18'
+            firebase.database().ref('/Cargo/' + cargoid).once('value').then(function(snapshot) {
+                // console.log(snapshot.val())
+                let indexx = Object.keys(self.cargofulldata);
+                let objsize = Object.keys(self.cargofulldata).length
+                console.log(objsize)
+                let i ;
+                for (i = 0 ;i < objsize ; i++){
+                    console.log('pop')
+                    self.cargofulldata[indexx[i]].data =  snapshot.val()[indexx[i]]
+                }
+                if (snapshot.val().DangerousGoods){
+                    firebase.database().ref('/DangerousGoods/' + cargoid).once('value').then(function(snapshot) {
+                        // console.log(snapshot.val())
+                        let indexx = Object.keys(snapshot.val());
+                        let objsize = Object.keys(snapshot.val()).length
+                        console.log(` snapshot size ${objsize}`)
+                        console.log(indexx)
+                        let i ;
+                        for (i = 0 ;i < objsize ; i++){
+                            console.log('pop')
+                            self.cargofulldata[indexx[i]].data =  snapshot.val()[indexx[i]]
+                        }
+                    });
+
+                }
+                // ...
+            });
+        },
         data:()=>{
             return{
-                cargodata:{
-                    cargotype : 'text',
-                    cargodescription : 'text',
-                    dangersgoods: true,
-                    quantity : 'text',
-                    laodingport : 'text',
-                    discharingport : 'text',
-                    availabilitydate : ['22-8-2020','5-9-2020'],
-                    freight :'text',
+
+                cargofulldata : {
+                    CargoID : {data :'' , title : "" , type : "t/v" },
+                    CargoType : {data :'' , title : "CargoType" , type : "t/v" },
+                    CargoDescription :  {data :'' , title : "CargoDescription" , type : "t/v" },
+                    DangerousGoods :  {data :'' , title : "DangerousGoods" , type : "t/v" },
+                    CargoQuantity :  {data :'' , title : "CargoQuantity" , type : "t/v" },
+                    LoadingPort :  {data :'' , title : "LoadingPort" , type : "t/v" },
+                    DischargingPort :  {data :'' , title : "DischargingPort" , type : "t/v" },
+                    Availability :  {data :'' , title : "Availability" , type : "t" },
+                    Freight :  {data :'' , title : "Freight" , type : "t" },
+                    Corrosive : {data :'' , title : "Corrosive" , type : "t/v" },
+                    DangerousWhenWet :  {data :'' , title : "DangerousWhenWet" , type : "t/v" },
+                    Explosive : {data :'' , title : "Explosive" , type : "t/v" },
+                    FlammableGas : {data :'' , title : "FlammableGas" , type : "t/v" },
+                    FlammableLiquid :  {data :'' , title : "FlammableLiquid" , type : "t/v" },
+                    FlammableSolid :  {data :'' , title : "FlammableSolid" , type : "t/v" },
+                    InfectiousSubstance :  {data :'' , title : "InfectiousSubstance" , type : "t/v" },
+                    MarinePollutant :  {data :'' , title : "MarinePollutant" , type : "t/v" },
+                    Miscellaneous :  {data :'' , title : "Miscellaneous" , type : "t/v" },
+                    NonflammableCompressedGas :  {data :'' , title : "NonflammableCompressedGas" , type : "t/v" },
+                    OrganicPeroxide :  {data :'' , title : "OrganicPeroxide" , type : "t/v" },
+                    OxidizingAgent :  {data :'' , title : "OxidizingAgent" , type : "t/v" },
+                    Radioactive :  {data :'' , title : "Radioactive" , type : "t/v" },
+                    SpontaneouslyCombustible :  {data :'' , title : "SpontaneouslyCombustible" , type : "t/v" },
+                    ToxicGas :  {data :'' , title : "ToxicGas" , type : "t/v" },
                 }
             }
         }
@@ -97,9 +118,15 @@
         display: flex;
         justify-content: start;
         align-items: start;
+
         margin-bottom: 1vw;
     }
     .datacontaner{
+        display: flex;
+        flex-direction: column;
+        /*justify-content: end;*/
+        flex-wrap: wrap ;
+        height: 28vw;
         margin-left: 2vw;
         margin-top: 2vw;
     }

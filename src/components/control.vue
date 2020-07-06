@@ -16,7 +16,7 @@
         name: "control",
         methods:{
             signupnewuser(){
-                let email = 'user4@cargotoship.com';
+                let email = 'user5@cargotoship.com';
                 let password = '123456789'
                 let phone = '0020100100100'
                 let firstname = 'Marwan'
@@ -44,7 +44,7 @@
 
             },
             signinnewuser(){
-                let email = 'user4@cargotoship.com';
+                let email = 'user5@cargotoship.com';
                 let password = '123456789'
                 firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
                     // Handle Errors here.
@@ -124,18 +124,37 @@
                 let user = firebase.auth().currentUser
                 let id = `s${Math.floor((Math.random() * 100) + 1)}${Math.floor((Math.random() * 100) + 1)}`
                 firebase.database().ref('Ships/' + id ).set({
-                    CargoID :id,
-                    CargoType : 'CargoType1',
-                    DangerousGoods : false,
-                    CargoQuantity : 'CargoQuantity1',
-                    LoadingPort : 'LoadingPort',
-                    DischargingPort : 'DischargingPort1',
-                    Availability : 'Availability1',
-                    Freight : 'Freight1',
-                    ContactInfo : 'ContactInfo1',
+                    ShipID :id,
+                    ShipName : 'ShipName',
+                    Nationality : "Nationality",
+                    PortOfRegistry : 'PortOfRegistry',
+                    TypeOfShip : 'TypeOfShip',
+                    IMO : 'IMO',
+                    LOA : 'LOA',
+                    LBP : 'LBP',
+                    Breadth : 'Breadth',
+                    GRT : 'GRT',
+                    NRT : 'NRT',
+                    GrainCapacity : 'GrainCapacity',
+                    BaleCapacity : 'BaleCapacity',
+                    HoldVolumeCubicMeter : 'HoldVolumeCubicMeter',
+                    HoldType : 'HoldType',
+                    ReadyToCarryDangerousGoods : 'ReadyToCarryDangerousGoods',
+                    SummerDraft : 'SummerDraft',
+                    DeadWeight : 'DeadWeight',
+                    AirDraft : 'AirDraft',
+                    Owner : 'Owner',
+                    Address : 'Address',
+                    BuildYear : 'BuildYear',
+                    Availability : 'Availability',
+                    AvailableSectors : 'AvailableSectors',
+                    ContactInfo : 'ContactInfo',
+                    ContactInfoID : 'ContactInfoID',
+                    TimeChartering : false,
+                    VoyageChartering : true,
                     UserID : user.uid,
                 })
-
+                console.log('shipadded')
             }
         }
     }

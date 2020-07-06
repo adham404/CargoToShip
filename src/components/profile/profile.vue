@@ -77,10 +77,12 @@
 </template>
 
 <script>
+    import firebase from 'firebase'
     export default {
         name: "profile",
         data:()=>{
             return{
+                datad : null ,
                 user : {
                     name : 'john Smith',
                     email : 'email@example.com',
@@ -102,6 +104,21 @@
                 requirederor : false,
                 passrequirederor : false
 
+            }
+        },
+        mounted() {
+            let self = this
+            let userdata = firebase.auth().currentUser
+            if (userdata){
+                self.user.email = userdata.email
+                var userId = firebase.auth().currentUser.uid;
+                return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
+                    console.log(snapshot.val())
+                    self.datad = snapshot.val()
+                    self.user.name = `${snapshot.val().FirstName} ${snapshot.val().LastName}`
+                    self.user.phone = snapshot.val().Phone
+                    // ...
+                });
             }
         },
         methods :{
@@ -128,6 +145,7 @@
                     if(re.test(this.editdata.newvalue)){
                         this.savechanges = true;
                         this.emaileror = false;
+                        this.changeemail()
                     }else {
                         this.emaileror = true ;
                         this.savechanges = false;
@@ -147,11 +165,90 @@
                 if (this.editdata.password.length <1){
                     this.savechanges =false
                     this.passrequirederor = true
+                }else {
+
+                    this.savechanges =true
+                    this.passrequirederor = false
+
                 }
                 if (this.savechanges){
                     this.editdata.edit=false;
                 }
-            }
+                if (this.editdata.change == 'phone' ){
+                    if (dd.length == 0 ){
+                        this.requirederor =true;
+                    }else {
+                        this.savechanges = true;
+                        this.changephone()
+
+                    }
+
+                }
+                if (this.editdata.change == 'password' ){
+                    if (dd.length == 0 ){
+                        this.requirederor =true;
+                    }else {
+                        this.savechanges = true;
+                        this.changepassword()
+
+                    }
+
+                }
+            },
+            changeemail(){
+                console.log(this.editdata.newvalue)
+                var userId = firebase.auth().currentUser.uid;
+                var user = firebase.auth().currentUser;
+                var credentials = firebase.auth.EmailAuthProvider.credential(user.email, this.editdata.password);
+                user.reauthenticateWithCredential(credentials).then(function () {
+                    console.log("re-auth done successfully");
+                }).catch(function (e) {
+                    console.log(e)
+                });
+                // firebase.auth().signInWithEmailAndPassword(user.email, this.editdata.password).catch(function(error) {
+                //     // Handle Errors here.
+                //     console.log(error);
+                //     // ...
+                // });
+                user.updateEmail(this.editdata.newvalue).then(function() {
+                    // Update successful.
+                    console.log('updated')
+                    console.log(user.email)
+                    console.log(this.editdata.newvalue)
+                }).catch(function(error) {
+                    // An error happened.
+                    console.log(error)
+                });
+                firebase.database().ref('Users/' + userId ).update({
+                    Email: this.editdata.newvalue,
+                });
+            },
+            changepassword(){
+                var user = firebase.auth().currentUser;
+                var credentials = firebase.auth.EmailAuthProvider.credential(user.email, this.editdata.password);
+                user.reauthenticateWithCredential(credentials).then(function () {
+                    console.log("re-auth done successfully");
+                }).catch(function (e) {
+                    console.log(e)
+                });
+
+                user.updatePassword(this.editdata.newvalue).then(function() {
+                    // Update successful.
+                    console.log('updated')
+                }).catch(function(error) {
+                    // An error happened.
+                    console.log(error)
+                });
+            },
+            changephone(){
+                var userId = firebase.auth().currentUser.uid;
+                firebase.database().ref('Users/' + userId ).update({
+                    Phone: this.editdata.newvalue,
+
+                });
+
+            },
+
         }
     }
 </script>
@@ -246,12 +343,12 @@
     }
     .editdatafilde input{
         outline: none;
-        width: 15vw;
+        width: 19vw;
         font-size: 1.1vw;
         border: #707070 0.1vw solid;
         border-radius: 0.7vw;
         box-shadow: rgba(0,0,0,16%) 0px 3px 6px;
-        height: 1.6vw;
+        height: 2.2vw;
         padding-left: 1vw;
     }
     #saveedit{

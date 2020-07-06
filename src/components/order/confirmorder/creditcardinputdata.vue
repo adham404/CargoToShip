@@ -9,19 +9,19 @@
 
             <div>
                 <div class="inputdata" >
-                    <h>Name on card</h>
+                    <p>Name on card</p>
                     <input type="text" value="card name"  v-model="idata.cardname" >
                 </div>
                 <div class="inputdata" >
-                    <h>Card Number</h>
+                    <p>Card Number</p>
                     <input type="number" value="card number" max="16"  v-model="idata.cardnumber" >
                 </div>
                 <div class="inputdata" >
-                    <h>EXP Date</h>
+                    <p>EXP Date</p>
                     <input type="month" value="card name"  v-model="idata.cardexpdate" >
                 </div>
                 <div class="inputdata" >
-                    <h>CVV</h>
+                    <p>CVV</p>
                     <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                            type = "number"
                            maxlength="3"
@@ -40,11 +40,11 @@
             </div>
             <div class="hr1"></div>
             <div class="inputdata" >
-                <h>Address</h>
+                <p>Address</p>
                 <input type="text" value="Address"  v-model="idata.addres" >
             </div>
             <div class="inputdata" >
-                <h>Country</h>
+                <p>Country</p>
                 <select id="country" name="country" v-model="idata.country">
                     <option value="Afganistan">Afghanistan</option>
                     <option value="Albania">Albania</option>
@@ -296,11 +296,11 @@
             </div>
             <div class="flex">
                 <div id="smallinput" class="inputdata" >
-                    <h>City</h>
+                    <p>City</p>
                     <input type="text"  value="City"  v-model="idata.city" >
                 </div>
                 <div id="smallinput"  class="inputdata" >
-                    <h>Zip code</h>
+                    <p>Zip code</p>
                     <input type="text"  value="Zip code"  v-model="idata.zipcode" >
                 </div>
 
@@ -402,7 +402,7 @@
         flex-direction: column;
         padding-bottom: 0.8vw ;
     }
-    .inputdata h{
+    .inputdata p{
         font-size: 1.2vw;
     }
     .inputdata input{

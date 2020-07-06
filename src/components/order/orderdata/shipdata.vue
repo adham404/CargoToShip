@@ -7,7 +7,7 @@
         <div class="line" ></div>
         <div class="datacontaner" >
             <div  v-for=" item in shipfulldata"  v-bind:key="item.title" >
-                <div class="datacard" v-if="item.type =='t/v' || item.type =='t'"  >
+                <div class="datacard" v-if="item.data "  >
                     <div  class="dataheader">{{item.title}} </div>
                     <div  class="datatext">{{item.data}}</div>
                 </div>
@@ -19,9 +19,25 @@
 </template>
 
 <script>
+    import firebase from 'firebase'
     export default {
         name: "shipdata",
-
+        mounted() {
+            let self = this
+            let shipid = 's6167'
+            firebase.database().ref('/Ships/' + shipid).once('value').then(function(snapshot) {
+                  // console.log(snapshot.val())
+               let indexx = Object.keys(self.shipfulldata);
+               let objsize = Object.keys(self.shipfulldata).length
+                console.log(objsize)
+                let i ;
+                for (i = 0 ;i < objsize ; i++){
+                    console.log('pop')
+                    self.shipfulldata[indexx[i]].data =  snapshot.val()[indexx[i]]
+                }
+                // ...
+            });
+        },
         data:()=>{
             return{
                 shipdata : {
