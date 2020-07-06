@@ -109,7 +109,7 @@
         height: 40.4vw;
         background-color: #ECEFF1;
         margin: auto;
-        border-radius: 3vw;
+        border-radius: 2vw;
         box-shadow: 0px 3px 6px rgba(0,0,0,16%);
 
     }

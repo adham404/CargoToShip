@@ -46,13 +46,13 @@
                 <div class="editdatafilde">
                     <div class="edittitle" >Enter Password</div>
                     <input type="password" value="password" v-model="editdata.password">
-                    <div class="error"  v-if="passrequirederor">Required</div>
+                    <span class="errormass"  v-if="passrequirederor">Required</span>
                 </div>
                 <div class="editdatafilde">
                     <div class="edittitle">Enter New {{editdata.change}}</div>
                     <input :type="editdata.datatype" v-model="editdata.newvalue"  >
-                    <div class="error" id="emailerro" v-if="emaileror">Invalid Email</div>
-                    <div class="error" id="requereror" v-if="requirederor">Required</div>
+                    <div class="errormass" id="emailerro" v-if="emaileror">Invalid Email</div>
+                    <span class="errormass" id="requereror" v-if="requirederor">Required</span>
                 </div>
                 <button type="submit" id="saveedit" v-on:click="save"  > Save</button>
             </div>
@@ -65,7 +65,7 @@
                         <img src="@/assets/shipicon.svg">
                         <div>Ship Name</div>
                     </div>
-                    <hr>
+                    <div class="line"></div>
                     <div id="ordercontanct" >
                         <div>Phone: 010000000</div>
                         <div>Email: email@example.com</div>
@@ -157,10 +157,14 @@
 </script>
 
 <style scoped>
-    .error{
-        margin-left: 1vw;
+    .line{
+        border-bottom: 0.1vw black solid;
+        margin-top: 0.3vw;
+    }
+    .errormass{
         font-size: 1vw;
         color: red;
+        margin-right: 8vw;
     }
     hr{
         margin: 0;
@@ -173,7 +177,7 @@
         height: 40.4vw;
         background-color: #ECEFF1;
         margin: auto;
-        border-radius: 3vw;
+        border-radius: 2vw;
         box-shadow: 0px 3px 6px rgba(0,0,0,16%);
 
     }
@@ -204,7 +208,7 @@
     .order{
         width: 22vw;
         box-shadow: rgba(0,0,0,16%) 0px 3px 6px;
-        border-radius: 2vw;
+        border-radius: 1.5vw;
         height: 11vw;
         margin-left: 1.5vw;
     }
@@ -221,30 +225,37 @@
     #editdata{
         display: flex;
         flex-direction: column;
+       align-items: center;
+        height: 13vw;
         margin-left: 2vw;
         margin-top: 2vw;
         width: 22vw;
         box-shadow: rgba(0,0,0,16%) 0px 3px 6px;
-        align-items: center;
-        justify-content: center;
-        border-radius: 3vw;
+        border-radius: 1.7vw;
 
     }
     .editdatafilde{
-        margin-bottom: 1.5vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 4.5vw;
+        margin-bottom: 0.5vw;
     }
     .editdatafilde div{
         font-size: 1.2vw;
     }
     .editdatafilde input{
-        width: 15w;
-        border: #707070 1px solid;
+        outline: none;
+        width: 15vw;
+        font-size: 1.1vw;
+        border: #707070 0.1vw solid;
         border-radius: 0.7vw;
         box-shadow: rgba(0,0,0,16%) 0px 3px 6px;
-        height: 2vw;
+        height: 1.6vw;
         padding-left: 1vw;
     }
     #saveedit{
+        outline: none;
         border: none;
         background-color:#06457C ;
         font-size: 1.4vw;
@@ -264,7 +275,7 @@
     }
     #profileheader{
         font-size: 1.4vw;
-        border-radius: 3vw 3vw 0 0;
+        border-radius: 2vw 2vw 0 0;
         z-index: inherit;
         display: flex;
         align-items: center;

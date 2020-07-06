@@ -5,6 +5,7 @@ import profile from "../components/profile/profile";
 import orderdata from "../components/order/orderdata/orderdata";
 import ordercontaner from "../components/order/ordercontaner";
 // import Home from '../views/Home.vue'
+import control from "../components/control";
 
 Vue.use(VueRouter)
 
@@ -36,6 +37,12 @@ const routes = [
     path : '/profile',
     name : 'profile',
     component : profile,
+
+  },
+  {
+    path : '/control',
+    name : 'control',
+    component : control,
 
   },
 

@@ -30,6 +30,7 @@
         opacity: 36%;
     }
     #linkscont{
+        color: #ECEFF1;
         margin-left: 15vw;
         /*height:2.7vw ;*/
         display: flex;

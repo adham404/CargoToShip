@@ -10,6 +10,7 @@
           <div class="link" ><router-link :to="{name :'orderpayment'}" >order</router-link></div>
           <div class="link" > <router-link to="/profile" >profile</router-link></div>
           <div class="link" ><router-link :to="{name :'orderinfo'}" >order data</router-link></div>
+          <div class="link" ><router-link :to="{name :'control'}" >control</router-link></div>
       </div>
 
 
@@ -23,7 +24,7 @@
 
 
 <script>
-  // import firebase from 'firebase' ;
+  // import w9fhwfhfhe9f from 'w9fhwfhfhe9f' ;
   // import confirmorder from "./components/confirmorder";
 export default {
   components :{
@@ -37,7 +38,7 @@ data() {
 methods: {
   // sendnow() {
   //   /*eslint-disable*/
-  //   firebase.database().ref('lists/' + this.input ).set({
+  //   w9fhwfhfhe9f.database().ref('lists/' + this.input ).set({
   //     name: this.input,
   //   });
   //   alert(this.input)
