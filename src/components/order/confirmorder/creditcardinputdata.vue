@@ -313,6 +313,26 @@
 </template>
 
 <script>
+    // import firebase from "firebase"
+    let stripe = window.Stripe('pk_test_51GxIWeC7X3YpNau3ctZKcMgsMjexF4GBs9aFmF0O6NDacFWfonAXZ3txdVQpTs15iDJ7rQH2G3uk5YQGMcTN4ExJ00MLwC9DVY');
+    var elements = stripe.elements();
+    var style = {
+        base: {
+            color: "#32325d",
+            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSmoothing: "antialiased",
+            fontSize: "16px",
+            "::placeholder": {
+                color: "#aab7c4"
+            }
+        },
+        invalid: {
+            color: "#fa755a",
+            iconColor: "#fa755a"
+        }
+    };
+
+    var card = elements.create("card", { style: style });
     export default {
         name: "creditcardinputdata",
         data(){
@@ -333,6 +353,9 @@
                 price : 6
             }
         },
+        mounted() {
+            card.mount("#card-element");
+        }
     }
 </script>
 
