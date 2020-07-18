@@ -77,6 +77,7 @@
 </template>
 
 <script>
+
     import firebase from 'firebase'
     export default {
         name: "profile",
@@ -102,7 +103,8 @@
                 savechanges : false,
                 emaileror :false,
                 requirederor : false,
-                passrequirederor : false
+                passrequirederor : false,
+                recentordersid : new Array(),
 
             }
         },
@@ -112,13 +114,53 @@
             if (userdata){
                 self.user.email = userdata.email
                 var userId = firebase.auth().currentUser.uid;
-                return firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
+                firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
                     console.log(snapshot.val())
                     self.datad = snapshot.val()
                     self.user.name = `${snapshot.val().FirstName} ${snapshot.val().LastName}`
                     self.user.phone = snapshot.val().Phone
                     // ...
                 });
+                let orders = firebase.database().ref('/Orders').orderByChild( '/UserID').equalTo(userdata.uid).limitToLast(3)
+                orders.once('value').then(function(snapshot){
+                    snapshot.forEach(function(child){
+                        const post = child.val();
+                        self.recentordersid.push(post.ObjectID)
+                        console.log(self.recentordersid)
+
+                    })
+                    console.log(self.recentordersid)
+                    console.log(self.recentordersid.length)
+                    let i ;
+                    for ( i=0;i < self.recentordersid.length ;i++){
+                        console.log('ppp')
+                        if (self.recentordersid[i][0]=='s'){
+                            firebase.database().ref('/Ships/' + self.recentordersid[i]).once('value').then(function(snapshot) {
+                                console.log(snapshot.val())
+                                let shipdataoo = {
+                                    type : 'ship',
+                                    shipid : snapshot.val().ShipID,
+                                    contacts : snapshot.val().ContactInfo
+                                }
+                            });
+
+                        }else if(self.recentordersid[i][0]=='c'){
+                            firebase.database().ref('/Cargo/' + self.recentordersid[i]).once('value').then(function(snapshot) {
+                                console.log(snapshot.val())
+                                let shipdataoo = {
+                                    type : 'Cargo',
+                                    shipid : snapshot.val().CargoID,
+                                    contacts : snapshot.val().ContactInfo
+                                }
+                            });
+
+                        }
+
+
+                    }
+                });
+
+
             }
         },
         methods :{
