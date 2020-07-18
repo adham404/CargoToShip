@@ -1,78 +1,102 @@
 <template lang="html">
   <div class="FilterForm">
+  <div class="FilterHeading">
+    <p id="FilterTitle">Filters</p>
+    <button @click="Filter" type="button" name="button">
+      <img src="../assets/Filter.png" alt="Filter">
+    </button>
+  </div>
   <div class="FirstSection">
     <div class="Location">
-      <label for="Location">Location {{Possible}}</label>
-      <input id="Location" type="text" name="" value="">
+      <label  for="Location">Location</label>
+      <select  v-model="ShipDistrict"  class="" name="">
+        <option value="Panama">Panama</option>
+        <option value="Red Sea">Red Sea</option>
+        <option value="Arabian Gulf">Arabian Gulf</option>
+        <option value="Carribean">Carribean</option>
+        <option value="North Sea">North Sea</option>
+        <option value="Mideterian">Mideterian</option>
+        <option value="The North">The North</option>
+        <option value="">All</option>
+      </select>
     </div>
     <div class="TypeOfShip">
       <label for="TypeOfShip">Type of Ship</label>
-      <input v-model="ShipType" @input="Filter" id="TypeOfShip" type="text" name="" value="">
+      <select  v-model="ShipType"  class="" name="">
+        <option value="Fishing">Fishing</option>
+        <option value="container">container</option>
+        <option value="AboLayla">AboLayla</option>
+        <option value="AboHamed">AboHamed</option>
+        <option value="military">military</option>
+        <option value="navy">navy</option>
+        <option value="">All</option>
+      </select>
+      <!-- <input v-model="ShipType" @input="Filter" id="TypeOfShip" type="text" name="" value=""> -->
     </div>
   </div>
   <div class="CharteringType">
     <p>Chartering Type:</p>
     <div class="Checkboxes">
-      <input id="Voyage" type="checkbox" name="" value="">
+      <input @input="setOptions"  v-model="CharteringType" id="Voyage" type="checkbox" name="" value="Voyage">
       <label for="Voyage">Voyage</label>
-      <input id="Time" type="checkbox" name="" value="">
-      <label for="Time">Time</label>
-      <input type="checkbox" name="" value="">
+      <input @input="setOptions"  v-model="CharteringType" id="Time" type="checkbox" name="" value="Time">
+      <label  for="Time">Time</label>
+      <input @input="setOptions"  v-model="CharteringType" type="checkbox" name="" value="Both">
       <label for="Both">Both</label>
     </div>
   </div>
   <p>Hold Volume Cubic centimeter:</p>
   <div class="Inquiry">
     <div class="InquiryInput">
-        <label for="from">From</label>
-        <input id="from" type="text" name="" value="">
-        <label for="from">cm3</label>
+        <label for="FromVolume">From</label>
+        <input v-model="FromVolume" id="FromVolume" type="text" name="" value="">
+        <label for="FromVolume">cm3</label>
     </div>
     <div class="InquiryInput">
-        <label for="to">To</label>
-        <input id="to" type="text" name="" value="">
-        <label for="to">cm3</label>
+        <label for="ToVolume">To</label>
+        <input  v-model="ToVolume" id="ToVolume" type="text" name="" value="">
+        <label for="ToVolume">cm3</label>
     </div>
   </div>
   <div class="DangerousGoods">
     <label for="Dangerous">Ready to carry Dangerous Goods:</label>
-    <input id="Dangerous" type="checkbox" name="" value="">
+    <input @input="Filter" v-model="DangerGoodFlag" id="Dangerous" type="checkbox" name="" value="">
   </div>
   <p>Summer Draft: </p>
   <div class="Inquiry">
     <div class="InquiryInput">
-        <label for="from">From</label>
-        <input id="from" type="text" name="" value="">
-        <label for="from">m</label>
+        <label for="FromDraft">From</label>
+        <input v-model="FromDraft" id="FromDraft" type="text" name="" value="">
+        <label for="FromDraft">m</label>
     </div>
     <div class="InquiryInput">
-        <label for="to">To</label>
-        <input id="to" type="text" name="" value="">
-        <label for="to">m</label>
+        <label for="ToDraft">To</label>
+        <input v-model="ToDraft" id="ToDraft" type="text" name="" value="">
+        <label for="ToDraft">m</label>
     </div>
   </div>
   <p>Dead Weight: </p>
   <div class="Inquiry">
     <div class="InquiryInput">
-        <label for="from">From</label>
-        <input id="from" type="text" name="" value="">
-        <label for="from">MT</label>
+        <label for="FromWeight">From</label>
+        <input v-model="FromWeight" id="FromWeight" type="text" name="" value="">
+        <label for="FromWeight">MT</label>
     </div>
     <div class="InquiryInput">
-        <label for="to">To</label>
-        <input id="to" type="text" name="" value="">
-        <label for="to">MT</label>
+        <label for="ToWeight">To</label>
+        <input v-model="ToWeight" id="ToWeight" type="text" name="" value="">
+        <label for="ToWeight">MT</label>
     </div>
   </div>
   <p>Availability Date From/To: </p>
   <div class="Inquiry">
     <div class="InquiryInput">
         <label for="from">From</label>
-        <input style="width:100%;" id="from date" type="date" name="" value="">
+        <input v-model="FromDate" style="width:100%;" id="from date" type="date" name="" value="">
     </div>
     <div class="InquiryInput">
         <label for="to">To</label>
-        <input style="width:100%;" id="to date" type="date" name="" value="">
+        <input v-model="ToDate" style="width:100%;" id="to date" type="date" name="" value="">
     </div>
   </div>
 </div>
@@ -81,32 +105,122 @@
 <script>
 import { EventBus } from "../main";
 import firebase from 'firebase';
-
 export default {
   data: function() {
     return{
-      ShipType:"",  //Data Property that holds Search term for testing purposes
-      FilteredIds:""
+      AllFieldIds:"",  //Array the holds all the id of the childs of the database
+      FilteredIds:"", //Array that holds the filtered ids of the childs of the database
+      NumberOfQueries:0, //a counter to indicate the number queries entered by the user
+      FromVolume:"", //-----------START--------------------------------------
+      ToVolume:"",
+      ShipType:"",
+      ShipDistrict:"",
+      FromDraft:"",
+      ToDraft:"", //--------------EXPLANATION: Data properties that hold the value of each filter input
+      FromWeight:"",
+      ToWeight:"",
+      FromDate:"",
+      CharteringType: [""],
+      NormalString:"",
+      DangerGoodFlag:"",
+      ToDate:"", //-------------END---------------------------------------
+      searchQuery: //-----------START------------------
+        {
+          NumberOfQueries:0,
+          Type:"",
+          District:"",
+          CharteringType:"",
+          DraftFrom:"",
+          DraftTo:"",   //----------------This data object store the input values after some validation done to be passed to the firebase function
+          DangerousGoods:"",
+          VolumeFrom:"",
+          VolumeTo:"",
+          WeightFrom:"" ,
+          DateFrom:"",
+          DateTo:"",
+        } //----------END------------------
     }
-
   },
   methods:{
-    Filter: function(){
+    MountDisplay: function(){  //this function display all the contents of the database when the apllication is first mounted
       var database =  firebase.database();   //Create a Database object to simply use it
-      var ref = database.ref('Ships');  //Create an instance of our Table as a ref object
-      if(this.ShipType=="")
-      {
-        ref.on('value',this.gotData,this.errData);  //Assign the query selectors and the filteration to the ref object and by using the "on" method we will retrieve from the database everytime something is updated in the database and by using the 'value' event we indicate that we want the value of the filtered object and pass it to gotData() function in case there is value and pass to errData() function in case there is an error
-      }
-      else{
-        ref.orderByChild("Type").equalTo(this.ShipType).on('value',this.gotData,this.errData);  //Assign the query selectors and the filteration to the ref object and by using the "on" method we will retrieve from the database everytime something is updated in the database and by using the 'value' event we indicate that we want the value of the filtered object and pass it to gotData() function in case there is value and pass to errData() function in case there is an error
-      }
+      var GeneralReq =  database.ref('Ships'); //Create a ref for the database object
+      GeneralReq.on('value',this.GeneralFilter,this.errData); // return a promise
     },
-    gotData: function(data){  //This Function handles the filtered data object retrieved from the database
+    setOptions: function(e) //This function handles the logic of the checkbox as it to be like a radio button
+    {
+      this.CharteringType = [e.target.value];
+    },
+    Filter: function(){  //When the filter button is clicked this filter function is executed
+      //------------Reset all the data values inside the searchQueryObject whenever the filter button is clicked
+      this.searchQuery.NumberOfQueries = 0
+      this.searchQuery.Type = ""
+      this.searchQuery.District = ""
+      this.searchQuery.CharteringType = ""
+      this.searchQuery.VolumeFrom = ""
+      this.searchQuery.VolumeTo = ""
+      this.searchQuery.DraftFrom = ""
+      this.searchQuery.DraftTo = ""
+      this.searchQuery.WeightFrom = ""
+      this.searchQuery.WeightTo = ""
+      this.searchQuery.DateFrom = ""
+      this.searchQuery.DateTo = ""
+      this.NumberOfQueries = 0
+      //----------assigning the data properties that hold the value of each filteration form input to the values inside the searchQuery data object
+      if (this.ShipDistrict !== "") {
+        this.searchQuery.District = this.ShipDistrict;
+        this.NumberOfQueries++;
+      }
+      if (this.DangerGoodFlag !== "") {
+        this.searchQuery.DangerousGoods = this.DangerGoodFlag;
+        this.NumberOfQueries++;
+      }
+      if (this.ShipType !== "") {
+        this.searchQuery.Type = this.ShipType;
+        this.NumberOfQueries++;
+      }
+      if(this.CharteringType[0] == "Voyage" || this.CharteringType[0] == "Time" || this.CharteringType[0] == "Both" )
+      {
+        this.searchQuery.CharteringType = this.CharteringType[0] ;
+        this.NumberOfQueries++;
+      }
+      if (this.VolumeFrom !== "" && this.VolumeTo !== "" ) {
+          this.searchQuery.VolumeFrom = this.FromVolume;
+          this.searchQuery.VolumeTo = this.ToVolume;
+          this.NumberOfQueries++;
+      }
+      if (this.FromDraft !== "" && this.ToDraft !== "" ) {
+        this.searchQuery.DraftFrom = this.FromDraft;
+        this.searchQuery.DraftTo = this.ToDraft;
+        this.NumberOfQueries++;
+      }
+      if (this.FromWeight !== "" && this.ToWeight !== "" ) {
+        this.searchQuery.WeightFrom = this.FromWeight;
+        this.searchQuery.WeightTo = this.ToWeight;
+        this.NumberOfQueries++;
+      }
+      if (this.FromDate !== "" && this.ToDate !== "" ) {
+        this.searchQuery.DateFrom = this.FromDate;
+        this.searchQuery.DateTo = this.ToDate;
+        this.NumberOfQueries++;
+      }
+      this.searchQuery.NumberOfQueries = this.NumberOfQueries;
+//---------------------
+      console.log(this.searchQuery);
+//-------------Calling the firebase callable cloud function that is responsible for the searching and passing it the searchQuery dataobject to apply the filteration technique
+      const Test = firebase.functions().httpsCallable('GetShip');
+      Test({ list: this.searchQuery}).then(result => {
+          this.FilteredIds = result.data
+          console.log(this.FilteredIds);
+          EventBus.$emit("SendFilter",this.FilteredIds);
+      }).catch(error =>{
+        console.log('Error is: '+ error);
+      });
+    },
+    GeneralFilter: function(data){  //This Function handles the filtered data object retrieved from the database
       var Ships = data.val();  //Ships hold the whole data object
-      this.FilteredIds = Object.keys(Ships); //FilteredIds object holds the IDs of the filtered object
-      EventBus.$emit("SendFilter",this.FilteredIds);
-      console.log(this.FilteredIds);
+      this.AllFieldIds = Object.keys(Ships); //FilteredIds object holds the IDs of the filtered object
+      EventBus.$emit("SendFilter",this.AllFieldIds);
     },
     errData: function(err){ //This Function output an error if an error exists
       console.log('Error!')
@@ -114,12 +228,32 @@ export default {
     }
   },
   mounted(){
-    this.Filter();
+    this.MountDisplay();
   }
 }
 </script>
 
 <style lang="css" scoped>
+#FilterTitle{
+  /* text-align: center; */
+  font-size: 2vw;
+  font-weight: normal;
+  margin-right: 10%;
+}
+.FilterHeading{
+  margin-left: 40%;
+  margin-bottom: 2%;
+  display: flex;
+  width:20%;
+}
+.FilterHeading button{
+  width: 50%;
+}
+.FilterHeading button img{
+  width: 2vw;
+  height: 2vw;
+  object-fit: cover;
+}
 .FilterForm{
   width: 90%;
   /* border: 1px solid #ccc; */
@@ -150,6 +284,13 @@ export default {
   height: 10%;
 }
 .FirstSection input{
+  width: 80%;
+  font-size: 0.8vw;
+  height: 100%;
+  border: 0.1vw solid black;
+  border-radius: 0.3vw;
+}
+.FirstSection select{
   width: 80%;
   font-size: 0.8vw;
   height: 100%;

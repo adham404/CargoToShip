@@ -7,28 +7,28 @@
   <hr>
   <div class="ShipItemDetails">
     <div class="Row">
-      <p style="margin-right:10%;">Availability: 1/1/2020 to 1/1/2021</p>
-      <p id="SecCol">Dead weight: 1000Mt </p>
+      <p style="margin-right:10%;">Availability: {{ShipData.DateFrom.split('T')[0]}} to {{ShipData.DateTo.split('T')[0]}}</p>
+      <p id="SecCol">Dead weight: {{ShipData.Weight}}Mt </p>
     </div>
     <div class="Row">
       <div class="DangerousGoods">
         <p>Ready to carry Dangerous goods:</p>
-        <img src="../assets/Check.svg" alt="">
+        <img v-if="ShipData.DangerousGoods" src="../assets/Check.svg" alt="">
       </div>
     </div>
-    <p v-if="ShowMoreTrigger" id="SecCol">Chartering Type: Voyage&time</p>
+    <p v-if="ShowMoreTrigger" id="SecCol">Chartering Type: {{ShipData.CharteringType}}</p>
     <div v-if="ShowMoreTrigger" class="Row">
       <p style="margin-right:18%;">Type of Ship: {{ShipData.Type}} </p>
-      <p id="SecCol">Build Year: 2001 </p>
+      <p id="SecCol">Build Year: {{ShipData.Build}} </p>
     </div>
     <div v-if="ShowMoreTrigger" class="Row">
-      <p style="margin-right:8%;">Hold Volume cubic meter: 1000cm3</p>
+      <p style="margin-right:8%;">Hold Volume cubic meter: {{ShipData.Volume}}cm3</p>
       <div class="AvailableSector">
         <p id="SecCol">Available Sector: </p>
         <ul>
-          <li>{{ShipData.date}}</li>
-          <li>{{ShipData.Build}}</li>
-          <li>Sector 1</li>
+          <li>Sector A</li>
+          <li>Sector B</li>
+          <li>Sector C</li>
         </ul>
       </div>
     </div>
@@ -66,6 +66,8 @@ export default {
       else{
         this.CardExpandStyle.height = 35 + "%";
       }
+      console.log('Hey My ID is: ' + this.IdFlag);
+
       //--------------------------------------------------------------------------
     }
   },
