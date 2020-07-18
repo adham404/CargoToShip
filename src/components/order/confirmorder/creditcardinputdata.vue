@@ -489,6 +489,7 @@
 </script>
 
 <style scoped>
+
     #mycardcontaner{
         overflow: auto;
         height: 16vw;

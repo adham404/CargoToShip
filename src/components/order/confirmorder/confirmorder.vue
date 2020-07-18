@@ -1,10 +1,6 @@
 <template>
     <div id="contaner">
 
-            <div class="paymenttype" >
-                <div class="paymentmathed" id="card" v-on:click="()=>{this.show = true}" ><img class="paymentlogo" src="@/assets/credit-card.svg"><div class="paymenttext">Credit Card</div></div>
-                <div class="paymentmathed" id="paypal" v-on:click="()=>{this.show = false}"><img class="paymentlogo" src="@/assets/paypal-icon.svg"><div class="paymenttext">PayPal</div></div>
-            </div>
             <div id="fff" >
                 <div id="flex">
                     <creditcardinputdata v-if="show"></creditcardinputdata>
@@ -105,11 +101,11 @@
         display: flex;
         flex-direction: column;
         font-family: Roboto ;
-        width: 77vw;
-        height: 40.4vw;
+        width: 70vw;
+        height: 35vw;
         background-color: #ECEFF1;
         margin: auto;
-        border-radius: 2vw;
+        border-radius: 1vw;
         box-shadow: 0px 3px 6px rgba(0,0,0,16%);
 
     }

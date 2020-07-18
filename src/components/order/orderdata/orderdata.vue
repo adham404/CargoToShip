@@ -47,11 +47,11 @@
     #contaner{
         position: relative;
         font-family: Roboto  ;
-        width: 77vw;
-        height: 40.4vw;
+        width: 70vw;
+        height: 35vw;
         background-color: #ECEFF1;
         margin: auto;
-        border-radius: 2vw;
+        border-radius: 1vw;
         box-shadow: 0px 3px 6px rgba(0,0,0,16%);
 
     }

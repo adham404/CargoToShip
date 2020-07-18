@@ -17,32 +17,8 @@
 
                 <div v-on:click="edit('password')" id="changepassword" >Change Password</div>
             </div>
-            <div id="cridetcardinfo" >
-                <div class="cridetcardinfocontaner" >
-                    <img id="cridetcardlogo"  src="@/assets/creditcardicon.svg">
-                    <div class="userdataheader">Credit Card Info: </div>
 
-                </div>
-                <div id="cridetcardflex">
-                    <div>
-                        <div class="carddatatext">
-                            <div class="userdataheader">Card Name:</div>
-                            <div class="userdatatext"> {{user.cardname}}</div>
-                        </div>
-                        <div class="carddatatext">
-                            <div class="userdataheader">Card Number:</div>
-                            <div class="userdatatext"> {{user.cardnumber}}</div>
-                        </div>
-                    </div>
 
-                    <img id="deleticon" src="@/assets/romoveicon.svg">
-                </div>
-                <div id="addnewcard">
-                    <img src="@/assets/plus.svg">
-                    <div>Add New Card</div>
-                </div>
-
-            </div>
             <div id="editdata" v-if="editdata.edit" >
                 <div class="editdatafilde">
                     <div class="edittitle" >Enter Password</div>
@@ -58,8 +34,6 @@
                 <button type="submit" id="saveedit" v-on:click="save"  > Save</button>
             </div>
         </div>
-
-    </div>
         <div id="recentorders">
             <div id="recentordertitle">Recent Order:</div>
             <div id="recentordersview" >
@@ -76,6 +50,9 @@
                 </div>
             </div>
         </div>
+
+    </div>
+
     </div>
 
 </template>
@@ -87,6 +64,7 @@
         name: "profile",
         data:()=>{
             return{
+                mycards : null,
                 datad : null ,
                 user : {
                     name : 'john Smith',
@@ -115,6 +93,7 @@
         mounted() {
             let self = this
             let userdata = firebase.auth().currentUser
+            self.getcards();
             if (userdata){
                 self.user.email = userdata.email
                 var userId = firebase.auth().currentUser.uid;
@@ -170,6 +149,18 @@
             }
         },
         methods :{
+            async getcards(){
+                var user = await  firebase.auth().currentUser;
+                if(user){
+                    let userId =  await user.uid
+                    await firebase.database().ref(`paymentdata/${userId}/paymentmethods/`).once('value').then(async (snapshot)=>{
+                            console.log(snapshot.val());
+                            this.mycards = await snapshot.val()
+
+                        }
+                    )
+                }
+            },
             edit(p){
                 this.editdata.password = '';
                 this.editdata.newvalue = '';
@@ -303,7 +294,16 @@
 
 <style scoped>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Quicksand&family=Raleway&display=swap');
-
+    #cardscontaner{
+        height: 11vw;
+        overflow: auto;
+        box-shadow: 0px 3px 6px rgba(0,0,0,16%);
+        padding: 0.5vw ;
+        border-radius: 0.5vw;
+    }
+    .lineb{
+        border-bottom: 0.1vw #707070 solid;
+    }
     .line{
         border-bottom: 0.1vw black solid;
         margin-top: 0.3vw;
@@ -320,11 +320,11 @@
     }
     #contaner{
         font-family: Roboto ;
-        width: 82vw;
-        height: 43.4vw;
+        width: 100%;
+        height: 100%;
         background-color: #ECEFF1;
         margin: auto;
-        border-radius: 2vw;
+        border-radius: 1vw;
         box-shadow: 0px 3px 6px rgba(0,0,0,16%);
         position: relative;
 
@@ -332,6 +332,7 @@
     #deleticon{
         width: 1.8vw;
         cursor: pointer;
+        margin-right: 1vw;
     }
     #ordercontanct{
         margin-left: 2vw;
@@ -352,9 +353,8 @@
         font-family: 'Raleway', sans-serif;
     }
     #recentorders{
-        position: absolute;
-        top: 60%;
-        left: 9%;
+        margin-top: 2vw;
+        padding-bottom: 3vw;
      }
     #recentordersview{
         margin-left: 2vw;
@@ -395,8 +395,7 @@
         flex-direction: column;
        align-items: center;
         height: 13vw;
-        margin-left: 2vw;
-        margin-top: 2vw;
+        margin-left: 30vw;
         width: 22vw;
         box-shadow: rgba(0,0,0,16%) 0px 3px 6px;
         border-radius: 1.7vw;
@@ -444,12 +443,13 @@
     #profileheader{
         font-family: 'Montserrat', sans-serif;
         font-size: 1.4vw;
-        border-radius: 2vw 2vw 0 0;
+        border-radius: 1vw 1vw 0 0;
         z-index: inherit;
         display: flex;
         align-items: center;
         height: 7.1vw ;
         background-color: #0E153A ;
+        margin-bottom: 2vw;
 
     }
     #profileheader img{
@@ -475,8 +475,7 @@
         margin-right: 0.5vw;
     }
     #userdata{
-        margin-left: 2vw;
-        margin-top: 2vw;
+        margin-left: 8vw;
 
     }
     .userdataedit{
@@ -499,10 +498,11 @@
         text-align: center;
         height: 2.1vw;
         padding-top: 0.4vw;
+        margin-top: 5vw;
     }
     #cridetcardinfo{
         margin-left: 8vw;
-        margin-top: 2vw;
+        width: 30vw;
     }
     #cridetcardlogo{
         margin-right: 0.4vw;
@@ -515,7 +515,7 @@
         align-items: center;
     }
     .carddatatext{
-        margin-bottom: 1vw;
+        margin-bottom: 0.1vw;
         font-size: 1.2vw;
         margin-left: 2.5vw;
         display: flex;
@@ -527,6 +527,8 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 1vw;
+        border-radius: 0.5vw;
+        box-shadow: rgba(0,0,0,16%) 0px 3px 6px;
     }
     #addnewcard{
         margin-left: 2vw;
