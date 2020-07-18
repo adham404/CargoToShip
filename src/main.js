@@ -5,8 +5,16 @@ import router from './router';
 import "./plugins/axios";
 import firebase from 'firebase';
 // import simplemaps_worldmap from  "../public/worldmap"
+import vuetify from '@/plugins/vuetify' // path to vuetify export
+import CountryFlag from 'vue-country-flag'
+import googleValidation from 'google-libphonenumber'
+
+Vue.use(googleValidation)
 
 
+Vue.component('vue-country-flag', CountryFlag)
+
+export const EventBus = new Vue();
 
 
 //This is the configuration for firebase I pasted the config object and then inserted it into the initializeApp function
@@ -32,5 +40,6 @@ Vue.prototype.$senior_seen = false;
 
 new Vue({
   router,
+  vuetify,
   render: h => h(App)
 }).$mount('#app');
