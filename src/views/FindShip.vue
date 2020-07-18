@@ -69,7 +69,7 @@ export default {
   border-radius: 0.5vw;
 }
 .ShipCard{
-  width: 100%;
+  width: 98%;
   height: 35%;
 }
 .FindShip{

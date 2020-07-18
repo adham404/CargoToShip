@@ -124,9 +124,13 @@ components:{
   margin: 0;
 }
 p{
-  font-family:'Roboto', sans-serif;
-  color: black;
+font-family: 'Quicksand', sans-serif;
 }
+label {
+font-family: 'Quicksand', sans-serif;
+}
+
+
 #map{
   /* position: absolute; */
   /* z-index: -1; */

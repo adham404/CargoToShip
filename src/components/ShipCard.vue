@@ -1,30 +1,26 @@
 <template lang="html">
   <div :style="CardExpandStyle" class="ShipItem" v-on:click="ShowMore">
   <div class="ItemTitle">
-    <img src="../assets/Ship.svg" alt="">
+    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="21.675" viewBox="0 0 29 25.637"><g transform="translate(0 -35.488)"><path d="M9.586,50.541a39.85,39.85,0,0,1-6.943,2.908V48.306a1.209,1.209,0,0,1,.529-1l1.981-1.347a1.423,1.423,0,0,1,.68-.209h3.18V43.877h3.579V45.75h2.742a.806.806,0,0,1,.806.806v1.114A51.055,51.055,0,0,0,9.586,50.541Zm-.573-8.514V43h3.579v-.972a.9.9,0,0,0-.9-.9H9.915A.9.9,0,0,0,9.013,42.027ZM6.935,39.192a1.846,1.846,0,0,0,.725-.148,1.357,1.357,0,0,0,1.559.505c0,.025-.008.049-.008.075a.863.863,0,1,0,.863-.863h0A1.39,1.39,0,0,0,8.787,36.84c-.026,0-.049.006-.075.008a1.849,1.849,0,1,0-1.778,2.345Zm18.13,18.13a.809.809,0,0,0,0,.895l1.067,1.6a.841.841,0,0,1-.764,1.305L1.631,59.257a1.519,1.519,0,0,1-1.35-1.131A7.623,7.623,0,0,1,0,56.3c0-1.239.5-1.47,1.517-1.713,9.111-2.174,11.616-7.414,26.818-8.272a.631.631,0,0,1,.66.715A27.135,27.135,0,0,1,25.065,57.322ZM23.9,53.406a.4.4,0,1,0-.806,0,1.381,1.381,0,0,1-.981,1.317V51.945a.918.918,0,1,0-.806,0v2.775a1.381,1.381,0,0,1-.981-1.317.4.4,0,1,0-.806,0,2.19,2.19,0,0,0,4.381,0Z"/></g></svg>
     <p>{{ShipData.Id}}</p>
   </div>
-  <hr>
+  <div class="Line"></div>
   <div class="ShipItemDetails">
-    <div class="Row">
-      <p style="margin-right:10%;">Availability: {{ShipData.DateFrom.split('T')[0]}} to {{ShipData.DateTo.split('T')[0]}}</p>
-      <p id="SecCol">Dead weight: {{ShipData.Weight}}Mt </p>
-    </div>
-    <div class="Row">
+    <div class="FirstCol">
+      <p>Availability: {{ShipData.DateFrom.split('T')[0]}} to {{ShipData.DateTo.split('T')[0]}}</p>
       <div class="DangerousGoods">
         <p>Ready to carry Dangerous goods:</p>
-        <img v-if="ShipData.DangerousGoods" src="../assets/Check.svg" alt="">
+        <!-- <img v-if="ShipData.DangerousGoods" src="../assets/Check.svg" alt=""> -->
       </div>
+      <p v-if="ShowMoreTrigger">Type of Ship: {{ShipData.Type}} </p>
+      <p v-if="ShowMoreTrigger">Hold Volume cubic meter: {{ShipData.Volume}}cm3</p>
     </div>
-    <p v-if="ShowMoreTrigger" id="SecCol">Chartering Type: {{ShipData.CharteringType}}</p>
-    <div v-if="ShowMoreTrigger" class="Row">
-      <p style="margin-right:18%;">Type of Ship: {{ShipData.Type}} </p>
-      <p id="SecCol">Build Year: {{ShipData.Build}} </p>
-    </div>
-    <div v-if="ShowMoreTrigger" class="Row">
-      <p style="margin-right:8%;">Hold Volume cubic meter: {{ShipData.Volume}}cm3</p>
-      <div class="AvailableSector">
-        <p id="SecCol">Available Sector: </p>
+    <div class="SecondCol">
+      <p>Dead weight: {{ShipData.Weight}}Mt </p>
+      <p v-if="ShowMoreTrigger">Chartering Type: {{ShipData.CharteringType}}</p>
+      <p v-if="ShowMoreTrigger">Build Year: {{ShipData.Build}} </p>
+      <div v-if="ShowMoreTrigger" class="AvailableSector">
+        <p>Available Sector: </p>
         <ul>
           <li>Sector A</li>
           <li>Sector B</li>
@@ -32,7 +28,7 @@
         </ul>
       </div>
     </div>
-  </div>
+    </div>
 </div>
 
 </template>
@@ -90,62 +86,63 @@ export default {
   height: 100%;
   display: block;
   margin-bottom:5%;
+  margin-left: 1%;
   cursor: pointer;
   background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 2vw;
+  /* border: 1px solid #ccc; */
+  border-radius: 1vw;
+  box-shadow: rgba(0,0,0,0.28) 0px 1px 7px 0px;
 }
 .ItemTitle{
   display: flex;
-  padding-left: 5%;
-  flex-direction: row;
-  justify-content: flex-start;
-}
-.ItemTitle img{
-  width: 6%;
-  height: 6%;
   margin-top: 1%;
-  margin-right: 2%;
-  object-fit: contain;
+  padding-left: 5%;
+  margin-bottom: 1%;
+}
+.ItemTitle svg{
+  margin-right: 6%;
+  width:2vw;
 }
 .ItemTitle p{
-  font-size: 1.6vw;
+  font-size: 1.4vw;
+}
+.Line{
+  width: 100%;
+  height: 0.1vw;
+  background-color: #D3CDCD;
 }
 .ShipItemDetails{
+  display: flex;
+  flex-direction: row;
+  /* width: 100%; */
+  margin-top: 5%;
+}
+.ShipItemDetails p{
+  margin-bottom: 15%;
+}
+.FirstCol{
+  display: flex;
+  flex-direction: column;
+  margin-right: 15%;
+  margin-left: 5%;
+}
+.FirstCol p{
+  margin-bottom: 10%;
+}
+.SecondCol{
   display: flex;
   flex-direction: column;
 }
 .ShipItemDetails p{
-  font-size: 1vw;
-}
-.Row{
-  display: flex;
-  margin-top: 2%;
-  margin-bottom: 6%;
-  margin-left: 5%;
-}
-.Row p{
-  margin-right: 13%;
-}
-#SecCol{
-  margin-right: 0%;
+  font-size: 0.8vw;
 }
 .DangerousGoods{
+  /* width: 100%; */
   display: flex;
-  width: 50%;
-  height: 100%;
   flex-direction: row;
-  margin-right: 5%;
-}
-.DangerousGoods p{
-  margin-right: 0%;
-}
-.DangerousGoods img{
-    width: 10%;
-    height: 10%;
-    object-fit: contain;
 }
 .AvailableSector ul{
+  margin-top: 0;
   margin-left: 30%;
   font-size: 0.9vw;
 }
