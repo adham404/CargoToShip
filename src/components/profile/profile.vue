@@ -1,4 +1,5 @@
 <template>
+    <div>
     <div id="contaner" class="profilecontaner">
         <div id="profileheader" ><img src="@/assets/1071625.png"> <div>{{user.name}}</div></div>
         <div class="profiledata">
@@ -57,6 +58,8 @@
                 <button type="submit" id="saveedit" v-on:click="save"  > Save</button>
             </div>
         </div>
+
+    </div>
         <div id="recentorders">
             <div id="recentordertitle">Recent Order:</div>
             <div id="recentordersview" >
@@ -65,7 +68,7 @@
                         <img src="@/assets/shipicon.svg">
                         <div>Ship Name</div>
                     </div>
-                    <div class="line"></div>
+                    <div class="line" id="orderline"></div>
                     <div id="ordercontanct" >
                         <div>Phone: 010000000</div>
                         <div>Email: email@example.com</div>
@@ -74,6 +77,7 @@
             </div>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -298,6 +302,8 @@
 </script>
 
 <style scoped>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Quicksand&family=Raleway&display=swap');
+
     .line{
         border-bottom: 0.1vw black solid;
         margin-top: 0.3vw;
@@ -314,12 +320,13 @@
     }
     #contaner{
         font-family: Roboto ;
-        width: 77vw;
-        height: 40.4vw;
+        width: 82vw;
+        height: 43.4vw;
         background-color: #ECEFF1;
         margin: auto;
         border-radius: 2vw;
         box-shadow: 0px 3px 6px rgba(0,0,0,16%);
+        position: relative;
 
     }
     #deleticon{
@@ -339,24 +346,44 @@
     }
     #recentordertitle{
         font-size: 1.4vw;
+        font-weight: bold;
         margin-left: 1.5vw;
         margin-top: 1vw;
+        font-family: 'Raleway', sans-serif;
     }
+    #recentorders{
+        position: absolute;
+        top: 60%;
+        left: 9%;
+     }
     #recentordersview{
         margin-left: 2vw;
         margin-top: 1vw;
     }
     .order{
-        width: 22vw;
+        width: 22.2vw;
         box-shadow: rgba(0,0,0,16%) 0px 3px 6px;
         border-radius: 1.5vw;
-        height: 11vw;
+        height: 11.3vw;
         margin-left: 1.5vw;
     }
     #orderheader{
+        padding-top: 0.5vw;
         display: flex;
         align-items: center;
         font-size: 1.3vw;
+        font-family: 'Raleway', sans-serif;
+    }
+    #ordercontanct{
+        font-family: "Roboto", sans-serif;
+        margin-top: 1.7vw;
+    }
+    #orderline{
+        margin-top: 0.5vw;
+        border-bottom: 0.01vw #D3CDCD solid;
+    }
+    #ordercontanct div{
+        margin-bottom: 1.6vw;
     }
     #orderheader img{
         margin-left: 1vw;
@@ -411,17 +438,18 @@
     }
     .profiledata{
         display: flex;
-        justify-content: space-around;
+        justify-content: start;
 
     }
     #profileheader{
+        font-family: 'Montserrat', sans-serif;
         font-size: 1.4vw;
         border-radius: 2vw 2vw 0 0;
         z-index: inherit;
         display: flex;
         align-items: center;
-        height: 7vw ;
-        background-color: #06457C ;
+        height: 7.1vw ;
+        background-color: #0E153A ;
 
     }
     #profileheader img{
@@ -431,18 +459,19 @@
     #profileheader div{
         color: #ECEFF1;
         margin-left: 2vw;
-        font-family: Roboto;
+        font-family: 'Montserrat', sans-serif;
 
 
     }
     .userdetails{
         display: flex;
-        font-size: 1.2vw;
+        font-size: 1vw;
         margin-bottom: 1.8vw;
         align-items: center;
+        font-family: 'Quicksand', sans-serif;
     }
     .userdataheader{
-        font-weight: bold;
+        font-size: 1.25vw;
         margin-right: 0.5vw;
     }
     #userdata{
@@ -455,23 +484,24 @@
         cursor: pointer;
     }
     .userdatatext{
+        font-size: 1vw;
         margin-right: 1vw;
-        font-size: 1.3vw;
     }
     #changepassword{
         cursor: pointer;
-        font-size: 1.2vw;
-        background-color: #06457C ;
+        font-size: 1.1vw;
+        font-family: 'Raleway', sans-serif;
+        background-color: #0E153A ;
         color: #ECEFF1;
-        width: 14vw;
+        font-weight: bolder;
+        width: 12.6vw;
         border-radius: 2vw;
         text-align: center;
-        font-weight: bold;
-        height: 2vw;
+        height: 2.1vw;
         padding-top: 0.4vw;
     }
     #cridetcardinfo{
-        margin-left: 2vw;
+        margin-left: 8vw;
         margin-top: 2vw;
     }
     #cridetcardlogo{
