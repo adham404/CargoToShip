@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-        <div id="555"><div id="confirmorder1" v-on:click="sendnow" >Confirm Order</div></div>
+
 
     </div>
 </template>

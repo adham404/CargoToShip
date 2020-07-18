@@ -16,7 +16,7 @@
         name: "control",
         methods:{
             signupnewuser(){
-                let email = 'user5@cargotoship.com';
+                let email = 'usercargo12@cargotoship.com';
                 let password = '123456789'
                 let phone = '0020100100100'
                 let firstname = 'Marwan'
@@ -44,7 +44,7 @@
 
             },
             signinnewuser(){
-                let email = 'user5@cargotoship.com';
+                let email = 'usercargo12@cargotoship.com';
                 let password = '123456789'
                 firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
                     // Handle Errors here.

@@ -14,15 +14,14 @@ import vuetify from '@/plugins/vuetify' // path to vuetify export
 
 //This is the configuration for w9fhwfhfhe9f I pasted the config object and then inserted it into the initializeApp function
 var firebaseConfig = {
-  //mydata
-  apiKey: "AIzaSyAqHgynhZ3OcErbVrs-W1XSFvZL58UjPm8",
-  authDomain: "test-4ec93.firebaseapp.com",
-  databaseURL: "https://test-4ec93.firebaseio.com",
-  projectId: "test-4ec93",
-  storageBucket: "test-4ec93.appspot.com",
-  messagingSenderId: "441615985189",
-  appId: "1:441615985189:web:13a6ff4a8bba579e40edcc",
-  measurementId: "G-7DXCF9K273"
+  //cargotoship2data
+  apiKey: "AIzaSyA-QrgH-0iuyy92uMGNATb-qFctc5APgGQ",
+  authDomain: "cargotoship2.firebaseapp.com",
+  databaseURL: "https://cargotoship2.firebaseio.com",
+  projectId: "cargotoship2",
+  storageBucket: "cargotoship2.appspot.com",
+  messagingSenderId: "193072313981",
+  appId: "1:193072313981:web:6bc531d009af01efc92314"
   //adhamdata
   // apiKey: "AIzaSyBSMAICYcm8WxTIlEPTCmRLuoR6s4vwiLM",
   // authDomain: "cargo2ship-c9662.firebaseapp.com",
