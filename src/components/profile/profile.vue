@@ -132,12 +132,13 @@
                     console.log(self.recentordersid)
                     console.log(self.recentordersid.length)
                     let i ;
+                    let shipdataoo
                     for ( i=0;i < self.recentordersid.length ;i++){
                         console.log('ppp')
                         if (self.recentordersid[i][0]=='s'){
                             firebase.database().ref('/Ships/' + self.recentordersid[i]).once('value').then(function(snapshot) {
                                 console.log(snapshot.val())
-                                let shipdataoo = {
+                                 shipdataoo = {
                                     type : 'ship',
                                     shipid : snapshot.val().ShipID,
                                     contacts : snapshot.val().ContactInfo
@@ -147,7 +148,7 @@
                         }else if(self.recentordersid[i][0]=='c'){
                             firebase.database().ref('/Cargo/' + self.recentordersid[i]).once('value').then(function(snapshot) {
                                 console.log(snapshot.val())
-                                let shipdataoo = {
+                                 shipdataoo = {
                                     type : 'Cargo',
                                     shipid : snapshot.val().CargoID,
                                     contacts : snapshot.val().ContactInfo
@@ -155,6 +156,7 @@
                             });
 
                         }
+                    console.log(shipdataoo)
 
 
                     }
