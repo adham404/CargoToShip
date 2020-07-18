@@ -5,11 +5,11 @@
 ==========================
   -->
   <v-sheet
-    class="wight"
+    class="white"
     style="border-radius:15px; 
     justify-content:center;
     align-self:center; width:65vw;
-    height:35vw;  "
+    height:30vw;  "
   >
     <div class="head">
       <h2 class="font-weight-medium text-center pb-1 mt-2">
@@ -330,7 +330,7 @@
       </div>
     </div>
     <div class="savebtn">
-      <v-btn @click="save" small color="primary" width="120">Save</v-btn>
+      <button class="btn" @click="save">Save</button>
     </div>
     <div v-show="set">
       <p>{{CargoData.CargoDescription}}</p>
@@ -839,10 +839,10 @@ p {
 .head {
   display: flex;
   margin-left: 22px;
-  height: 8%;
+  height: 7%;
 }
 .i-cargo {
-  width: 23px;
+  width: 29px;
   margin-bottom: -1.5px;
 }
 
@@ -888,8 +888,9 @@ p {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  max-height: 93%;
+  min-height: 68%;
   overflow: auto;
+  margin-top: 10px;
 }
 .dataLeft {
   display: flex;
@@ -914,6 +915,19 @@ p {
 .savebtn {
   margin: 12px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+}
+.btn {
+  border: none;
+  padding: 0.5px 80px;
+  text-decoration: none;
+  border-radius: 22.5px;
+  background-color: #14234f;
+  margin-top: 2%;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 </style>

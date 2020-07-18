@@ -1,5 +1,10 @@
 <template>
-  <div>
+  <div
+    style="border-radius:15px; 
+    justify-content:center;
+    align-self:center; width:65vw;
+    height:35vw;  "
+  >
     <component :is="ComponentName" :CargoData="CargoData"></component>
     <p>{{CargoData}}</p>
   </div>
