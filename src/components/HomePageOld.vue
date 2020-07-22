@@ -1,6 +1,9 @@
 <template lang="html">
   <v-app>
   <div class="app">
+    <!-- <div id="map">
+
+    </div> -->
     <div class="Layer2">
       <div class="Header">
         <div class="Logo">
@@ -40,22 +43,23 @@
           </div>
           <div class="Toggle">
             <div class="slideButton">
-              <div class="ShipButton">
+              <button class="ShipButton">
                 <svg xmlns="http://www.w3.org/2000/svg" width="29" height="25.637" viewBox="0 0 29 25.637">
-                  <g id="ship" transform="translate(0 -35.488)">
-                    <path id="Path_3" data-name="Path 3" d="M9.586,50.541a39.85,39.85,0,0,1-6.943,2.908V48.306a1.209,1.209,0,0,1,.529-1l1.981-1.347a1.423,1.423,0,0,1,.68-.209h3.18V43.877h3.579V45.75h2.742a.806.806,0,0,1,.806.806v1.114A51.055,51.055,0,0,0,9.586,50.541Zm-.573-8.514V43h3.579v-.972a.9.9,0,0,0-.9-.9H9.915A.9.9,0,0,0,9.013,42.027ZM6.935,39.192a1.846,1.846,0,0,0,.725-.148,1.357,1.357,0,0,0,1.559.505c0,.025-.008.049-.008.075a.863.863,0,1,0,.863-.863h0A1.39,1.39,0,0,0,8.787,36.84c-.026,0-.049.006-.075.008a1.849,1.849,0,1,0-1.778,2.345Zm18.13,18.13a.809.809,0,0,0,0,.895l1.067,1.6a.841.841,0,0,1-.764,1.305L1.631,59.257a1.519,1.519,0,0,1-1.35-1.131A7.623,7.623,0,0,1,0,56.3c0-1.239.5-1.47,1.517-1.713,9.111-2.174,11.616-7.414,26.818-8.272a.631.631,0,0,1,.66.715A27.135,27.135,0,0,1,25.065,57.322ZM23.9,53.406a.4.4,0,1,0-.806,0,1.381,1.381,0,0,1-.981,1.317V51.945a.918.918,0,1,0-.806,0v2.775a1.381,1.381,0,0,1-.981-1.317.4.4,0,1,0-.806,0,2.19,2.19,0,0,0,4.381,0Z" fill="#fff"/>
+                  <g id="BlackShip" transform="translate(0 -35.488)">
+                    <path id="Path_3" data-name="Path 3" d="M9.586,50.541a39.85,39.85,0,0,1-6.943,2.908V48.306a1.209,1.209,0,0,1,.529-1l1.981-1.347a1.423,1.423,0,0,1,.68-.209h3.18V43.877h3.579V45.75h2.742a.806.806,0,0,1,.806.806v1.114A51.055,51.055,0,0,0,9.586,50.541Zm-.573-8.514V43h3.579v-.972a.9.9,0,0,0-.9-.9H9.915A.9.9,0,0,0,9.013,42.027ZM6.935,39.192a1.846,1.846,0,0,0,.725-.148,1.357,1.357,0,0,0,1.559.505c0,.025-.008.049-.008.075a.863.863,0,1,0,.863-.863h0A1.39,1.39,0,0,0,8.787,36.84c-.026,0-.049.006-.075.008a1.849,1.849,0,1,0-1.778,2.345Zm18.13,18.13a.809.809,0,0,0,0,.895l1.067,1.6a.841.841,0,0,1-.764,1.305L1.631,59.257a1.519,1.519,0,0,1-1.35-1.131A7.623,7.623,0,0,1,0,56.3c0-1.239.5-1.47,1.517-1.713,9.111-2.174,11.616-7.414,26.818-8.272a.631.631,0,0,1,.66.715A27.135,27.135,0,0,1,25.065,57.322ZM23.9,53.406a.4.4,0,1,0-.806,0,1.381,1.381,0,0,1-.981,1.317V51.945a.918.918,0,1,0-.806,0v2.775a1.381,1.381,0,0,1-.981-1.317.4.4,0,1,0-.806,0,2.19,2.19,0,0,0,4.381,0Z"/>
                   </g>
                 </svg>
 
-              </div>
-              <div class="CargoButton">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40.062" height="24.828" viewBox="0 0 40.062 24.828">
-                  <g id="worldwide-shipping" transform="translate(0 -5.063)">
-                    <path id="Path_7" data-name="Path 7" d="M5.5,5.177.553,7.443A1.333,1.333,0,0,0,0,8.659V26.3a1.333,1.333,0,0,0,.553,1.216L5.5,29.777Z" transform="translate(0 0)" fill="#fff"/>
-                    <path id="Path_8" data-name="Path 8" d="M38.732,7.467,7,5.063V29.891l31.732-2.4a1.345,1.345,0,0,0,1.33-1.247V8.714a1.345,1.345,0,0,0-1.33-1.247ZM13.807,23.737a1.368,1.368,0,0,1-1.459,1.252,1.368,1.368,0,0,1-1.459-1.252V11.218a1.368,1.368,0,0,1,1.459-1.252,1.368,1.368,0,0,1,1.459,1.252Zm7.779-.835a1.476,1.476,0,0,1-2.917,0V12.052a1.476,1.476,0,0,1,2.917,0Zm7.779-.835a1.476,1.476,0,0,1-2.917,0V12.887a1.476,1.476,0,0,1,2.917,0Zm6.807-.417a1.476,1.476,0,0,1-2.917,0V13.721a1.476,1.476,0,0,1,2.917,0Z" fill="#fff"/>
+
+              </button>
+              <button class="CargoButton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="33.962" height="21.048" viewBox="0 0 33.962 21.048">
+                  <g id="BlackContainer" transform="translate(0 -5.063)">
+                    <path id="Path_7" data-name="Path 7" d="M5.5,5.177.553,7.095A1.077,1.077,0,0,0,0,8.124V23.05a1.077,1.077,0,0,0,.553,1.029L5.5,26Z" transform="translate(0 0)"/>
+                    <path id="Path_8" data-name="Path 8" d="M32.878,7.1,7,5.063V26.111l25.878-2.038a1.117,1.117,0,0,0,1.085-1.057V8.158A1.117,1.117,0,0,0,32.878,7.1ZM12.551,20.894a1.131,1.131,0,0,1-1.19,1.061,1.131,1.131,0,0,1-1.19-1.061V10.28a1.131,1.131,0,0,1,1.19-1.061,1.131,1.131,0,0,1,1.19,1.061Zm6.344-.708a1.2,1.2,0,0,1-2.379,0v-9.2a1.2,1.2,0,0,1,2.379,0Zm6.344-.708a1.2,1.2,0,0,1-2.379,0V11.7a1.2,1.2,0,0,1,2.379,0Zm5.551-.354a1.2,1.2,0,0,1-2.379,0V12.4a1.2,1.2,0,0,1,2.379,0Z"/>
                   </g>
                 </svg>
-              </div>
+              </button>
             </div>
 
           </div>
@@ -68,7 +72,7 @@
       </div>
 
     </div>
-    <div class="Layer1">
+    <!-- <div class="Layer1">
       <div class="map" >
           <div id="map">
 
@@ -84,42 +88,45 @@
          >
            <v-icon>mdi-magnify</v-icon>
          </v-btn>
-        <div class="VerticalNav">
-        </div>
+
         <AddFab/>
       </div>
-      </div>
+    </div> -->
   </div>
 </v-app>
 </template>
 
 <script>
-import AddFab from '@/components/AddFab.vue'
+// import AddFab from '@/components/AddFab.vue'
 export default {
   components: {
-    AddFab
+    // AddFab
   }
 
 }
 </script>
 
 <style lang="css" scoped>
-.map{
+h3{
+  font-family: Quicksand, sans-serif;
+  color: white;
+}
+/* .map{
   width: 90%;
   background-color: brown;
-}
-.Controls{
-  /* position: absolute; */
+} */
+/* .Controls{
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   width: 10%;
   z-index: 1;
-  /* background-color: red; */
-}
+  background-color: red;
+} */
 .app{
-  width: 100vw;
+  width: 97vw;
   height: 100vh;
   background-color: grey;
 }
@@ -127,51 +134,60 @@ export default {
 .CargoButton svg{
   height: 2.5vw;
   width: 2vw;
+
 }
 .CargoButton{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 2.7vw;
-  width: 2.7vw;
+  height: 2.25vw;
+  width: 2.25vw;
   border-radius: 5vw;
-  background-color: purple;
+  background-color: white;
+  z-index: 2;
 }
 .ShipButton{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 2.7vw;
-  width: 2.7vw;
+  height: 2.25vw;
+  width: 2.25vw;
   border-radius: 5vw;
-  background-color: purple;
+  background-color: white;
+  z-index: 2;
 }
 .slideButton{
   display: flex;
   justify-content: space-around;
   border-radius: 6vw;
-  height: 2.7vw;
-  width: 70%;
-  background-color: red;
+  height: 2.3vw;
+  width: 65%;
+  background-color: #343955;
   align-self: center;
   align-items: center;
+  z-index: 2;
+}
+.Stats svg{
+  margin-left: 6%;
 }
 .Cargo{
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  width: 30%;
+  width: 35%;
 }
 .Ships{
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 30%;
+  width: 35%;
 }
 .Stats{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  z-index: 2;
 }
 #SignUp{
   background-color: blue;
@@ -179,10 +195,10 @@ export default {
   border-radius: 25px;
   border: none;
   height: 2vw;
-  width: 5vw;
+  width: 4.6vw;
   font-size: 1.1vw;
   margin-left: 2.5%;
-  z-index: 2;
+  z-index: 4;
 }
 #Login{
   position: relative;
@@ -193,8 +209,8 @@ export default {
   width: 7vw;
   height: 2vw;
   font-size: 1.1vw;
-  padding-right: 18%;
-  z-index: 0;
+  padding-right: 14%;
+  z-index: 1;
 }
 .Logo{
   display: flex;
@@ -208,20 +224,22 @@ export default {
   font-family: Quicksand, sans-serif;
   font-weight: 400;
   font-size: 2.1vw;
-  color: white
-  /* z-index: 3;
-  position: absolute; */
+  color: white;
+  z-index: 2;
 }
 .Logo svg{
   height: 4.5vw;
   border: solid 10px transparent;
+  z-index: 2;
 }
 
 .LoginSignup{
+  /* position: relative; */
   display: flex;
   justify-content: center;
   align-items: center;
   width: 20%;
+  z-index: 2;
   /* background-color: pink; */
 }
 .StatsToggle{
@@ -241,33 +259,30 @@ export default {
   width: 40%;
   /* background-color: yellow; */
 }
-.Layer1{
-  /* position: absolute; */
-  /* height: 100vh; */
-  /* width: 100vw; */
-  /* z-index: 0; */
+/* .Layer1{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  /* background-color: green; */
+  justify-content: flex-end;
+  background-color: green;
   height: 87vh;
-
-}
+  width: auto;
+} */
 .Layer2{
-
   /* position: relative; */
   height: 7vw;
   width: 100vw;
-  background-color: transparent;
+  background-color: blue;
   /* z-index: 1; */
 
 }
 #map{
   /* padding-top: 20%; */
   position: absolute;
-  /* z-index: 0; */
-  width: 100vw;
-  height: 100vh;
+  /* margin-left: -5%; */
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
   /* height: 200vh; */
   /* margin-top: -7%; */
   /* margin-left: -0.5%; */
@@ -288,14 +303,6 @@ export default {
 
 .Header img{
   width: 13vw;
-
-}
-.VerticalNav{
-  background-color: blue;
-  width: 3.2vw;
-  height: 25vw;
-  border: none;
-  border-radius: 5vw;
 
 }
 
