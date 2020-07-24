@@ -29,7 +29,7 @@
         <div class="columnData">
           <h3>Ship Name:</h3>
           <v-text-field
-            v-model="ShipsVoyage.ShipName"
+            v-model="ShipData.ShipName"
             @input="valShipName"
             :error="errShipName"
             :error-messages="errShipNameMsg"
@@ -43,7 +43,7 @@
         <div class="columnData">
           <h3>Nationality:</h3>
           <v-autocomplete
-            v-model="ShipsVoyage.Nationality"
+            v-model="ShipData.Nationality"
             @input="valNationality"
             :error="errNationality"
             :menu-props="{ maxHeight: '200',maxWidth:'300' }"
@@ -71,10 +71,10 @@
             </template>
           </v-autocomplete>
         </div>
-        <div v-show="this.ShipsVoyage.TimeCharterring" class="columnData">
+        <div v-show="this.ShipData.TimeCharterring" class="columnData">
           <h3>Official No.:</h3>
           <v-text-field
-            v-model="ShipsTime.OfficialNo"
+            v-model="ShipTime.OfficialNo"
             @input="valOfficialNo"
             :error="errOfficialNo"
             :error-messages="errOfficialNoMsg"
@@ -90,7 +90,7 @@
           <h3>Type of Ship:</h3>
 
           <v-select
-            v-model="ShipsVoyage.TypeOfShip"
+            v-model="ShipData.TypeOfShip"
             @input="valTypeOfShip"
             :error="errTypeOfShip"
             :items="ShipTypes"
@@ -103,10 +103,10 @@
             style="width:300px; border-radius:5px;"
           ></v-select>
         </div>
-        <div v-show="this.ShipsVoyage.TimeCharterring" class="columnData">
+        <div v-show="this.ShipData.TimeCharterring" class="columnData">
           <h3>M.M.S.I:</h3>
           <v-text-field
-            v-model="ShipsTime.MMSIno"
+            v-model="ShipTime.MMSIno"
             @input="valMMSI"
             :error="errMMSI"
             :error-messages="errMMSIMsg"
@@ -180,7 +180,7 @@
           <div style="    display: flex;
     width: 300px;">
             <v-text-field
-              v-model="ShipsVoyage.NRT"
+              v-model="NRT"
               @input="valNRT"
               :error="errNRT"
               :error-messages="errNRTMsg"
@@ -196,7 +196,7 @@
         <div class="columnData">
           <h3>Bale Capacity:</h3>
           <v-text-field
-            v-model="ShipsVoyage.BaleCapacity"
+            v-model="ShipData.BaleCapacity"
             @input="valBaleCapacity"
             :error="errBaleCapacity"
             :error-messages="errBaleCapacityMsg"
@@ -210,7 +210,7 @@
         <div class="columnData">
           <h3>Hold Type:</h3>
           <v-select
-            v-model="ShipsVoyage.HoldType"
+            v-model="ShipData.HoldType"
             @input="valHoldType"
             :error="errHoldType"
             :items="HoldTypes"
@@ -251,7 +251,7 @@
             ></v-select>
           </div>
         </div>
-        <div v-show="this.ShipsVoyage.TimeCharterring" class="columnData">
+        <div v-show="this.ShipData.TimeCharterring" class="columnData">
           <h3>Summer Freeboard</h3>
           <div style="    display: flex;
     width: 300px;">
@@ -312,7 +312,7 @@
         <div class="columnData">
           <h3>Owner</h3>
           <v-text-field
-            v-model="ShipsVoyage.Owner"
+            v-model="ShipData.Owner"
             @input="valOwner"
             :error="errOwner"
             :error-messages="errOwnerMsg"
@@ -326,7 +326,7 @@
         <div class="columnData">
           <h3>Operator:</h3>
           <v-text-field
-            v-model="ShipsVoyage.Operator"
+            v-model="ShipData.Operator"
             @input="valOperator"
             :error="errOperator"
             :error-messages="errOperatorMsg"
@@ -337,10 +337,10 @@
             style="width:300px; border-radius:5px; "
           ></v-text-field>
         </div>
-        <div v-show="this.ShipsVoyage.TimeCharterring" class="columnData">
+        <div v-show="this.ShipData.TimeCharterring" class="columnData">
           <h3>Class</h3>
           <v-text-field
-            v-model="ShipsTime.Class"
+            v-model="ShipTime.Class"
             @input="valClass"
             :error="errClass"
             :error-messages="errClassMsg"
@@ -355,7 +355,7 @@
         <div class="columnData">
           <h3>Availability Sectors:</h3>
           <v-autocomplete
-            v-model="ShipsVoyage.AvailabilitySector"
+            v-model="ShipData.AvailabilitySector"
             @input="valAvailabilitySector"
             :error="errAvailabilitySector"
             :items="shipPorts"
@@ -374,7 +374,7 @@
               <span
                 v-if="index === 1"
                 class="caption"
-              >(+{{ ShipsVoyage.AvailabilitySector.length - 1 }} others)</span>
+              >(+{{ ShipData.AvailabilitySector.length - 1 }} others)</span>
             </template>
           </v-autocomplete>
         </div>
@@ -443,7 +443,7 @@
         <div class="columnData">
           <h3>Port of Registry:</h3>
           <v-text-field
-            v-model="ShipsVoyage.PortOfRegistry"
+            v-model="ShipData.PortOfRegistry"
             @input="valPortOfRegistry"
             :error="errPortOfRegistry"
             :error-messages="errPortOfRegistryMsg"
@@ -457,7 +457,7 @@
         <div class="columnData">
           <h3>I.M.O:</h3>
           <v-text-field
-            v-model="ShipsVoyage.IMO"
+            v-model="ShipData.IMO"
             @input="valIMO"
             :error="errIMO"
             :error-messages="errIMOMsg"
@@ -468,10 +468,10 @@
             style="width:300px; border-radius:5px; "
           ></v-text-field>
         </div>
-        <div v-show="this.ShipsVoyage.TimeCharterring" class="columnData">
+        <div v-show="this.ShipData.TimeCharterring" class="columnData">
           <h3>Call Sign:</h3>
           <v-text-field
-            v-model="ShipsTime.CallSign"
+            v-model="ShipTime.CallSign"
             @input="valCallSign"
             :error="errCallSign"
             :error-messages="errCallSignMsg"
@@ -511,7 +511,7 @@
             ></v-select>
           </div>
         </div>
-        <div v-show="this.ShipsVoyage.TimeCharterring" class="columnData">
+        <div v-show="this.ShipData.TimeCharterring" class="columnData">
           <h3>Moulded Depth</h3>
           <div style="    display: flex;
     width: 300px;">
@@ -546,7 +546,7 @@
           <div style="    display: flex;
     width: 300px;">
             <v-text-field
-              v-model="ShipsVoyage.GRT"
+              v-model="GRT"
               @input="valGRT"
               :error="errGRT"
               :error-messages="errGRTMsg"
@@ -562,7 +562,7 @@
         <div class="columnData">
           <h3>Grain Capacity:</h3>
           <v-text-field
-            v-model="ShipsVoyage.GrainCapacity"
+            v-model="ShipData.GrainCapacity"
             @input="valGrainCapacity"
             :error="errGrainCapacity"
             :error-messages="errGrainCapacityMsg"
@@ -578,7 +578,7 @@
           <div style="    display: flex;
     width: 300px;">
             <v-text-field
-              v-model="ShipsVoyage.HoldVolumeCubicMeter"
+              v-model="HoldVolumeCubicMeter"
               @input="valHoldVolume"
               :error="errHoldVolume"
               :error-messages="errHoldVolumeMsg"
@@ -595,10 +595,7 @@
           <div style="    display: flex;
         width: 300px;">
             <h3>Ready to Carry Dangerous Goods:</h3>
-            <v-checkbox
-              v-model="ShipsVoyage.ReadyToCarryDangerousGoods"
-              style="display:inline-block;"
-            ></v-checkbox>
+            <v-checkbox v-model="ShipData.ReadyToCarryDangerousGoods" style="display:inline-block;"></v-checkbox>
           </div>
         </div>
         <div class="columnData">
@@ -606,7 +603,7 @@
           <div style="    display: flex;
     width: 300px;">
             <v-text-field
-              v-model="ShipsVoyage.DeadWeight"
+              v-model="DeadWeight"
               @input="valDeadWeight"
               :error="errDeadWeight"
               :error-messages="errDeadWeightMsg"
@@ -625,14 +622,14 @@
             ref="menu"
             v-model="menu"
             :close-on-content-click="false"
-            :return-value.sync="ShipsVoyage.BuildYear"
+            :return-value.sync="ShipData.BuildYear"
             transition="scale-transition"
             offset-y
             min-width="270px"
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
-                v-model="ShipsVoyage.BuildYear"
+                v-model="ShipData.BuildYear"
                 @input="valBuildYear"
                 :error="errBuildYear"
                 :error-messages="errBuildYearMsg"
@@ -647,7 +644,7 @@
               ></v-text-field>
             </template>
             <v-date-picker
-              v-model="ShipsVoyage.BuildYear"
+              v-model="ShipData.BuildYear"
               @input="valBuildYear"
               no-title
               scrollable
@@ -754,12 +751,12 @@
             ></v-text-field>
           </div>
         </div>
-        <div v-show="this.ShipsVoyage.TimeCharterring" class="columnData">
+        <div v-show="this.ShipData.TimeCharterring" class="columnData">
           <h3>Engine Power</h3>
           <div style="    display: flex;
     width: 300px;">
             <v-text-field
-              v-model="ShipsTime.EnginePower"
+              v-model="EnginePower"
               @input="valEnginePower"
               :error="errEnginePower"
               :error-messages="errEnginePowerMsg"
@@ -772,12 +769,12 @@
             <h3 style="margin-left:9px; margin-top:7px;">HP</h3>
           </div>
         </div>
-        <div v-show="this.ShipsVoyage.TimeCharterring" class="columnData">
+        <div v-show="this.ShipData.TimeCharterring" class="columnData">
           <h3>Economy Speed</h3>
           <div style="    display: flex;
     width: 300px;">
             <v-text-field
-              v-model="ShipsTime.EconomySpeed"
+              v-model="EconomySpeed"
               @input="valEconomySpeed"
               :error="errEconomySpeed"
               :error-messages="errEconomySpeedMsg"
@@ -866,44 +863,45 @@
       <button class="btn" @click="save">Save</button>
     </div>
     <div v-show="set">
-      <p>{{ShipsVoyage.ShipName}}</p>
-      <p>{{ShipsVoyage.Nationality}}</p>
-      <p>{{ShipsVoyage.PortOfRegistry}}</p>
-      <p>{{ShipsVoyage.TypeOfShip}}</p>
-      <p>{{ShipsVoyage.IMO}}</p>
-      <p>{{ShipsVoyage.LOA}}</p>
-      <p>{{ShipsVoyage.LBP}}</p>
-      <p>{{ShipsVoyage.Breadth}}</p>
-      <p>{{ShipsVoyage.GRT}}</p>
-      <p>{{ShipsVoyage.NRT}}</p>
-      <p>{{ShipsVoyage.GrainCapacity}}</p>
-      <p>{{ShipsVoyage.BaleCapacity}}</p>
-      <p>{{ShipsVoyage.HoldVolumeCubicMeter}}</p>
-      <p>{{ShipsVoyage.HoldType}}</p>
-      <p>{{ShipsVoyage.ReadyToCarryDangerousGoods}}</p>
-      <p>{{ShipsVoyage.SummerDraft}}</p>
-      <p>{{ShipsVoyage.DeadWeight}}</p>
-      <p>{{ShipsVoyage.AirDraft}}</p>
-      <p>{{ShipsVoyage.Owner}}</p>
-      <p>{{ShipsVoyage.OwnerAddress}}</p>
-      <p>{{ShipsVoyage.Operator}}</p>
-      <p>{{ShipsVoyage.OperatorAddress}}</p>
-      <p>{{ShipsVoyage.BuildYear}}</p>
-      <p>{{ShipsVoyage.Availability}}</p>
-      <p>{{ShipsVoyage.AvailabilitySector}}</p>
-      <p>{{ShipsVoyage.TimeCharterring}}</p>
-      <p>{{ShipsVoyage.VoyageChartering}}</p>
-      <p>{{ShipsTime.EconomySpeed}}</p>
-      <p>{{ShipsTime.EnginePower}}</p>
-      <p>{{ShipsTime.Class}}</p>
-      <p>{{ShipsTime.SummerFreeBoard}}</p>
-      <p>{{ShipsTime.MouldeDepth}}</p>
-      <p>{{ShipsTime.MMSIno}}</p>
-      <p>{{ShipsTime.CallSign}}</p>
-      <p>{{ShipsTime.OfficialNo}}</p>
-      <p>{{ShipsVoyage.ContactInfo}}</p>
+      <p>{{ShipData.ShipName}}</p>
+      <p>{{ShipData.Nationality}}</p>
+      <p>{{ShipData.PortOfRegistry}}</p>
+      <p>{{ShipData.TypeOfShip}}</p>
+      <p>{{ShipData.IMO}}</p>
+      <p>{{ShipData.LOA}}</p>
+      <p>{{ShipData.LBP}}</p>
+      <p>{{ShipData.Breadth}}</p>
+      <p>{{ShipData.GRT}}</p>
+      <p>{{ShipData.NRT}}</p>
+      <p>{{ShipData.GrainCapacity}}</p>
+      <p>{{ShipData.BaleCapacity}}</p>
+      <p>{{ShipData.HoldVolumeCubicMeter}}</p>
+      <p>{{ShipData.HoldType}}</p>
+      <p>{{ShipData.ReadyToCarryDangerousGoods}}</p>
+      <p>{{ShipData.SummerDraft}}</p>
+      <p>{{ShipData.DeadWeight}}</p>
+      <p>{{ShipData.AirDraft}}</p>
+      <p>{{ShipData.Owner}}</p>
+      <p>{{ShipData.OwnerAddress}}</p>
+      <p>{{ShipData.Operator}}</p>
+      <p>{{ShipData.OperatorAddress}}</p>
+      <p>{{ShipData.BuildYear}}</p>
+      <p>{{ShipData.Availability}}</p>
+      <p>{{ShipData.AvailabilitySector}}</p>
+      <p>{{ShipData.TimeCharterring}}</p>
+      <p>{{ShipData.VoyageChartering}}</p>
+      <p>{{ShipTime.EconomySpeed}}</p>
+      <p>{{ShipTime.EnginePower}}</p>
+      <p>{{ShipTime.Class}}</p>
+      <p>{{ShipTime.SummerFreeBoard}}</p>
+      <p>{{ShipTime.MouldeDepth}}</p>
+      <p>{{ShipTime.MMSIno}}</p>
+      <p>{{ShipTime.CallSign}}</p>
+      <p>{{ShipTime.OfficialNo}}</p>
+      <!-- <p>{{ShipVoyage.ContactInfo}}</p> -->
     </div>
-    <p>{{ShipsVoyage.ContactInfo}}</p>
+    <!-- <p>{{ShipsVoyage.ContactInfo}}</p> -->
+    <p>{{ShipTime}}</p>
   </v-sheet>
 </template>
 
@@ -921,6 +919,7 @@ export default {
   components: {
     CountryFlag
   },
+  props: ["ShipData", "ShipTime"],
   data() {
     return {
       test,
@@ -947,22 +946,84 @@ export default {
       flag: null,
       add: false,
       addField: [],
-      LOAno: "",
-      LOAUnit: "",
-      LBPno: "",
-      LBPUnit: "",
-      BreadthNo: "",
-      BreadthUnit: "",
-      ModDepthNo: "",
-      MouldeUnit: "",
-      SummerDraftNo: "",
-      SummerDraftUnit: "",
-      SummerFreeNo: "",
-      SummerFreeUnit: "",
-      AirDraftNo: "",
-      AirDraftUnit: "",
-      fromDate: "",
-      toDate: "",
+      LOAno: this.ShipData.LOA.substring(
+        0,
+        this.ShipData.LOA.indexOf("M" || "F")
+      ),
+      LOAUnit: this.ShipData.LOA.substring(
+        this.ShipData.LOA.indexOf("M" || "F"),
+        this.ShipData.LOA.length
+      ),
+      LBPno: this.ShipData.LBP.substring(
+        0,
+        this.ShipData.LBP.indexOf("M" || "F")
+      ),
+      LBPUnit: this.ShipData.LBP.substring(
+        this.ShipData.LBP.indexOf("M" || "F"),
+        this.ShipData.LBP.length
+      ),
+      BreadthNo: this.ShipData.Breadth.substring(
+        0,
+        this.ShipData.Breadth.indexOf("M" || "F")
+      ),
+      BreadthUnit: this.ShipData.Breadth.substring(
+        this.ShipData.Breadth.indexOf("M" || "F"),
+        this.ShipData.Breadth.length
+      ),
+      NRT: this.ShipData.NRT.substring(0, this.ShipData.NRT.length - 2),
+      GRT: this.ShipData.GRT.substring(0, this.ShipData.GRT.length - 2),
+      EnginePower: this.ShipTime.EnginePower.substring(
+        0,
+        this.ShipTime.EnginePower.length - 2
+      ),
+      EconomySpeed: this.ShipTime.EconomySpeed.substring(
+        0,
+        this.ShipTime.EconomySpeed.length - 5
+      ),
+      HoldVolumeCubicMeter: this.ShipData.HoldVolumeCubicMeter.substring(
+        0,
+        this.ShipData.HoldVolumeCubicMeter.length - 2
+      ),
+      DeadWeight: this.ShipData.DeadWeight.substring(
+        0,
+        this.ShipData.DeadWeight.length - 2
+      ),
+      ModDepthNo: this.ShipTime.MouldeDepth.substring(
+        0,
+        this.ShipTime.MouldeDepth.indexOf("M" || "F")
+      ),
+      MouldeUnit: this.ShipTime.MouldeDepth.substring(
+        this.ShipTime.MouldeDepth.indexOf("M" || "F"),
+        this.ShipTime.MouldeDepth.length
+      ),
+      SummerDraftNo: this.ShipData.SummerDraft.substring(
+        0,
+        this.ShipData.SummerDraft.indexOf("M" || "F")
+      ),
+      SummerDraftUnit: this.ShipData.SummerDraft.substring(
+        this.ShipData.SummerDraft.indexOf("M" || "F"),
+        this.ShipData.SummerDraft.length
+      ),
+      SummerFreeNo: this.ShipTime.SummerFreeBoard.substring(
+        0,
+        this.ShipTime.SummerFreeBoard.indexOf("M" || "F")
+      ),
+      SummerFreeUnit: this.ShipTime.SummerFreeBoard.substring(
+        this.ShipTime.SummerFreeBoard.indexOf("M" || "F"),
+        this.ShipTime.SummerFreeBoard.length
+      ),
+      AirDraftNo: this.ShipData.AirDraft.substring(
+        0,
+        this.ShipData.AirDraft.indexOf("M" || "F")
+      ),
+      AirDraftUnit: this.ShipData.AirDraft.substring(
+        this.ShipData.AirDraft.indexOf("M" || "F"),
+        this.ShipData.AirDraft.length
+      ),
+      fromDate: this.ShipData.Availability.substring(0, 10),
+      toDate: this.ShipData.Availability.substring(14, 24),
+      OwnerAddressIndex: [],
+      OperatorAddressIndex: [],
       OwnerAddressLine: "",
       OwnerAddressCountry: "",
       OwnerAddressZipCode: "",
@@ -986,7 +1047,7 @@ export default {
       set: false,
       // Voyage Ships Table
       ShipsVoyage: {
-        ShipID: 4,
+        ShipID: "",
         ShipName: "",
         Nationality: "",
         PortOfRegistry: "",
@@ -1015,11 +1076,11 @@ export default {
         ContactInfo: [],
         TimeCharterring: false,
         VoyageChartering: false,
-        UserID: 4
+        UserID: ""
       },
       // Time Ships Table
       ShipsTime: {
-        ShipID: 4,
+        ShipID: this.ShipData.ShipID,
         EconomySpeed: "",
         EnginePower: "",
         Class: "",
@@ -1083,19 +1144,19 @@ export default {
 
   methods: {
     saveYear() {
-      this.ShipsVoyage.BuildYear = this.ShipsVoyage.BuildYear.substring(0, 4);
-      this.$refs.menu.save(this.ShipsVoyage.BuildYear);
+      this.ShipData.BuildYear = this.ShipData.BuildYear.substring(0, 4);
+      this.$refs.menu.save(this.ShipData.BuildYear);
     },
     DetectChartering() {
       if (this.CharteringType == "Voyage") {
-        this.ShipsVoyage.TimeCharterring = false;
-        this.ShipsVoyage.VoyageChartering = true;
+        this.ShipData.TimeCharterring = false;
+        this.ShipData.VoyageChartering = true;
       } else if (this.CharteringType == "Time & Voyage") {
-        this.ShipsVoyage.TimeCharterring = true;
-        this.ShipsVoyage.VoyageChartering = true;
+        this.ShipData.TimeCharterring = true;
+        this.ShipData.VoyageChartering = true;
       } else {
-        this.ShipsVoyage.TimeCharterring = true;
-        this.ShipsVoyage.VoyageChartering = false;
+        this.ShipData.TimeCharterring = true;
+        this.ShipData.VoyageChartering = false;
       }
     },
     AddPhone() {
@@ -1109,14 +1170,14 @@ export default {
     =*=*=*=*=*=*=*=*=*=*=*=
     */
     valShipName() {
-      if (this.ShipsVoyage.ShipName != "") {
+      if (this.ShipData.ShipName != "") {
         this.errShipName = false;
       } else {
         this.errShipName = true;
       }
     },
     valNationality() {
-      if (this.ShipsVoyage.Nationality != "") {
+      if (this.ShipData.Nationality != "") {
         this.errNationality = false;
       } else {
         this.errNationality = true;
@@ -1124,9 +1185,9 @@ export default {
     },
     valOfficialNo() {
       if (
-        this.ShipsTime.OfficialNo != "" &&
-        !isNaN(this.ShipsTime.OfficialNo) &&
-        this.ShipsTime.OfficialNo.length == 6
+        this.ShipTime.OfficialNo != "" &&
+        !isNaN(this.ShipTime.OfficialNo) &&
+        this.ShipTime.OfficialNo.length == 6
       ) {
         this.errOfficialNo = false;
       } else {
@@ -1134,14 +1195,14 @@ export default {
       }
     },
     valTypeOfShip() {
-      if (this.ShipsVoyage.TypeOfShip != "") {
+      if (this.ShipData.TypeOfShip != "") {
         this.errTypeOfShip = false;
       } else {
         this.errTypeOfShip = true;
       }
     },
     valMMSI() {
-      if (this.ShipsTime.MMSIno != "" && !isNaN(this.ShipsTime.MMSIno)) {
+      if (this.ShipTime.MMSIno != "" && !isNaN(this.ShipTime.MMSIno)) {
         this.errMMSI = false;
       } else {
         this.errMMSI = true;
@@ -1192,7 +1253,7 @@ export default {
       }
     },
     valNRT() {
-      if (this.ShipsVoyage.NRT != "" && !isNaN(this.ShipsVoyage.NRT)) {
+      if (this.NRT != "" && !isNaN(this.NRT)) {
         this.errNRT = false;
       } else {
         this.errNRT = true;
@@ -1200,8 +1261,8 @@ export default {
     },
     valBaleCapacity() {
       if (
-        this.ShipsVoyage.BaleCapacity != "" &&
-        !isNaN(this.ShipsVoyage.BaleCapacity)
+        this.ShipData.BaleCapacity != "" &&
+        !isNaN(this.ShipData.BaleCapacity)
       ) {
         this.errBaleCapacity = false;
       } else {
@@ -1209,7 +1270,7 @@ export default {
       }
     },
     valHoldType() {
-      if (this.ShipsVoyage.HoldType != "") {
+      if (this.ShipData.HoldType != "") {
         this.errHoldType = false;
       } else {
         this.errHoldType = true;
@@ -1294,28 +1355,28 @@ export default {
       }
     },
     valOwner() {
-      if (this.ShipsVoyage.Owner != "") {
+      if (this.ShipData.Owner != "") {
         this.errOwner = false;
       } else {
         this.errOwner = true;
       }
     },
     valOperator() {
-      if (this.ShipsVoyage.Operator != "") {
+      if (this.ShipData.Operator != "") {
         this.errOperator = false;
       } else {
         this.errOperator = true;
       }
     },
     valClass() {
-      if (this.ShipsTime.Class != "") {
+      if (this.ShipTime.Class != "") {
         this.errClass = false;
       } else {
         this.errClass = true;
       }
     },
     valAvailabilitySector() {
-      if (this.ShipsVoyage.AvailabilitySector.length != 0) {
+      if (this.ShipData.AvailabilitySector.length != 0) {
         this.errAvailabilitySector = false;
       } else {
         this.errAvailabilitySector = true;
@@ -1348,21 +1409,21 @@ export default {
       }
     },
     valPortOfRegistry() {
-      if (this.ShipsVoyage.PortOfRegistry != "") {
+      if (this.ShipData.PortOfRegistry != "") {
         this.errPortOfRegistry = false;
       } else {
         this.errPortOfRegistry = true;
       }
     },
     valIMO() {
-      if (this.ShipsVoyage.IMO != "" && !isNaN(this.ShipsVoyage.IMO)) {
+      if (this.ShipData.IMO != "" && !isNaN(this.ShipData.IMO)) {
         this.errIMO = false;
       } else {
         this.errIMO = true;
       }
     },
     valCallSign() {
-      if (this.ShipsTime.CallSign != "") {
+      if (this.ShipTime.CallSign != "") {
         this.errCallSign = false;
       } else {
         this.errCallSign = true;
@@ -1413,7 +1474,7 @@ export default {
       }
     },
     valGRT() {
-      if (this.ShipsVoyage.GRT != "" && !isNaN(this.ShipsVoyage.GRT)) {
+      if (this.GRT != "" && !isNaN(this.GRT)) {
         this.errGRT = false;
       } else {
         this.errGRT = true;
@@ -1421,8 +1482,8 @@ export default {
     },
     valGrainCapacity() {
       if (
-        this.ShipsVoyage.GrainCapacity != "" &&
-        !isNaN(this.ShipsVoyage.GrainCapacity)
+        this.ShipData.GrainCapacity != "" &&
+        !isNaN(this.ShipData.GrainCapacity)
       ) {
         this.errGrainCapacity = false;
       } else {
@@ -1431,8 +1492,8 @@ export default {
     },
     valHoldVolume() {
       if (
-        this.ShipsVoyage.HoldVolumeCubicMeter != "" &&
-        !isNaN(this.ShipsVoyage.HoldVolumeCubicMeter)
+        this.HoldVolumeCubicMeter != "" &&
+        !isNaN(this.HoldVolumeCubicMeter)
       ) {
         this.errHoldVolume = false;
       } else {
@@ -1440,17 +1501,14 @@ export default {
       }
     },
     valDeadWeight() {
-      if (
-        this.ShipsVoyage.DeadWeight != "" &&
-        !isNaN(this.ShipsVoyage.DeadWeight)
-      ) {
+      if (this.DeadWeight != "" && !isNaN(this.DeadWeight)) {
         this.errDeadWeight = false;
       } else {
         this.errDeadWeight = true;
       }
     },
     valBuildYear() {
-      if (this.ShipsVoyage.BuildYear != "") {
+      if (this.ShipData.BuildYear != "") {
         this.errBuildYear = false;
       } else {
         this.errBuildYear = true;
@@ -1536,20 +1594,14 @@ export default {
       }
     },
     valEnginePower() {
-      if (
-        this.ShipsTime.EnginePower != "" &&
-        !isNaN(this.ShipsTime.EnginePower)
-      ) {
+      if (this.EnginePower != "" && !isNaN(this.EnginePower)) {
         this.errEnginePower = false;
       } else {
         this.errEnginePower = true;
       }
     },
     valEconomySpeed() {
-      if (
-        this.ShipsTime.EconomySpeed != "" &&
-        !isNaN(this.ShipsTime.EconomySpeed)
-      ) {
+      if (this.EconomySpeed != "" && !isNaN(this.EconomySpeed)) {
         this.errEconomySpeed = false;
       } else {
         this.errEconomySpeed = true;
@@ -1639,7 +1691,7 @@ export default {
 
       // for Time Ships
 
-      if (this.ShipsVoyage.TimeCharterring == true) {
+      if (this.ShipData.TimeCharterring == true) {
         if (
           this.errShipName == false &&
           this.errNationality == false &&
@@ -1746,17 +1798,15 @@ export default {
     save() {
       this.allValid();
       if (this.set) {
-        this.ShipsVoyage.LOA = this.LOAno + this.LOAUnit;
-        this.ShipsVoyage.LBP = this.LBPno + this.LBPUnit;
-        this.ShipsVoyage.Breadth = this.BreadthNo + this.BreadthUnit;
-        this.ShipsTime.MouldeDepth = this.ModDepthNo + this.MouldeUnit;
-        this.ShipsVoyage.SummerDraft =
-          this.SummerDraftNo + this.SummerDraftUnit;
-        this.ShipsTime.SummerFreeBoard =
-          this.SummerFreeNo + this.SummerFreeUnit;
-        this.ShipsVoyage.AirDraft = this.AirDraftNo + this.AirDraftUnit;
-        this.ShipsVoyage.Availability = this.fromDate + " to " + this.toDate;
-        this.ShipsVoyage.OwnerAddress =
+        this.ShipData.LOA = this.LOAno + this.LOAUnit;
+        this.ShipData.LBP = this.LBPno + this.LBPUnit;
+        this.ShipData.Breadth = this.BreadthNo + this.BreadthUnit;
+        this.ShipTime.MouldeDepth = this.ModDepthNo + this.MouldeUnit;
+        this.ShipData.SummerDraft = this.SummerDraftNo + this.SummerDraftUnit;
+        this.ShipTime.SummerFreeBoard = this.SummerFreeNo + this.SummerFreeUnit;
+        this.ShipData.AirDraft = this.AirDraftNo + this.AirDraftUnit;
+        this.ShipData.Availability = this.fromDate + " to " + this.toDate;
+        this.ShipData.OwnerAddress =
           this.OwnerAddressLine +
           " / " +
           this.OwnerAddressCountry +
@@ -1764,7 +1814,7 @@ export default {
           this.OwnerAddressZipCode +
           " / " +
           this.OwnerAddressPhone;
-        this.ShipsVoyage.OperatorAddress =
+        this.ShipData.OperatorAddress =
           this.OperatorAddressLine +
           " / " +
           this.OperatorAddressCountry +
@@ -1772,63 +1822,62 @@ export default {
           this.OperatorAddressZipCode +
           " / " +
           this.OperatorAddressPhone;
-        this.ShipsVoyage.NRT = this.ShipsVoyage.NRT + "MT";
-        this.ShipsVoyage.GRT = this.ShipsVoyage.GRT + "MT";
-        this.ShipsVoyage.HoldVolumeCubicMeter =
-          this.ShipsVoyage.HoldVolumeCubicMeter + "M³";
-        this.ShipsVoyage.DeadWeight = this.ShipsVoyage.DeadWeight + "MT";
-        this.ShipsTime.EnginePower = this.ShipsTime.EnginePower + "HP";
-        this.ShipsTime.EconomySpeed = this.ShipsTime.EconomySpeed + "Knots";
+        this.ShipData.NRT = this.NRT + "MT";
+        this.ShipData.GRT = this.GRT + "MT";
+        this.ShipData.HoldVolumeCubicMeter = this.HoldVolumeCubicMeter + "M³";
+        this.ShipData.DeadWeight = this.DeadWeight + "MT";
+        this.ShipTime.EnginePower = this.EnginePower + "HP";
+        this.ShipTime.EconomySpeed = this.EconomySpeed + "Knots";
 
         firebase
           .database()
-          .ref("ShipsVoyage/" + this.ShipsVoyage.ShipID)
+          .ref("ShipsVoyage/" + this.ShipData.ShipID)
           .set({
-            ShipID: this.ShipsVoyage.ShipID,
-            ShipName: this.ShipsVoyage.ShipName,
-            Nationality: this.ShipsVoyage.Nationality,
-            PortOfRegistry: this.ShipsVoyage.PortOfRegistry,
-            TypeOfShip: this.ShipsVoyage.TypeOfShip,
-            IMO: this.ShipsVoyage.IMO,
-            LOA: this.ShipsVoyage.LOA,
-            LBP: this.ShipsVoyage.LBP,
-            Breadth: this.ShipsVoyage.Breadth,
-            GRT: this.ShipsVoyage.GRT,
-            NRT: this.ShipsVoyage.NRT,
-            GrainCapacity: this.ShipsVoyage.GrainCapacity,
-            BaleCapacity: this.ShipsVoyage.BaleCapacity,
-            HoldVolumeCubicMeter: this.ShipsVoyage.HoldVolumeCubicMeter,
-            HoldType: this.ShipsVoyage.HoldType,
-            ReadyToCarryDangerousGoods: this.ShipsVoyage
+            ShipID: this.ShipData.ShipID,
+            ShipName: this.ShipData.ShipName,
+            Nationality: this.ShipData.Nationality,
+            PortOfRegistry: this.ShipData.PortOfRegistry,
+            TypeOfShip: this.ShipData.TypeOfShip,
+            IMO: this.ShipData.IMO,
+            LOA: this.ShipData.LOA,
+            LBP: this.ShipData.LBP,
+            Breadth: this.ShipData.Breadth,
+            GRT: this.ShipData.GRT,
+            NRT: this.ShipData.NRT,
+            GrainCapacity: this.ShipData.GrainCapacity,
+            BaleCapacity: this.ShipData.BaleCapacity,
+            HoldVolumeCubicMeter: this.ShipData.HoldVolumeCubicMeter,
+            HoldType: this.ShipData.HoldType,
+            ReadyToCarryDangerousGoods: this.ShipData
               .ReadyToCarryDangerousGoods,
-            SummerDraft: this.ShipsVoyage.SummerDraft,
-            DeadWeight: this.ShipsVoyage.DeadWeight,
-            AirDraft: this.ShipsVoyage.AirDraft,
-            Owner: this.ShipsVoyage.Owner,
-            OwnerAddress: this.ShipsVoyage.OwnerAddress,
-            Operator: this.ShipsVoyage.Operator,
-            OperatorAddress: this.ShipsVoyage.OperatorAddress,
-            BuildYear: this.ShipsVoyage.BuildYear,
-            Availability: this.ShipsVoyage.Availability,
-            AvailabilitySector: this.ShipsVoyage.AvailabilitySector,
-            TimeCharterring: this.ShipsVoyage.TimeCharterring,
-            VoyageChartering: this.ShipsVoyage.VoyageChartering,
-            UserID: this.ShipsVoyage.UserID
+            SummerDraft: this.ShipData.SummerDraft,
+            DeadWeight: this.ShipData.DeadWeight,
+            AirDraft: this.ShipData.AirDraft,
+            Owner: this.ShipData.Owner,
+            OwnerAddress: this.ShipData.OwnerAddress,
+            Operator: this.ShipData.Operator,
+            OperatorAddress: this.ShipData.OperatorAddress,
+            BuildYear: this.ShipData.BuildYear,
+            Availability: this.ShipData.Availability,
+            AvailabilitySector: this.ShipData.AvailabilitySector,
+            TimeCharterring: this.ShipData.TimeCharterring,
+            VoyageChartering: this.ShipData.VoyageChartering,
+            UserID: this.ShipData.UserID
           });
-        if (this.ShipsVoyage.TimeCharterring) {
+        if (this.ShipData.TimeCharterring) {
           firebase
             .database()
-            .ref("ShipsTime/" + this.ShipsTime.ShipID)
+            .ref("ShipsTime/" + this.ShipTime.ShipID)
             .set({
-              ShipID: this.ShipsTime.ShipID,
-              EconomySpeed: this.ShipsTime.EconomySpeed,
-              EnginePower: this.ShipsTime.EnginePower,
-              Class: this.ShipsTime.Class,
-              SummerFreeBoard: this.ShipsTime.SummerFreeBoard,
+              ShipID: this.ShipTime.ShipID,
+              EconomySpeed: this.ShipTime.EconomySpeed,
+              EnginePower: this.ShipTime.EnginePower,
+              Class: this.ShipTime.Class,
+              SummerFreeBoard: this.ShipTime.SummerFreeBoard,
               MouldeDepth: this.ShipsTime.MouldeDepth,
-              MMSIno: this.ShipsTime.MMSIno,
-              CallSign: this.ShipsTime.CallSign,
-              OfficialNo: this.ShipsTime.OfficialNo
+              MMSIno: this.ShipTime.MMSIno,
+              CallSign: this.ShipTime.CallSign,
+              OfficialNo: this.ShipTime.OfficialNo
             });
         }
       }
@@ -1958,6 +2007,64 @@ export default {
     }
   },
   mounted() {
+    // for owner address
+    for (var a = 0; a < this.ShipData.OwnerAddress.length; a++) {
+      if (this.ShipData.OwnerAddress[a] == "/") this.OwnerAddressIndex.push(a);
+    }
+    this.OwnerAddressLine = this.ShipData.OwnerAddress.substring(
+      0,
+      this.OwnerAddressIndex[0] - 1
+    );
+    this.OwnerAddressCountry = this.ShipData.OwnerAddress.substring(
+      this.OwnerAddressIndex[0] + 2,
+      this.OwnerAddressIndex[1] - 1
+    );
+    this.OwnerAddressZipCode = this.ShipData.OwnerAddress.substring(
+      this.OwnerAddressIndex[1] + 2,
+      this.OwnerAddressIndex[2] - 1
+    );
+    this.OwnerAddressPhone = this.ShipData.OwnerAddress.substring(
+      this.OwnerAddressIndex[2] + 2,
+      this.ShipData.OwnerAddress.length
+    );
+    // for operator address
+    for (var o = 0; o < this.ShipData.OperatorAddress.length; o++) {
+      if (this.ShipData.OperatorAddress[o] == "/")
+        this.OperatorAddressIndex.push(o);
+    }
+    console.log(this.OperatorAddressIndex);
+    this.OperatorAddressLine = this.ShipData.OperatorAddress.substring(
+      0,
+      this.OperatorAddressIndex[0] - 1
+    );
+    this.OperatorAddressCountry = this.ShipData.OperatorAddress.substring(
+      this.OperatorAddressIndex[0] + 2,
+      this.OperatorAddressIndex[1] - 1
+    );
+    this.OperatorAddressZipCode = this.ShipData.OperatorAddress.substring(
+      this.OperatorAddressIndex[1] + 2,
+      this.OperatorAddressIndex[2] - 1
+    );
+    this.OperatorAddressPhone = this.ShipData.OperatorAddress.substring(
+      this.OperatorAddressIndex[2] + 2,
+      this.ShipData.OperatorAddress.length
+    );
+
+    // for CharteringType
+    if (
+      this.ShipData.TimeCharterring == false &&
+      this.ShipData.VoyageChartering
+    ) {
+      this.CharteringType = "Voyage";
+    } else if (
+      this.ShipData.TimeCharterring &&
+      this.ShipData.VoyageChartering == false
+    ) {
+      this.CharteringType = "Time";
+    } else {
+      this.CharteringType = "Time & Voyage";
+    }
+    // for Countries
     for (var i = 0; i < this.country.length; i++) {
       this.Countries.push({
         text: this.country[i].name,

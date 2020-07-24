@@ -11,7 +11,8 @@
 
     <!-- <router-view></router-view> -->
     <!-- <MyCargo /> -->
-    <Cargo />
+    <!-- <Cargo /> -->
+    <Ship />
     <!-- <EditCargo /> -->
     <!-- <MyShip /> -->
   </v-app>
@@ -26,7 +27,8 @@ import firebase from "firebase";
 // import AddCargo from "./components/AddCargo";
 // import EditCargo from "./components/EditCargo";
 // import MyCargo from "./views/MyCargo";
-import Cargo from "./components/Cargo";
+// import Cargo from "./views/Cargo";
+import Ship from "./views/Ship";
 // import MyShip from "./views/MyShip";
 export default {
   components: {
@@ -36,7 +38,8 @@ export default {
     // EditCargo,
     // MyShip,
     // MyCargo
-    Cargo
+    // Cargo
+    Ship
   },
   data() {
     return {

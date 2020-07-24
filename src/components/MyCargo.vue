@@ -32,7 +32,7 @@
       <div class="card-info">
         <div style="width:530px; margin-bottom:50px;">
           <v-card
-            @click="!AddShip"
+            @click="addCargo"
             class="add"
             min-height="160"
             style="border-radius:31.5px; margin-right:0; background-color:#0E153A; color:white;"
@@ -63,8 +63,7 @@
 <script>
 import firebase from "firebase";
 // import EditCargo from "../components/EditCargo";
-// import { EventBus } from "../main.js";
-
+import { EventBus } from "../main.js";
 import CargoCard from "../components/CargoCard";
 export default {
   name: "MyCargo",
@@ -78,7 +77,6 @@ export default {
       edit: false,
       I: null,
       keys: [],
-      AddShip: false,
       dialog3: false,
       cards: [1, 2, 3, 4, 5],
       Cargo: {},
@@ -104,6 +102,10 @@ export default {
       this.I = Index;
       this.CargoData = Cargo;
       // console.log(this.I, this.CargoData);
+    },
+    addCargo(AddCargo) {
+      AddCargo = true;
+      EventBus.$emit("addCargo", AddCargo);
     }
   },
   mounted() {

@@ -15,10 +15,10 @@
       -->
       <v-card-title class="pl-6 pt-1 pb-1 body-1 font-weight-medium" style="height:38px;">
         <img class="i-ship" src="../assets/Icon-ship.svg" alt="Ship" />
-        {{Ship.Name}}
+        {{ShipObject.ShipName}}
         <v-spacer></v-spacer>
 
-        <img @click="dialog3 = true" class="i-edit" src="../assets/Icon-edit.svg" alt="Edit" />
+        <img @click="editShip" class="i-edit" src="../assets/Icon-edit.svg" alt="Edit" />
       </v-card-title>
       <v-divider></v-divider>
       <!-- 
@@ -28,20 +28,22 @@
       -->
       <div class="ship-info body-2 font-weight-medium">
         <div class="shipLeft">
-          <p>Availability: {{Ship.Availability}}</p>
+          <p>Availability: {{ShipObject.Availability}}</p>
           <p>
             Ready To carry Dangerous goods:
             <img
-              v-if="Ship.dangerous"
+              v-if="ShipObject.ReadyToCarryDangerousGoods"
               class="i-check"
               src="../assets/Icon-check.svg"
               alt="check"
             />
+            <img v-else style="width:14px;" src="../assets/cancel.svg" alt="check" />
           </p>
         </div>
         <div class="shipRight">
-          <p>Dead Weight: {{Ship.DeadWeight}}mt</p>
-          <p v-show="show">Chatering Type: {{Ship.ChateringType}}</p>
+          <p>Dead Weight: {{ShipObject.DeadWeight}}</p>
+          <p v-show="show" v-if="ShipObject.VoyageChartering">Chatering Type: Voyage</p>
+          <p v-show="show" v-else>Chatering Type: Time</p>
         </div>
       </div>
       <!-- 
@@ -52,11 +54,11 @@
       <v-expand-transition>
         <div v-show="show" class="ship-info body-2 font-weight-medium">
           <div class="shipLeft">
-            <p>Type of Ship: {{Ship.ShipType}}</p>
-            <p>Hold Volume cubic meter: {{Ship.Volume}}cm3</p>
+            <p>Type of Ship: {{ShipObject.TypeOfShip}}</p>
+            <p>Hold Volume cubic meter: {{ShipObject.HoldVolumeCubicMeter}}</p>
           </div>
           <div class="shipRight">
-            <p>Build Year: {{Ship.BuildYear}}</p>
+            <p>Build Year: {{ShipObject.BuildYear}}</p>
             <p>Available Sectors:</p>
           </div>
 
@@ -88,33 +90,74 @@
 
 
 <script>
+import { EventBus } from "../main";
+import firebase from "firebase";
+
 export default {
   name: "ShipCard",
+  props: ["Ship", "index"],
   data() {
     return {
       show: false,
       AddShip: false,
       dialog3: false,
+      edit: false,
+      ShipObject: {},
       cards: [1, 2, 3, 4, 5],
-      Ship: {
-        Name: "Ship Name",
-        Availability: "1/1/2020 to 1/1/2021",
-        DeadWeight: 100,
-        dangerous: true,
-        ChateringType: "Voyage&Time",
-        ShipType: "Container Ship",
-        BuildYear: 2001,
-        Volume: 1000,
-        Sectors: ["game", "game", "game"]
-      }
+      ShipTime: {},
+      keysTime: []
+      // Ship: {
+      //   Name: "Ship Name",
+      //   Availability: "1/1/2020 to 1/1/2021",
+      //   DeadWeight: 100,
+      //   dangerous: true,
+      //   ChateringType: "Voyage&Time",
+      //   ShipType: "Container Ship",
+      //   BuildYear: 2001,
+      //   Volume: 1000,
+      //   Sectors: ["game", "game", "game"]
+      // }
     };
   },
   methods: {
+    editShip(edit, Ship, ShipTime) {
+      edit = true;
+      Ship = this.ShipObject;
+      ShipTime = this.ShipTime[this.ShipObject.ShipID];
+      EventBus.$emit("editShip", edit, Ship, ShipTime);
+    },
+    Integrate() {
+      this.ShipObject = this.Ship[this.index];
+    },
     hover() {
       this.show = true;
     },
     leave() {
       this.show = false;
+    }
+  },
+  mounted() {
+    this.Integrate();
+    console.log();
+    if (this.ShipObject.TimeCharterring) {
+      let self = this;
+      firebase
+        .database()
+        .ref("ShipsTime/")
+        .orderByChild("ShipID")
+        .equalTo(self.ShipObject.ShipID)
+        .once("value")
+        .then(function(snapshot) {
+          self.ShipTime = snapshot.val();
+          console.log(snapshot);
+
+          self.keysTime = Object.keys(self.ShipTime);
+          // for (let index = 0; index < self.keysTime.length; index++) {
+          //   // var ID = self.keysTime[index];
+          //   // self.ShipIds = self.ShipTime[ID];
+          // }
+          console.log(self.ShipTime);
+        });
     }
   }
 };
@@ -162,14 +205,14 @@ p {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 500px;
+  width: 530px;
   padding: 5px;
 }
 
 .shipLeft {
   display: flex;
   flex-direction: column;
-  width: 268px;
+  width: 277px;
   margin-top: 7px;
   align-items: flex-start;
   padding: 3px 2px 4px 25px;

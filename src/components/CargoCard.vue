@@ -88,6 +88,7 @@
 
 <script>
 import { EventBus } from "../main";
+import firebase from "firebase";
 // import { EventBus } from "../main.js";
 // import EditCargo from "./EditCargo";
 // import { EventBus } from "../main";
@@ -103,7 +104,8 @@ export default {
       edit: false,
       CargoObject: "",
       dialog3: false,
-      cards: [1, 2, 3, 4, 5]
+      cards: [1, 2, 3, 4, 5],
+      CargoDangerous: {}
       // Cargo: {
       //   Name: "Cargo Name",
       //   Availability: "1/1/2020 to 1/1/2021",
@@ -118,10 +120,11 @@ export default {
     };
   },
   methods: {
-    editCargo(edit, Cargo) {
+    editCargo(edit, Cargo, CargoDangerous) {
       edit = true;
       Cargo = this.CargoObject;
-      EventBus.$emit("editCargo", edit, Cargo);
+      CargoDangerous = this.CargoDangerous[this.CargoObject.CargoID];
+      EventBus.$emit("editCargo", edit, Cargo, CargoDangerous);
     },
     Integrate() {
       this.CargoObject = this.Cargo[this.index];
@@ -135,6 +138,25 @@ export default {
   },
   mounted() {
     this.Integrate();
+    if (this.CargoObject.DangerousGoods) {
+      let self = this;
+      firebase
+        .database()
+        .ref("DangerousGoods/")
+        .orderByChild("CargoID")
+        .equalTo(self.CargoObject.CargoID)
+        .once("value")
+        .then(function(snapshot) {
+          self.CargoDangerous = snapshot.val();
+
+          // self.keysTime = Object.keys(self.ShipTime);
+          // for (let index = 0; index < self.keysTime.length; index++) {
+          //   // var ID = self.keysTime[index];
+          //   // self.ShipIds = self.ShipTime[ID];
+          // }
+          console.log(self.CargoDangerous);
+        });
+    }
   }
 };
 </script>

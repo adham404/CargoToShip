@@ -21,7 +21,7 @@
     <div class="card-info">
       <div style="width:530px; margin-bottom:50px;">
         <v-card
-          @click="!AddShip"
+          @click="addShip"
           class="add"
           min-height="160"
           style="border-radius:31.5px; margin-right:0; background-color:#0E153A; color:white;"
@@ -33,11 +33,11 @@
         </v-card>
       </div>
       <div
-        v-for="c in cards"
-        :key="c"
+        v-for="s in this.keys "
+        :key="s"
         style="max-width:530px; max-height:300px; margin-bottom:50px; "
       >
-        <ShipCard />
+        <ShipCard :index="s" :Ship="Ship" @editShip="editShip" />
       </div>
       <!-- 
                 ==========================
@@ -51,7 +51,8 @@
 
 <script>
 import ShipCard from "../components/ShipCard";
-
+import firebase from "firebase";
+import { EventBus } from "../main";
 export default {
   name: "MyShip",
   components: {
@@ -60,20 +61,27 @@ export default {
   data() {
     return {
       show: false,
-      AddShip: false,
+      AddShip: true,
       dialog3: false,
       cards: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      Ship: {
-        Name: "Ship Name",
-        Availability: "1/1/2020 to 1/1/2021",
-        DeadWeight: 100,
-        dangerous: true,
-        ChateringType: "Voyage&Time",
-        ShipType: "Container Ship",
-        BuildYear: 2001,
-        Volume: 1000,
-        Sectors: ["game", "game", "game"]
-      }
+      // Ship: {
+      //   Name: "Ship Name",
+      //   Availability: "1/1/2020 to 1/1/2021",
+      //   DeadWeight: 100,
+      //   dangerous: true,
+      //   ChateringType: "Voyage&Time",
+      //   ShipType: "Container Ship",
+      //   BuildYear: 2001,
+      //   Volume: 1000,
+      //   Sectors: ["game", "game", "game"]
+      // }
+      Ship: {},
+      keys: [],
+      ShipIds: [],
+      ShipData: {},
+      I: {},
+      ShipTime: {},
+      keysTime: []
     };
   },
   methods: {
@@ -82,7 +90,37 @@ export default {
     },
     leave() {
       this.show = false;
+    },
+    editShip(edit, Ship, Index) {
+      this.edit = edit;
+      this.I = Index;
+      this.ShipData = Ship;
+      // console.log(this.I, this.CargoData);
+    },
+    addShip(AddShip) {
+      AddShip = true;
+      EventBus.$emit("addShip", AddShip);
     }
+  },
+  mounted() {
+    let self = this;
+    firebase
+      .database()
+      .ref("ShipsVoyage/")
+      .orderByChild("UserID")
+      .equalTo(2)
+      .once("value")
+      .then(function(snapshot) {
+        self.Ship = snapshot.val();
+        console.log(snapshot);
+
+        self.keys = Object.keys(self.Ship);
+        for (let index = 0; index < self.keys.length; index++) {
+          var ID = self.keys[index];
+          self.ShipIds = self.Ship[ID];
+        }
+        console.log(self.keys);
+      });
   }
 };
 </script>

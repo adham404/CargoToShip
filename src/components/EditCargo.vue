@@ -347,6 +347,8 @@
     <p>{{ContactInfoCode}}</p>
     <p>{{QuantityUnit}}</p>
     <p>{{CQuantity}}</p>
+    <p>{{CargoDangerous}}</p>
+    <p>{{DangerousSpecification}}</p>
     <!-- <p>{{DangerousGoods}}</p> -->
   </v-sheet>
 </template>
@@ -367,7 +369,7 @@ export default {
     // CargoPhone
     CountryFlag
   },
-  props: ["CargoData"],
+  props: ["CargoData", "CargoDangerous"],
   data() {
     return {
       test,
@@ -503,11 +505,11 @@ export default {
         for (var i = 0; i < 16; i++) {
           if (
             this.DangerousSpecification[j] ==
-            Object.keys(this.DangerousGoods)[i]
+            Object.keys(this.CargoDangerous)[i]
           ) {
-            var key = Object.keys(this.DangerousGoods)[i];
+            var key = Object.keys(this.CargoDangerous)[i];
             console.log(key);
-            this.DangerousGoods[key] = true;
+            this.CargoDangerous[key] = true;
           }
         }
       }
@@ -576,7 +578,7 @@ export default {
       }
     },
     valDangerousSpecification() {
-      if (this.Cargo.DangerousGoods) {
+      if (this.CargoData.DangerousGoods) {
         if (this.DangerousSpecification != "") {
           this.errDangerousSpecification = false;
         } else {
@@ -586,14 +588,10 @@ export default {
     },
     valContactInfo() {
       for (let index = 0; index < this.addField.length + 1; index++) {
-        const phoneUtil = require("google-libphonenumber").PhoneNumberUtil.getInstance();
-        var number = phoneUtil.parseAndKeepRawInput(
-          this.CargoData.ContactInfo[index],
-          this.ContactInfoCode[index]
-        );
-        console.log(number);
-        console.log(number.getCountryCode());
-        if (phoneUtil.isValidNumber(number)) {
+        if (
+          this.CargoData.ContactInfo[index] != "" &&
+          !isNaN(this.CargoData.ContactInfo[index])
+        ) {
           this.errContactInfo[index] = false;
           console.log(this.errContactInfo[index]);
         } else {
@@ -649,6 +647,27 @@ export default {
         this.flag = !this.errContactInfo[0];
       }
     },
+    valContactInfoSave() {
+      for (let index = 0; index < this.addField.length + 1; index++) {
+        const phoneUtil = require("google-libphonenumber").PhoneNumberUtil.getInstance();
+        var number = phoneUtil.parseAndKeepRawInput(
+          this.CargoData.ContactInfo[index],
+          this.ContactInfoCode[index]
+        );
+        console.log(number);
+        console.log(number.getCountryCode());
+        if (phoneUtil.isValidNumber(number)) {
+          this.errContactInfo[index] = false;
+          console.log(this.errContactInfo[index]);
+        } else {
+          this.errContactInfo[index] = true;
+          console.log(this.errContactInfo[index]);
+        }
+        this.errContactInfo0(index);
+        // console.log(this.errContactInfo[0]);
+        // console.log(phoneUtil.isValidNumber(number));
+      }
+    },
     // Check if all valid
     allValid() {
       this.valDescription();
@@ -690,6 +709,7 @@ export default {
     },
     save() {
       this.allValid();
+      this.valContactInfoSave();
       if (this.set) {
         this.editNumber();
         this.CargoData.Availability = this.fromDate + " to " + this.toDate;
@@ -717,23 +737,23 @@ export default {
             .ref("DangerousGoods/" + this.CargoData.CargoID)
             .set({
               CargoID: this.CargoData.CargoID,
-              Corrosive: this.DangerousGoods.Corrosive,
-              DangerousWhenWet: this.DangerousGoods.DangerousWhenWet,
-              Explosive: this.DangerousGoods.Explosive,
-              FlammableGas: this.DangerousGoods.FlammableGas,
-              FlammableLiquid: this.DangerousGoods.FlammableLiquid,
-              FlammableSolid: this.DangerousGoods.FlammableSolid,
-              InfectiousSubstance: this.DangerousGoods.InfectiousSubstance,
-              MarinePollutant: this.DangerousGoods.MarinePollutant,
-              Miscellaneous: this.DangerousGoods.Miscellaneous,
-              NonflammableCompressedGas: this.DangerousGoods
+              Corrosive: this.CargoDangerous.Corrosive,
+              DangerousWhenWet: this.CargoDangerous.DangerousWhenWet,
+              Explosive: this.CargoDangerous.Explosive,
+              FlammableGas: this.CargoDangerous.FlammableGas,
+              FlammableLiquid: this.CargoDangerous.FlammableLiquid,
+              FlammableSolid: this.CargoDangerous.FlammableSolid,
+              InfectiousSubstance: this.CargoDangerous.InfectiousSubstance,
+              MarinePollutant: this.CargoDangerous.MarinePollutant,
+              Miscellaneous: this.CargoDangerous.Miscellaneous,
+              NonflammableCompressedGas: this.CargoDangerous
                 .NonflammableCompressedGas,
-              OrganicPeroxide: this.DangerousGoods.OrganicPeroxide,
-              OxidizingAgent: this.DangerousGoods.OxidizingAgent,
-              Radioactive: this.DangerousGoods.Radioactive,
-              SpontaneouslyCombustible: this.DangerousGoods
+              OrganicPeroxide: this.CargoDangerous.OrganicPeroxide,
+              OxidizingAgent: this.CargoDangerous.OxidizingAgent,
+              Radioactive: this.CargoDangerous.Radioactive,
+              SpontaneouslyCombustible: this.CargoDangerous
                 .SpontaneouslyCombustible,
-              ToxicGas: this.DangerousGoods.ToxicGas
+              ToxicGas: this.CargoDangerous.ToxicGas
             });
         }
       }
@@ -763,6 +783,15 @@ export default {
     //   console.log(data);
     //   this.number.push(data);
     // });
+    if (this.CargoData.DangerousGoods) {
+      for (var d = 0; d < Object.keys(this.CargoDangerous).length; d++) {
+        var key = Object.keys(this.CargoDangerous)[d];
+
+        if (this.CargoDangerous[key] == true) {
+          this.DangerousSpecification.push(Object.keys(this.CargoDangerous)[d]);
+        }
+      }
+    }
     for (var p = 0; p < this.CargoData.ContactInfo.length; p++) {
       console.log(this.CargoData.ContactInfo[p]);
     }

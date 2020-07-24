@@ -391,7 +391,7 @@ export default {
       set: false,
       hint: "Maximum 20 characters",
       Cargo: {
-        CargoID: 2,
+        CargoID: 4,
         Availability: "",
         CargoQuantity: "",
         Freight: "",
