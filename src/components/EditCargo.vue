@@ -123,7 +123,7 @@
               </template>
             </v-autocomplete>
             <v-text-field
-              v-model="CargoData.ContactInfo[0]"
+              v-model="ContactInfo[0]"
               @input="valContactInfo"
               :error="errContactInfo[0]"
               :error-messages="errContactInfo0(0)"
@@ -137,7 +137,7 @@
           </div>
           <div v-for="i  in  addField" :key="i" style="display: flex;">
             <v-autocomplete
-              v-model="ContactInfoCode[i]"
+              v-model="ContactInfoCode[addField.indexOf(i)+1]"
               :menu-props="{ maxHeight: '200',maxWidth:'400' }"
               :items="Countries"
               label="Code"
@@ -162,9 +162,10 @@
               </template>
             </v-autocomplete>
             <v-text-field
-              v-model="CargoData.ContactInfo[addField.indexOf(i)+1]"
+              v-model="ContactInfo[addField.indexOf(i)+1]"
+              @input="valContactInfo"
               :error="errContactInfo[addField.indexOf(i)+1]"
-              :error-messages="errContactInfo1(addField.indexOf(i)+1)"
+              :error-messages="errContactInfo0(addField.indexOf(i)+1)"
               ref="contact"
               label="Enter Phone Number"
               solo
@@ -349,6 +350,7 @@
     <p>{{CQuantity}}</p>
     <p>{{CargoDangerous}}</p>
     <p>{{DangerousSpecification}}</p>
+    <p>{{addField}}</p>
     <!-- <p>{{DangerousGoods}}</p> -->
   </v-sheet>
 </template>
@@ -376,6 +378,7 @@ export default {
       Data: {},
       Index: 1,
       ContactInfoCode: [],
+      ContactInfo: [],
       number: [],
       country,
       Countries: [],
@@ -587,20 +590,13 @@ export default {
       }
     },
     valContactInfo() {
-      for (let index = 0; index < this.addField.length + 1; index++) {
-        if (
-          this.CargoData.ContactInfo[index] != "" &&
-          !isNaN(this.CargoData.ContactInfo[index])
-        ) {
+      for (let index = 0; index < this.ContactInfo.length; index++) {
+        if (this.ContactInfo[index] != "" && !isNaN(this.ContactInfo[index])) {
           this.errContactInfo[index] = false;
-          console.log(this.errContactInfo[index]);
         } else {
           this.errContactInfo[index] = true;
-          console.log(this.errContactInfo[index]);
+          this.errContactInfo0(index);
         }
-        this.errContactInfo0(index);
-        // console.log(this.errContactInfo[0]);
-        // console.log(phoneUtil.isValidNumber(number));
       }
     },
     valType() {
@@ -631,41 +627,50 @@ export default {
     errContactInfo1(i) {
       return this.errContactInfo[i] ? ["Insert Valid Phone"] : [];
     },
-    savePhone() {
-      for (let z = 0; z < this.addField.length + 1; z++) {
-        if (this.CargoData.ContactInfo[z] == null) {
-          this.CargoData.ContactInfo.push("");
+    editNumber() {
+      this.valContactInfo();
+      for (var i = 0; i < this.ContactInfo.length; i++) {
+        // var index = this.Countries.findIndex(
+        //   x => x.code === this.ContactInfoCode[i]
+        // );
+        if (this.errContactInfo[i] == false) {
+          const phoneUtil = require("google-libphonenumber").PhoneNumberUtil.getInstance();
+          var number = phoneUtil.parseAndKeepRawInput(
+            this.ContactInfo[i],
+            this.ContactInfoCode[i]
+          );
+          if (phoneUtil.isValidNumber(number)) {
+            this.errContactInfo[i] = false;
+            this.CargoData.ContactInfo[i] = {
+              number: number.getRawInput(),
+              code: phoneUtil.getRegionCodeForNumber(number)
+            };
+          } else {
+            this.errContactInfo.splice(i, 1);
+            console.log(this.errContactInfo);
+            this.errContactInfo.splice(i, 0, true);
+          }
+          this.errContactInfo0(i);
+        } else {
+          this.errContactInfo[i] = true;
+          this.errContactInfo0(i);
         }
       }
-      this.valContactInfo();
+    },
+    savePhone() {
+      for (let z = 0; z < this.addField.length + 1; z++) {
+        if (this.ContactInfo[z] == null) {
+          this.ContactInfo.push("");
+        }
+      }
+      this.editNumber();
       this.flag = true;
       for (var j = 0; j < this.errContactInfo.length; j++) {
         let err = this.errContactInfo[j];
         this.flag = this.flag && !err;
       }
       if (j == 0) {
-        this.flag = !this.errContactInfo[0];
-      }
-    },
-    valContactInfoSave() {
-      for (let index = 0; index < this.addField.length + 1; index++) {
-        const phoneUtil = require("google-libphonenumber").PhoneNumberUtil.getInstance();
-        var number = phoneUtil.parseAndKeepRawInput(
-          this.CargoData.ContactInfo[index],
-          this.ContactInfoCode[index]
-        );
-        console.log(number);
-        console.log(number.getCountryCode());
-        if (phoneUtil.isValidNumber(number)) {
-          this.errContactInfo[index] = false;
-          console.log(this.errContactInfo[index]);
-        } else {
-          this.errContactInfo[index] = true;
-          console.log(this.errContactInfo[index]);
-        }
-        this.errContactInfo0(index);
-        // console.log(this.errContactInfo[0]);
-        // console.log(phoneUtil.isValidNumber(number));
+        this.flag = !this.errContactInfo[j];
       }
     },
     // Check if all valid
@@ -698,20 +703,9 @@ export default {
         this.set = false;
       }
     },
-    editNumber() {
-      for (var i = 0; i < this.ContactInfoCode.length; i++) {
-        var index = this.Countries.findIndex(
-          x => x.code === this.ContactInfoCode[i]
-        );
-        this.CargoData.ContactInfo[i] =
-          this.Countries[index].dialCode + this.CargoData.ContactInfo[i];
-      }
-    },
     save() {
       this.allValid();
-      this.valContactInfoSave();
       if (this.set) {
-        this.editNumber();
         this.CargoData.Availability = this.fromDate + " to " + this.toDate;
         this.CargoData.CargoQuantity = this.CQuantity + this.QuantityUnit;
         this.CargoData.Freight = this.Freight + "$";
@@ -762,7 +756,9 @@ export default {
       // var index = this.addField.indexOf(p);
       // var index2 = this.addField.indexOf(this.Cargo.ContactInfo[p]);
       this.addField.splice(p, 1);
-      this.CargoData.ContactInfo.splice(p + 1, 1);
+      this.ContactInfo.splice(p + 1, 1);
+      this.errContactInfo.splice(p + 1, 1);
+      this.ContactInfoCode.splice(p + 1, 1);
       // console.log(this.addField);
       // this.phone = p - 1;
       // console.log(this.phone);
@@ -772,7 +768,6 @@ export default {
     //   this.Index = this.I;
     // }
   },
-  created() {},
   mounted() {
     // this.Integrate();
     // console.log(this.Cargo);
@@ -783,6 +778,8 @@ export default {
     //   console.log(data);
     //   this.number.push(data);
     // });
+    //for DangerousGoods
+    console.log(Object.keys(this.CargoDangerous).length);
     if (this.CargoData.DangerousGoods) {
       for (var d = 0; d < Object.keys(this.CargoDangerous).length; d++) {
         var key = Object.keys(this.CargoDangerous)[d];
@@ -792,8 +789,14 @@ export default {
         }
       }
     }
+    //for contactinfo
     for (var p = 0; p < this.CargoData.ContactInfo.length; p++) {
-      console.log(this.CargoData.ContactInfo[p]);
+      this.ContactInfo[p] = this.CargoData.ContactInfo[p].number;
+      this.ContactInfoCode[p] = this.CargoData.ContactInfo[p].code;
+      console.log(this.CargoData.ContactInfo.length - 1);
+    }
+    for (var a = 0; a < this.CargoData.ContactInfo.length - 1; a++) {
+      this.AddPhone();
     }
     for (var i = 0; i < this.country.length; i++) {
       this.Countries.push({

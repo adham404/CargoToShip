@@ -108,7 +108,7 @@ export default {
       .database()
       .ref("ShipsVoyage/")
       .orderByChild("UserID")
-      .equalTo(2)
+      .equalTo(4)
       .once("value")
       .then(function(snapshot) {
         self.Ship = snapshot.val();

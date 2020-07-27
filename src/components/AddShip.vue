@@ -130,7 +130,7 @@
               solo
               outlined
               dense
-              style="width:220px; border-radius:5px;  "
+              style="width:220px; border-radius:5px; min-height:40px;  "
             ></v-text-field>
             <v-select
               v-model="LOAUnit"
@@ -378,11 +378,37 @@
             </template>
           </v-autocomplete>
         </div>
+
         <div class="columnData">
           <h3>Contact Info</h3>
           <div style="display: flex;">
+            <v-autocomplete
+              v-model="ContactInfoCode[0]"
+              :menu-props="{ maxHeight: '200',maxWidth:'400' }"
+              :items="Countries"
+              label="Code"
+              hide-details
+              outlined
+              dense
+              solo
+              style="width:80px; border-radius:5px; ;"
+            >
+              <template slot="selection" slot-scope="data">
+                <v-avatar style="height:40px;">
+                  <country-flag :country="data.item.code" />
+                </v-avatar>
+              </template>
+              <template slot="item" slot-scope="data">
+                <v-list-item-avatar>
+                  <country-flag :country="data.item.code" />
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title>{{data.item.text}} ({{data.item.dialCode}})</v-list-item-title>
+                </v-list-item-content>
+              </template>
+            </v-autocomplete>
             <v-text-field
-              v-model="ShipsVoyage.ContactInfo[0]"
+              v-model="ContactInfo[0]"
               ref="contact"
               @input="valContactInfo"
               :error="errContactInfo[0]"
@@ -391,22 +417,47 @@
               solo
               outlined
               dense
-              style="width:260px; border-radius:5px; "
+              style="width:185px; border-radius:5px; "
             ></v-text-field>
             <img @click="AddPhone" class="i-plus" src="../assets/Icon-plus.svg" alt />
           </div>
           <div v-for="i  in  addField" :key="i" style="display: flex;">
+            <v-autocomplete
+              v-model="ContactInfoCode[addField.indexOf(i)+1]"
+              :menu-props="{ maxHeight: '200',maxWidth:'400' }"
+              :items="Countries"
+              label="Code"
+              hide-details
+              outlined
+              dense
+              solo
+              style="width:80px; border-radius:5px; ;"
+            >
+              <template slot="selection" slot-scope="data">
+                <v-avatar style="height:40px;">
+                  <country-flag :country="data.item.code" />
+                </v-avatar>
+              </template>
+              <template slot="item" slot-scope="data">
+                <v-list-item-avatar>
+                  <country-flag :country="data.item.code" />
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title>{{data.item.text}} ({{data.item.dialCode}})</v-list-item-title>
+                </v-list-item-content>
+              </template>
+            </v-autocomplete>
             <v-text-field
-              v-model="ShipsVoyage.ContactInfo[addField.indexOf(i)+1]"
+              v-model="ContactInfo[addField.indexOf(i)+1]"
               @input="valContactInfo"
               :error="errContactInfo[addField.indexOf(i)+1]"
-              :error-messages="errContactInfo1(addField.indexOf(i)+1)"
+              :error-messages="errContactInfo0(addField.indexOf(i)+1)"
               ref="contact"
               label="Enter Phone Number"
               solo
               outlined
               dense
-              style="width:260px; border-radius:5px; "
+              style="width:185px; border-radius:5px; "
             ></v-text-field>
             <img
               @click="remove(addField.indexOf(i))"
@@ -604,7 +655,7 @@
         <div class="columnData">
           <h3>Dead Weight</h3>
           <div style="    display: flex;
-    width: 300px;">
+    width: 300px; min-height:1vw;">
             <v-text-field
               v-model="ShipsVoyage.DeadWeight"
               @input="valDeadWeight"
@@ -904,6 +955,10 @@
       <p>{{ShipsVoyage.ContactInfo}}</p>
     </div>
     <p>{{ShipsVoyage.ContactInfo}}</p>
+    <p>{{ContactInfo}}</p>
+    <p>{{ContactInfoCode}}</p>
+    <p>{{errContactInfo}}</p>
+    <p>{{addField}}</p>
   </v-sheet>
 </template>
 
@@ -932,6 +987,8 @@ export default {
         { text: "Voyage", value: "Voyage" },
         { text: "Time & Voyage", value: "Time & Voyage" }
       ],
+      ContactInfoCode: [],
+      ContactInfo: [],
       country,
       Countries: [],
       Units: [
@@ -986,7 +1043,7 @@ export default {
       set: false,
       // Voyage Ships Table
       ShipsVoyage: {
-        ShipID: 4,
+        ShipID: 5,
         ShipName: "",
         Nationality: "",
         PortOfRegistry: "",
@@ -1019,7 +1076,7 @@ export default {
       },
       // Time Ships Table
       ShipsTime: {
-        ShipID: 4,
+        ShipID: 5,
         EconomySpeed: "",
         EnginePower: "",
         Class: "",
@@ -1322,16 +1379,12 @@ export default {
       }
     },
     valContactInfo() {
-      for (let index = 0; index < this.addField.length + 1; index++) {
-        if (
-          this.ShipsVoyage.ContactInfo[index] != "" &&
-          !isNaN(this.ShipsVoyage.ContactInfo[index])
-          // &&
-          // this.ShipsVoyage.ContactInfo[index] != null
-        ) {
+      for (let index = 0; index < this.ContactInfo.length; index++) {
+        if (this.ContactInfo[index] != "" && !isNaN(this.ContactInfo[index])) {
           this.errContactInfo[index] = false;
         } else {
           this.errContactInfo[index] = true;
+          this.errContactInfo0(index);
         }
       }
     },
@@ -1561,41 +1614,66 @@ export default {
     errContactInfo1(i) {
       return this.errContactInfo[i] ? ["Insert Valid Phone"] : [];
     },
+    editNumber() {
+      this.valContactInfo();
+      for (var i = 0; i < this.ContactInfo.length; i++) {
+        // var index = this.Countries.findIndex(
+        //   x => x.code === this.ContactInfoCode[i]
+        // );
+        if (this.errContactInfo[i] == false) {
+          const phoneUtil = require("google-libphonenumber").PhoneNumberUtil.getInstance();
+          var number = phoneUtil.parseAndKeepRawInput(
+            this.ContactInfo[i],
+            this.ContactInfoCode[i]
+          );
+          if (phoneUtil.isValidNumber(number)) {
+            this.errContactInfo[i] = false;
+            this.ShipsVoyage.ContactInfo[i] = {
+              number: number.getRawInput(),
+              code: phoneUtil.getRegionCodeForNumber(number)
+            };
+          } else {
+            this.errContactInfo.splice(i, 1);
+            console.log(this.errContactInfo);
+            this.errContactInfo.splice(i, 0, true);
+          }
+          this.errContactInfo0(i);
+        } else {
+          this.errContactInfo[i] = true;
+          this.errContactInfo0(i);
+        }
+      }
+    },
     /*
     =*=*=*=*=*=*=*=*=*=*
       Saving the Data
     =*=*=*=*=*=*=*=*=*=*
     */
     savePhone() {
-      // for (var i in this.a) {
-      //   if (this.ShipsVoyage.ContactInfo[i] == null) {
-      //     this.ShipsVoyage.ContactInfo.push("");
-      //   }
-      // }
       for (let z = 0; z < this.addField.length + 1; z++) {
-        if (this.ShipsVoyage.ContactInfo[z] == null) {
-          this.ShipsVoyage.ContactInfo.push("");
+        if (this.ContactInfo[z] == null) {
+          this.ContactInfo.push("");
         }
       }
-      this.valContactInfo();
-      console.log(this.errContactInfo);
+      this.editNumber();
       this.flag = true;
       for (var j = 0; j < this.errContactInfo.length; j++) {
         let err = this.errContactInfo[j];
         this.flag = this.flag && !err;
       }
       if (j == 0) {
-        this.flag = !this.errContactInfo[0];
+        this.flag = !this.errContactInfo[j];
       }
-      console.log(this.flag);
     },
     remove(p) {
       this.addField.splice(p, 1);
+      this.ContactInfo.splice(p + 1, 1);
       this.ShipsVoyage.ContactInfo.splice(p + 1, 1);
+      this.errContactInfo.splice(p + 1, 1);
+      this.ContactInfoCode.splice(p + 1, 1);
     },
     // Check if all valid
     allValid() {
-      this.savePhone();
       this.valShipName();
       this.valNationality();
       this.valOfficialNo();
@@ -1635,7 +1713,7 @@ export default {
       this.valOperatorZipCode();
       this.valEnginePower();
       this.valEconomySpeed();
-      // this.valContactInfo();
+      this.savePhone();
 
       // for Time Ships
 
@@ -1811,6 +1889,7 @@ export default {
             BuildYear: this.ShipsVoyage.BuildYear,
             Availability: this.ShipsVoyage.Availability,
             AvailabilitySector: this.ShipsVoyage.AvailabilitySector,
+            ContactInfo: this.ShipsVoyage.ContactInfo,
             TimeCharterring: this.ShipsVoyage.TimeCharterring,
             VoyageChartering: this.ShipsVoyage.VoyageChartering,
             UserID: this.ShipsVoyage.UserID
@@ -1961,8 +2040,9 @@ export default {
     for (var i = 0; i < this.country.length; i++) {
       this.Countries.push({
         text: this.country[i].name,
-        value: this.country[i].name,
-        code: this.country[i].code
+        value: this.country[i].code,
+        code: this.country[i].code,
+        dialCode: this.country[i].dial_code
       });
     }
 
@@ -2068,4 +2148,7 @@ p {
   font-size: 1.4rem;
   font-weight: bold;
 }
+/* .v-text-field {
+  min-height: 1vw;
+} */
 </style>

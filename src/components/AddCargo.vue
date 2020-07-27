@@ -67,7 +67,6 @@
           <v-autocomplete
             v-model="Cargo.LoadingPort"
             :menu-props="{ maxHeight: '200' }"
-            @click="getPorts"
             :items="cargoPorts"
             @input="valLoadingPort"
             label="Search for Loading Port"
@@ -124,7 +123,7 @@
               </template>
             </v-autocomplete>
             <v-text-field
-              v-model="Cargo.ContactInfo[0]"
+              v-model="ContactInfo[0]"
               @input="valContactInfo"
               :error="errContactInfo[0]"
               :error-messages="errContactInfo0(0)"
@@ -163,9 +162,10 @@
               </template>
             </v-autocomplete>
             <v-text-field
-              v-model="Cargo.ContactInfo[addField.indexOf(i)+1]"
+              v-model="ContactInfo[addField.indexOf(i)+1]"
+              @input="valContactInfo"
               :error="errContactInfo[addField.indexOf(i)+1]"
-              :error-messages="errContactInfo1(addField.indexOf(i)+1)"
+              :error-messages="errContactInfo0(addField.indexOf(i)+1)"
               ref="contact"
               label="Enter Phone Number"
               solo
@@ -247,7 +247,6 @@
           <v-autocomplete
             v-model="Cargo.DischargingPort"
             :menu-props="{ maxHeight: '200' }"
-            @click="getPorts"
             :items="cargoPorts"
             @input="valDischargingPort"
             :error="errDischargingPort"
@@ -345,8 +344,10 @@
       <p>{{DangerousGoods}}</p>
       <p>{{Cargo.ContactInfo}}</p>
     </div>
-    <p>{{Cargo.ContactInfo}}</p>
+    <p>{{ContactInfo}}</p>
     <p>{{ContactInfoCode}}</p>
+    <p>{{addField}}</p>
+    <p>{{errContactInfo}}</p>
     <!-- <p>{{number}}</p> -->
   </v-sheet>
 </template>
@@ -360,7 +361,6 @@ import country from "../assets/countries.json";
 // import googleValidation from "google-libphonenumber";
 // import CargoPhone from "./CargoPhone";
 import { EventBus } from "../main";
-
 export default {
   name: "MyShip",
   components: {
@@ -372,6 +372,7 @@ export default {
       test,
       // googleValidation,
       ContactInfoCode: [],
+      ContactInfo: [],
       number: [],
       country,
       Countries: [],
@@ -391,7 +392,7 @@ export default {
       set: false,
       hint: "Maximum 20 characters",
       Cargo: {
-        CargoID: 4,
+        CargoID: 5,
         Availability: "",
         CargoQuantity: "",
         Freight: "",
@@ -420,7 +421,6 @@ export default {
         SpontaneouslyCombustible: false,
         ToxicGas: false
       },
-
       Quantity: [
         { text: "MT", value: "MT" },
         { text: "M³", value: "M³" }
@@ -566,23 +566,13 @@ export default {
       }
     },
     valContactInfo() {
-      for (let index = 0; index < this.addField.length + 1; index++) {
-        const phoneUtil = require("google-libphonenumber").PhoneNumberUtil.getInstance();
-        var number = phoneUtil.parseAndKeepRawInput(
-          this.Cargo.ContactInfo[index],
-          this.ContactInfoCode[index]
-        );
-
-        if (phoneUtil.isValidNumber(number)) {
+      for (let index = 0; index < this.ContactInfo.length; index++) {
+        if (this.ContactInfo[index] != "" && !isNaN(this.ContactInfo[index])) {
           this.errContactInfo[index] = false;
-          console.log(this.errContactInfo[index]);
         } else {
           this.errContactInfo[index] = true;
-          console.log(this.errContactInfo[index]);
+          this.errContactInfo0(index);
         }
-        this.errContactInfo0(index);
-        // console.log(this.errContactInfo[0]);
-        // console.log(phoneUtil.isValidNumber(number));
       }
     },
     valType() {
@@ -613,20 +603,50 @@ export default {
     errContactInfo1(i) {
       return this.errContactInfo[i] ? ["Insert Valid Phone"] : [];
     },
-    savePhone() {
-      for (let z = 0; z < this.addField.length + 1; z++) {
-        if (this.Cargo.ContactInfo[z] == null) {
-          this.Cargo.ContactInfo.push("");
+    editNumber() {
+      this.valContactInfo();
+      for (var i = 0; i < this.ContactInfo.length; i++) {
+        // var index = this.Countries.findIndex(
+        //   x => x.code === this.ContactInfoCode[i]
+        // );
+        if (this.errContactInfo[i] == false) {
+          const phoneUtil = require("google-libphonenumber").PhoneNumberUtil.getInstance();
+          var number = phoneUtil.parseAndKeepRawInput(
+            this.ContactInfo[i],
+            this.ContactInfoCode[i]
+          );
+          if (phoneUtil.isValidNumber(number)) {
+            this.errContactInfo[i] = false;
+            this.Cargo.ContactInfo[i] = {
+              number: number.getRawInput(),
+              code: phoneUtil.getRegionCodeForNumber(number)
+            };
+          } else {
+            this.errContactInfo.splice(i, 1);
+            console.log(this.errContactInfo);
+            this.errContactInfo.splice(i, 0, true);
+          }
+          this.errContactInfo0(i);
+        } else {
+          this.errContactInfo[i] = true;
+          this.errContactInfo0(i);
         }
       }
-      this.valContactInfo();
+    },
+    savePhone() {
+      for (let z = 0; z < this.addField.length + 1; z++) {
+        if (this.ContactInfo[z] == null) {
+          this.ContactInfo.push("");
+        }
+      }
+      this.editNumber();
       this.flag = true;
       for (var j = 0; j < this.errContactInfo.length; j++) {
         let err = this.errContactInfo[j];
         this.flag = this.flag && !err;
       }
       if (j == 0) {
-        this.flag = !this.errContactInfo[0];
+        this.flag = !this.errContactInfo[j];
       }
     },
     // Check if all valid
@@ -640,7 +660,7 @@ export default {
       this.valType();
       this.valAvailability();
       this.savePhone();
-
+      console.log(this.errContactInfo);
       if (
         this.errDescription == false &&
         this.errQuantity == false &&
@@ -655,46 +675,18 @@ export default {
         this.errToDate == false &&
         this.flag == true
       ) {
+        console.log(this.errContactInfo);
         this.set = true;
       } else {
         this.set = false;
       }
     },
-    getPorts() {
-      for (var i = 0; i < 23; i++) {
-        if (this.test[i].ports.length == 0) {
-          for (var j = 0; j < this.test[i].children.length; j++) {
-            for (var x = 0; x < this.test[i].children[j].ports.length; x++) {
-              this.cargoPorts.push(this.test[i].children[j].ports[x].title);
-            }
-          }
-        } else {
-          for (var y = 0; y < this.test[i].ports.length; y++) {
-            this.cargoPorts.push({
-              text: this.test[i].ports[y].title,
-              value: this.test[i].ports[y].title
-            });
-          }
-        }
-      }
-    },
-    editNumber() {
-      for (var i = 0; i < this.ContactInfoCode.length; i++) {
-        var index = this.Countries.findIndex(
-          x => x.code === this.ContactInfoCode[i]
-        );
-        this.Cargo.ContactInfo[i] =
-          this.Countries[index].dialCode + this.Cargo.ContactInfo[i];
-      }
-    },
     save() {
       this.allValid();
       if (this.set) {
-        this.editNumber();
         this.Cargo.Availability = this.fromDate + " to " + this.toDate;
         this.Cargo.CargoQuantity = this.CQuantity + this.QuantityUnit;
         this.Cargo.Freight = this.Cargo.Freight + "$";
-
         firebase
           .database()
           .ref("Cargo/" + this.Cargo.CargoID)
@@ -742,7 +734,9 @@ export default {
       // var index = this.addField.indexOf(p);
       // var index2 = this.addField.indexOf(this.Cargo.ContactInfo[p]);
       this.addField.splice(p, 1);
-      this.Cargo.ContactInfo.splice(p + 1, 1);
+      this.ContactInfo.splice(p + 1, 1);
+      this.errContactInfo.splice(p + 1, 1);
+      this.ContactInfoCode.splice(p + 1, 1);
       // console.log(this.addField);
       // this.phone = p - 1;
       // console.log(this.phone);
@@ -754,12 +748,28 @@ export default {
       console.log(data);
       this.number.push(data);
     });
-    for (var i = 0; i < this.country.length; i++) {
+    for (var i = 0; i < 23; i++) {
+      if (this.test[i].ports.length == 0) {
+        for (var j = 0; j < this.test[i].children.length; j++) {
+          for (var x = 0; x < this.test[i].children[j].ports.length; x++) {
+            this.cargoPorts.push(this.test[i].children[j].ports[x].title);
+          }
+        }
+      } else {
+        for (var y = 0; y < this.test[i].ports.length; y++) {
+          this.cargoPorts.push({
+            text: this.test[i].ports[y].title,
+            value: this.test[i].ports[y].title
+          });
+        }
+      }
+    }
+    for (var c = 0; c < this.country.length; c++) {
       this.Countries.push({
-        text: this.country[i].name,
-        value: this.country[i].code,
-        code: this.country[i].code,
-        dialCode: this.country[i].dial_code
+        text: this.country[c].name,
+        value: this.country[c].code,
+        code: this.country[c].code,
+        dialCode: this.country[c].dial_code
       });
     }
   },
@@ -810,7 +820,6 @@ p {
   width: 29px;
   margin-bottom: -1.5px;
 }
-
 .i-plus {
   width: 28px;
   display: inline-block;
@@ -818,13 +827,11 @@ p {
   margin-left: 10px;
   cursor: pointer;
 }
-
 /*   
 =========================
     Styling Card Info
 =========================
    */
-
 .cargoData {
   display: flex;
   flex-direction: row;
@@ -847,7 +854,6 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
   width: 48%;
   height: 100%;
 }
