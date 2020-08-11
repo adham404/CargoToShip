@@ -47,15 +47,29 @@
   </div>
   <p>Hold Volume Cubic centimeter:</p>
   <div class="Inquiry">
-    <div class="InquiryInput">
-        <label for="FromVolume">From 7anafy el</label>
-        <input v-model="FromVolume" id="FromVolume" type="text" name="" value="">
+    <div class="InquiryWithError">
+      <div class="InquiryInput">
+        <label for="FromVolume">From</label>
+        <input
+        @input="()=>{
+          this.Validate(this.FromVolume,1)
+          }"
+          v-model="FromVolume" id="FromVolume" type="text" name="" value="">
         <label for="FromVolume">cm3</label>
+      </div>
+      <p v-if="Err1">{{ErrMsg}}</p>
     </div>
-    <div class="InquiryInput">
+    <div class="InquiryWithError">
+      <div class="InquiryInput">
         <label for="ToVolume">To</label>
-        <input  v-model="ToVolume" id="ToVolume" type="text" name="" value="">
-        <label for="ToVolume">cm3</label>
+        <input
+        @input="()=>{
+          this.Validate(this.ToVolume,2)
+          }"
+          v-model="ToVolume" id="ToVolume" type="text" name="" value="">
+          <label for="ToVolume">cm3</label>
+        </div>
+        <p v-if="Err2">{{ErrMsg}}</p>
     </div>
   </div>
   <div class="DangerousGoods">
@@ -113,6 +127,9 @@ export default {
       NumberOfQueries:0, //a counter to indicate the number queries entered by the user
       FromVolume:"", //-----------START--------------------------------------
       ToVolume:"",
+      ErrMsg:"",
+      Err1:false,
+      Err2:false,
       ShipType:"",
       ShipDistrict:"",
       FromDraft:"",
@@ -150,6 +167,37 @@ export default {
     setOptions: function(e) //This function handles the logic of the checkbox as it to be like a radio button
     {
       this.CharteringType = [e.target.value];
+    },
+    Validate: function(Input,ErrNum)
+    {
+      if(ErrNum == 1 && Input !== "")
+      {
+        this.Err1 = true;
+      }
+      else{
+        this.Err1 = false;
+      }
+      if(ErrNum == 2 && Input !== "")
+      {
+        this.Err2 = true;
+      }
+      else{
+        this.Err2 = false;
+      }
+      if(!(/^\d+$/.test(Input)))
+      {
+        this.ErrMsg = "Must contain numbers only";
+      }
+      else{
+        var NumberTest = "2000";
+        var Integer = parseInt(NumberTest, 10);
+        if (Integer > 1000000) {
+          this.ErrMsg = "Limit Number Exceeded";
+        }
+        console.log(Integer);
+        this.ErrMsg = "";
+      }
+
     },
     Filter: function(){  //When the filter button is clicked this filter function is executed
       //------------Reset all the data values inside the searchQueryObject whenever the filter button is clicked
@@ -341,15 +389,25 @@ export default {
 .Inquiry{
   display: flex;
   width: 100%;
-  height: 5%;
+  height: 7%;
   margin-top: 2%;
   margin-left: 2%;
   margin-bottom: 2%;
 }
 .InquiryInput{
+  height: 99%;
   display: flex;
   align-items: center;
   margin-right: 10%;
+}
+.InquiryWithError{
+  display: block;
+}
+.InquiryWithError p{
+  height: 1%;
+  color:red;
+  margin-left:12%;
+  font-size: 0.8vw;
 }
 .InquiryInput input{
   width: 50%;
