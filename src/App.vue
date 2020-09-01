@@ -21,7 +21,7 @@
 <script>
 import firebase from 'firebase';
 import {EventBus} from './main.js';  //Import Event Bus to send signal to the Ship card component with the DataObject value
-import FindShip from "../src/views/FindShip";
+import FindContent from "../src/views/FindContent";
 import Orders from "../src/views/Orders";
 export default {
 data() {  //For Testing purpose
@@ -39,7 +39,7 @@ data() {  //For Testing purpose
       ShipWeight:[],
       ShipDistrict:[]
     },
-    CurrentComponent:"FindShip",
+    CurrentComponent:"FindContent",
     ShipType:["military","container","AboHamed","container","container","container","Fishing","AboLayla","navy","military","Lol"],  //Test For the Searching Algorithm
     ShipCharteringType:["Time","Voyage","Both","Voyage","Time","Voyage","Time","Both","Voyage","Time","Both"],
     ShipDistricts:["Mideterian","Carribean","Arabian Gulf","Red Sea","Carribean","Mideterian","Panama","Arabian Gulf","North Sea","The North"],
@@ -57,12 +57,12 @@ methods: {
     alert(this.ShipID);
 },
 Toggle(){
-  if(this.CurrentComponent=="FindShip")
+  if(this.CurrentComponent=="FindContent")
   {
     this.CurrentComponent= "Orders"
   }
   else{
-    this.CurrentComponent= "FindShip"
+    this.CurrentComponent= "FindContent"
   }
 },
 Dummy(){  //Dummy Function that creaties Dummy Values for testing purposes
@@ -110,7 +110,7 @@ mounted(){
 
 },
 components:{
-  FindShip,
+  FindContent,
   Orders
 }
 }

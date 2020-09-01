@@ -217,39 +217,47 @@ export default {
       //----------assigning the data properties that hold the value of each filteration form input to the values inside the searchQuery data object
       if (this.ShipDistrict !== "") {
         this.searchQuery.District = this.ShipDistrict;
+        console.log("Triggerd District");
         this.NumberOfQueries++;
       }
       if (this.DangerGoodFlag !== "") {
         this.searchQuery.DangerousGoods = this.DangerGoodFlag;
+        console.log("Triggerd Danger");
         this.NumberOfQueries++;
       }
       if (this.ShipType !== "") {
         this.searchQuery.Type = this.ShipType;
+        console.log("Triggerd Type");
         this.NumberOfQueries++;
       }
       if(this.CharteringType[0] == "Voyage" || this.CharteringType[0] == "Time" || this.CharteringType[0] == "Both" )
       {
         this.searchQuery.CharteringType = this.CharteringType[0] ;
+        console.log("Triggerd Chartering");
         this.NumberOfQueries++;
       }
-      if (this.VolumeFrom !== "" && this.VolumeTo !== "" ) {
+      if (this.FromVolume !== "" && this.ToVolume !== "" ) {
           this.searchQuery.VolumeFrom = this.FromVolume;
           this.searchQuery.VolumeTo = this.ToVolume;
+        console.log("Triggerd Volume");
           this.NumberOfQueries++;
       }
       if (this.FromDraft !== "" && this.ToDraft !== "" ) {
         this.searchQuery.DraftFrom = this.FromDraft;
         this.searchQuery.DraftTo = this.ToDraft;
+        console.log("Triggerd Draft");
         this.NumberOfQueries++;
       }
       if (this.FromWeight !== "" && this.ToWeight !== "" ) {
         this.searchQuery.WeightFrom = this.FromWeight;
         this.searchQuery.WeightTo = this.ToWeight;
+        console.log("Triggerd Weight");
         this.NumberOfQueries++;
       }
       if (this.FromDate !== "" && this.ToDate !== "" ) {
         this.searchQuery.DateFrom = this.FromDate;
         this.searchQuery.DateTo = this.ToDate;
+        console.log("Triggerd Date");
         this.NumberOfQueries++;
       }
       this.searchQuery.NumberOfQueries = this.NumberOfQueries;

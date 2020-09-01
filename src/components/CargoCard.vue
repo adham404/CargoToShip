@@ -1,18 +1,17 @@
 <template lang="html">
   <div :style="CardExpandStyle" class="ShipItem" @mouseover="Expand" @mouseleave="Collapse" >
   <div class="ItemTitle">
-    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="21.675" viewBox="0 0 29 25.637"><g transform="translate(0 -35.488)"><path d="M9.586,50.541a39.85,39.85,0,0,1-6.943,2.908V48.306a1.209,1.209,0,0,1,.529-1l1.981-1.347a1.423,1.423,0,0,1,.68-.209h3.18V43.877h3.579V45.75h2.742a.806.806,0,0,1,.806.806v1.114A51.055,51.055,0,0,0,9.586,50.541Zm-.573-8.514V43h3.579v-.972a.9.9,0,0,0-.9-.9H9.915A.9.9,0,0,0,9.013,42.027ZM6.935,39.192a1.846,1.846,0,0,0,.725-.148,1.357,1.357,0,0,0,1.559.505c0,.025-.008.049-.008.075a.863.863,0,1,0,.863-.863h0A1.39,1.39,0,0,0,8.787,36.84c-.026,0-.049.006-.075.008a1.849,1.849,0,1,0-1.778,2.345Zm18.13,18.13a.809.809,0,0,0,0,.895l1.067,1.6a.841.841,0,0,1-.764,1.305L1.631,59.257a1.519,1.519,0,0,1-1.35-1.131A7.623,7.623,0,0,1,0,56.3c0-1.239.5-1.47,1.517-1.713,9.111-2.174,11.616-7.414,26.818-8.272a.631.631,0,0,1,.66.715A27.135,27.135,0,0,1,25.065,57.322ZM23.9,53.406a.4.4,0,1,0-.806,0,1.381,1.381,0,0,1-.981,1.317V51.945a.918.918,0,1,0-.806,0v2.775a1.381,1.381,0,0,1-.981-1.317.4.4,0,1,0-.806,0,2.19,2.19,0,0,0,4.381,0Z"/></g></svg>
-    <p>{{ShipData.Id}}</p>
+  <svg xmlns="http://www.w3.org/2000/svg" width="56.774" height="35.185" viewBox="0 0 56.774 35.185"><g transform="translate(0 -5.063)"><path d="M5.5,5.177.553,8.4A2.248,2.248,0,0,0,0,10.125V35.187a2.248,2.248,0,0,0,.553,1.728L5.5,40.134Z"/><path d="M54.771,8.469,7,5.063V40.248l47.771-3.406a1.974,1.974,0,0,0,2-1.767V10.237a1.974,1.974,0,0,0-2-1.767ZM17.248,31.527a2.02,2.02,0,0,1-2.2,1.774,2.02,2.02,0,0,1-2.2-1.774V13.785a2.02,2.02,0,0,1,2.2-1.774,2.02,2.02,0,0,1,2.2,1.774Zm11.711-1.183a2.02,2.02,0,0,1-2.2,1.774,2.02,2.02,0,0,1-2.2-1.774V14.968a2.02,2.02,0,0,1,2.2-1.774,2.02,2.02,0,0,1,2.2,1.774ZM40.67,29.161a2.246,2.246,0,0,1-4.392,0V16.15a2.246,2.246,0,0,1,4.392,0Zm10.248-.591a2.246,2.246,0,0,1-4.392,0V17.333a2.246,2.246,0,0,1,4.392,0Z" transform="translate(0)"/></g></svg>    <p>{{ShipData.Id}}</p>
   </div>
   <div class="Line"></div>
   <div class="ShipItemDetails">
     <div class="FirstCol">
       <p>Availability: {{ShipData.DateFrom.split('T')[0]}} to {{ShipData.DateTo.split('T')[0]}}</p>
       <div class="DangerousGoods">
-        <p>Ready to carry Dangerous goods:</p>
+        <p>Dangerous goods:</p>
         <!-- <img v-if="ShipData.DangerousGoods" src="../assets/Check.svg" alt=""> -->
       </div>
-      <p v-if="ShowMoreTrigger">Type of Ship: {{ShipData.Type}} </p>
+      <p v-if="ShowMoreTrigger">Type of Cargo: {{ShipData.Type}} </p>
       <p v-if="ShowMoreTrigger">Hold Volume cubic meter: {{ShipData.Volume}}cm3</p>
     </div>
     <div class="SecondCol">
@@ -58,7 +57,6 @@ export default {
     {
       this.ShowMoreTrigger = true;
       this.CardExpandStyle.height = 70 + "%";
-      console.log("Expand Bro");
     },
     Collapse: function() //function to collapse card
     {

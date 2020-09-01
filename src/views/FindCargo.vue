@@ -1,6 +1,6 @@
 <template>
     <div  class="FindShip">
-      <p>Ships || {{FilteredIds[0]}} </p>
+      <p>Cargos || {{FilteredIds[0]}} </p>
       <div class="ShipItems">
           <component  class="ShipCard" v-for="Id in FilteredIds" v-bind:key="Id" :is="CurrentComponent"  :IdFlag="Id">
               <!-- Pass the directive IdFlag as a unique key to assign the ID to each ship card -->
@@ -10,21 +10,21 @@
 </template>
 
 <script>
-import ShipCard from '../components/ShipCard';  //Import The ShipCard Component
+import CargoCard from '../components/CargoCard';  //Import The ShipCard Component
 import { EventBus } from '../main.js';
 
 export default {
   data: function(){
     return{
       // NumberOfLoops:5,  //Testing Loop for number of cards
-      CurrentComponent:"ShipCard",  //Current Component that  hold either the cargo card or the ship card
+      CurrentComponent:"CargoCard",  //Current Component that  hold either the cargo card or the ship card
       SearchText:"",  //Filter the listed array according to this search item
       FilteredIdsTwo:[],
       FilteredIds:""  //Data Object that holds the ID of each card
     }
   },
   components:{
-    ShipCard
+    CargoCard
   },
   methods:{
 
