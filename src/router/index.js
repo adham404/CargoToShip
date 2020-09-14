@@ -1,20 +1,28 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import Home from '../views/Home.vue'
+import MyShips from '@/views/MyShips'
+import MyCargo from '@/views/MyCargo'
+import Orders from '@/views/Orders'
+
 
 Vue.use(VueRouter)
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'Map',
-  //   component: () => import('@/App.vue')
-  // },
-  // {
-  //   path: '/home',
-  //   name: 'Home',
-  //   component: Home,
-  // },
+    {
+      path:'/MyShips',
+      name: 'MyShips',
+      component: MyShips
+    },
+  {
+    path: '/MyCargo',
+    name: 'MyCargo',
+    component: MyCargo
+  },
+  {
+    path: '/Purchased Contacts',
+    name: 'Orders',
+    component: Orders,
+  },
   // {
     // path: '/about',
     // name: '',
@@ -26,6 +34,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes
 })
 

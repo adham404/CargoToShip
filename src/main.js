@@ -5,9 +5,15 @@ import router from './router';
 import "./plugins/axios";
 import firebase from 'firebase';
 import vuetify from './plugins/vuetify';
+import CountryFlag from 'vue-country-flag'
+import googleValidation from 'google-libphonenumber'
+
+Vue.use(googleValidation)
 
 
+Vue.component('vue-country-flag', CountryFlag)
 
+export const EventBus = new Vue();
 
 //This is the configuration for firebase I pasted the config object and then inserted it into the initializeApp function
 var firebaseConfig = {

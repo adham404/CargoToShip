@@ -3,9 +3,9 @@
   v-model="fab"
   :top="top"
   :bottom="bottom"
-  
+  :right="right"
   :left="left"
-  :direction= "direction"
+  :direction="direction"
   :open-on-hover="hover"
   :transition="transition"
 >
@@ -15,6 +15,7 @@
       color="blue darken-2"
       dark
       fab
+      right
     >
       <v-icon v-if="fab">mdi-close</v-icon>
       <v-icon v-else>mdi-account-circle</v-icon>
@@ -45,22 +46,23 @@
     <v-icon>mdi-delete</v-icon>
   </v-btn>
 </v-speed-dial>
+
 </template>
 
 <script>
 export default {
   data(){
-    return {
-    direction: 'left',
+    return{
+    direction: 'bottom',
     fab: false,
     fling: false,
-    hover: true,
+    hover: false,
     tabs: null,
     top: false,
     right: true,
     bottom: true,
     left: false,
-    transition: 'slide-x-reverse-transition',
+    transition: 'slide-y-reverse-transition'
     }
   },
   computed: {
@@ -87,10 +89,9 @@ export default {
     left (val) {
       this.right = !val
     },
-  },
+  }
 }
 </script>
 
 <style lang="css" scoped>
-
 </style>

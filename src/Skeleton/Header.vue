@@ -1,10 +1,8 @@
 <template lang="html">
   <v-app>
-  <div class="app">
-    <div class="Layer2">
+    <div class="Container">
       <div class="Header">
         <div class="Logo">
-            <!-- <img src="../assets/Website Logo.svg" alt=""> -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.857 70.786">
               <g id="Group_33" data-name="Group 33" transform="translate(3.352 9.762)">
                 <g id="Group_32" data-name="Group 32" transform="translate(-124.352 149.824)">
@@ -15,186 +13,168 @@
                 </g>
               </g>
             </svg>
-
             <h1>Cargo to Ship</h1>
         </div>
         <div class="StatsToggle">
           <div class="Stats">
-            <div class="Ships">
+            <div style="fill: black;" class="Ships">
               <h3>200</h3>
               <svg xmlns="http://www.w3.org/2000/svg" width="29" height="25.637" viewBox="0 0 29 25.637">
-                <g id="ship" transform="translate(0 -35.488)">
-                  <path id="Path_3" data-name="Path 3" d="M9.586,50.541a39.85,39.85,0,0,1-6.943,2.908V48.306a1.209,1.209,0,0,1,.529-1l1.981-1.347a1.423,1.423,0,0,1,.68-.209h3.18V43.877h3.579V45.75h2.742a.806.806,0,0,1,.806.806v1.114A51.055,51.055,0,0,0,9.586,50.541Zm-.573-8.514V43h3.579v-.972a.9.9,0,0,0-.9-.9H9.915A.9.9,0,0,0,9.013,42.027ZM6.935,39.192a1.846,1.846,0,0,0,.725-.148,1.357,1.357,0,0,0,1.559.505c0,.025-.008.049-.008.075a.863.863,0,1,0,.863-.863h0A1.39,1.39,0,0,0,8.787,36.84c-.026,0-.049.006-.075.008a1.849,1.849,0,1,0-1.778,2.345Zm18.13,18.13a.809.809,0,0,0,0,.895l1.067,1.6a.841.841,0,0,1-.764,1.305L1.631,59.257a1.519,1.519,0,0,1-1.35-1.131A7.623,7.623,0,0,1,0,56.3c0-1.239.5-1.47,1.517-1.713,9.111-2.174,11.616-7.414,26.818-8.272a.631.631,0,0,1,.66.715A27.135,27.135,0,0,1,25.065,57.322ZM23.9,53.406a.4.4,0,1,0-.806,0,1.381,1.381,0,0,1-.981,1.317V51.945a.918.918,0,1,0-.806,0v2.775a1.381,1.381,0,0,1-.981-1.317.4.4,0,1,0-.806,0,2.19,2.19,0,0,0,4.381,0Z" fill="#fff"/>
+                <g id="BlackShip" transform="translate(0 -35.488)">
+                  <path id="Path_3" data-name="Path 3" d="M9.586,50.541a39.85,39.85,0,0,1-6.943,2.908V48.306a1.209,1.209,0,0,1,.529-1l1.981-1.347a1.423,1.423,0,0,1,.68-.209h3.18V43.877h3.579V45.75h2.742a.806.806,0,0,1,.806.806v1.114A51.055,51.055,0,0,0,9.586,50.541Zm-.573-8.514V43h3.579v-.972a.9.9,0,0,0-.9-.9H9.915A.9.9,0,0,0,9.013,42.027ZM6.935,39.192a1.846,1.846,0,0,0,.725-.148,1.357,1.357,0,0,0,1.559.505c0,.025-.008.049-.008.075a.863.863,0,1,0,.863-.863h0A1.39,1.39,0,0,0,8.787,36.84c-.026,0-.049.006-.075.008a1.849,1.849,0,1,0-1.778,2.345Zm18.13,18.13a.809.809,0,0,0,0,.895l1.067,1.6a.841.841,0,0,1-.764,1.305L1.631,59.257a1.519,1.519,0,0,1-1.35-1.131A7.623,7.623,0,0,1,0,56.3c0-1.239.5-1.47,1.517-1.713,9.111-2.174,11.616-7.414,26.818-8.272a.631.631,0,0,1,.66.715A27.135,27.135,0,0,1,25.065,57.322ZM23.9,53.406a.4.4,0,1,0-.806,0,1.381,1.381,0,0,1-.981,1.317V51.945a.918.918,0,1,0-.806,0v2.775a1.381,1.381,0,0,1-.981-1.317.4.4,0,1,0-.806,0,2.19,2.19,0,0,0,4.381,0Z"/>
                 </g>
               </svg>
             </div>
             <div class="Cargo">
               <h3>200</h3>
-              <svg xmlns="http://www.w3.org/2000/svg" width="40.062" height="24.828" viewBox="0 0 40.062 24.828">
-                <g id="worldwide-shipping" transform="translate(0 -5.063)">
-                  <path id="Path_7" data-name="Path 7" d="M5.5,5.177.553,7.443A1.333,1.333,0,0,0,0,8.659V26.3a1.333,1.333,0,0,0,.553,1.216L5.5,29.777Z" transform="translate(0 0)" fill="#fff"/>
-                  <path id="Path_8" data-name="Path 8" d="M38.732,7.467,7,5.063V29.891l31.732-2.4a1.345,1.345,0,0,0,1.33-1.247V8.714a1.345,1.345,0,0,0-1.33-1.247ZM13.807,23.737a1.368,1.368,0,0,1-1.459,1.252,1.368,1.368,0,0,1-1.459-1.252V11.218a1.368,1.368,0,0,1,1.459-1.252,1.368,1.368,0,0,1,1.459,1.252Zm7.779-.835a1.476,1.476,0,0,1-2.917,0V12.052a1.476,1.476,0,0,1,2.917,0Zm7.779-.835a1.476,1.476,0,0,1-2.917,0V12.887a1.476,1.476,0,0,1,2.917,0Zm6.807-.417a1.476,1.476,0,0,1-2.917,0V13.721a1.476,1.476,0,0,1,2.917,0Z" fill="#fff"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="33.962" height="21.048" viewBox="0 0 33.962 21.048">
+                <g id="BlackContainer" transform="translate(0 -5.063)">
+                  <path id="Path_7" data-name="Path 7" d="M5.5,5.177.553,7.095A1.077,1.077,0,0,0,0,8.124V23.05a1.077,1.077,0,0,0,.553,1.029L5.5,26Z" transform="translate(0 0)"/>
+                  <path id="Path_8" data-name="Path 8" d="M32.878,7.1,7,5.063V26.111l25.878-2.038a1.117,1.117,0,0,0,1.085-1.057V8.158A1.117,1.117,0,0,0,32.878,7.1ZM12.551,20.894a1.131,1.131,0,0,1-1.19,1.061,1.131,1.131,0,0,1-1.19-1.061V10.28a1.131,1.131,0,0,1,1.19-1.061,1.131,1.131,0,0,1,1.19,1.061Zm6.344-.708a1.2,1.2,0,0,1-2.379,0v-9.2a1.2,1.2,0,0,1,2.379,0Zm6.344-.708a1.2,1.2,0,0,1-2.379,0V11.7a1.2,1.2,0,0,1,2.379,0Zm5.551-.354a1.2,1.2,0,0,1-2.379,0V12.4a1.2,1.2,0,0,1,2.379,0Z"/>
                 </g>
               </svg>
             </div>
           </div>
           <div class="Toggle">
             <div class="slideButton">
-              <div class="ShipButton">
+              <button class="ShipButton">
                 <svg xmlns="http://www.w3.org/2000/svg" width="29" height="25.637" viewBox="0 0 29 25.637">
-                  <g id="ship" transform="translate(0 -35.488)">
-                    <path id="Path_3" data-name="Path 3" d="M9.586,50.541a39.85,39.85,0,0,1-6.943,2.908V48.306a1.209,1.209,0,0,1,.529-1l1.981-1.347a1.423,1.423,0,0,1,.68-.209h3.18V43.877h3.579V45.75h2.742a.806.806,0,0,1,.806.806v1.114A51.055,51.055,0,0,0,9.586,50.541Zm-.573-8.514V43h3.579v-.972a.9.9,0,0,0-.9-.9H9.915A.9.9,0,0,0,9.013,42.027ZM6.935,39.192a1.846,1.846,0,0,0,.725-.148,1.357,1.357,0,0,0,1.559.505c0,.025-.008.049-.008.075a.863.863,0,1,0,.863-.863h0A1.39,1.39,0,0,0,8.787,36.84c-.026,0-.049.006-.075.008a1.849,1.849,0,1,0-1.778,2.345Zm18.13,18.13a.809.809,0,0,0,0,.895l1.067,1.6a.841.841,0,0,1-.764,1.305L1.631,59.257a1.519,1.519,0,0,1-1.35-1.131A7.623,7.623,0,0,1,0,56.3c0-1.239.5-1.47,1.517-1.713,9.111-2.174,11.616-7.414,26.818-8.272a.631.631,0,0,1,.66.715A27.135,27.135,0,0,1,25.065,57.322ZM23.9,53.406a.4.4,0,1,0-.806,0,1.381,1.381,0,0,1-.981,1.317V51.945a.918.918,0,1,0-.806,0v2.775a1.381,1.381,0,0,1-.981-1.317.4.4,0,1,0-.806,0,2.19,2.19,0,0,0,4.381,0Z" fill="#fff"/>
+                  <g id="BlackShip" transform="translate(0 -35.488)">
+                    <path id="Path_3" data-name="Path 3" d="M9.586,50.541a39.85,39.85,0,0,1-6.943,2.908V48.306a1.209,1.209,0,0,1,.529-1l1.981-1.347a1.423,1.423,0,0,1,.68-.209h3.18V43.877h3.579V45.75h2.742a.806.806,0,0,1,.806.806v1.114A51.055,51.055,0,0,0,9.586,50.541Zm-.573-8.514V43h3.579v-.972a.9.9,0,0,0-.9-.9H9.915A.9.9,0,0,0,9.013,42.027ZM6.935,39.192a1.846,1.846,0,0,0,.725-.148,1.357,1.357,0,0,0,1.559.505c0,.025-.008.049-.008.075a.863.863,0,1,0,.863-.863h0A1.39,1.39,0,0,0,8.787,36.84c-.026,0-.049.006-.075.008a1.849,1.849,0,1,0-1.778,2.345Zm18.13,18.13a.809.809,0,0,0,0,.895l1.067,1.6a.841.841,0,0,1-.764,1.305L1.631,59.257a1.519,1.519,0,0,1-1.35-1.131A7.623,7.623,0,0,1,0,56.3c0-1.239.5-1.47,1.517-1.713,9.111-2.174,11.616-7.414,26.818-8.272a.631.631,0,0,1,.66.715A27.135,27.135,0,0,1,25.065,57.322ZM23.9,53.406a.4.4,0,1,0-.806,0,1.381,1.381,0,0,1-.981,1.317V51.945a.918.918,0,1,0-.806,0v2.775a1.381,1.381,0,0,1-.981-1.317.4.4,0,1,0-.806,0,2.19,2.19,0,0,0,4.381,0Z"/>
                   </g>
                 </svg>
-
-              </div>
-              <div class="CargoButton">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40.062" height="24.828" viewBox="0 0 40.062 24.828">
-                  <g id="worldwide-shipping" transform="translate(0 -5.063)">
-                    <path id="Path_7" data-name="Path 7" d="M5.5,5.177.553,7.443A1.333,1.333,0,0,0,0,8.659V26.3a1.333,1.333,0,0,0,.553,1.216L5.5,29.777Z" transform="translate(0 0)" fill="#fff"/>
-                    <path id="Path_8" data-name="Path 8" d="M38.732,7.467,7,5.063V29.891l31.732-2.4a1.345,1.345,0,0,0,1.33-1.247V8.714a1.345,1.345,0,0,0-1.33-1.247ZM13.807,23.737a1.368,1.368,0,0,1-1.459,1.252,1.368,1.368,0,0,1-1.459-1.252V11.218a1.368,1.368,0,0,1,1.459-1.252,1.368,1.368,0,0,1,1.459,1.252Zm7.779-.835a1.476,1.476,0,0,1-2.917,0V12.052a1.476,1.476,0,0,1,2.917,0Zm7.779-.835a1.476,1.476,0,0,1-2.917,0V12.887a1.476,1.476,0,0,1,2.917,0Zm6.807-.417a1.476,1.476,0,0,1-2.917,0V13.721a1.476,1.476,0,0,1,2.917,0Z" fill="#fff"/>
+              </button>
+              <button class="CargoButton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="33.962" height="21.048" viewBox="0 0 33.962 21.048">
+                  <g id="BlackContainer" transform="translate(0 -5.063)">
+                    <path id="Path_7" data-name="Path 7" d="M5.5,5.177.553,7.095A1.077,1.077,0,0,0,0,8.124V23.05a1.077,1.077,0,0,0,.553,1.029L5.5,26Z" transform="translate(0 0)"/>
+                    <path id="Path_8" data-name="Path 8" d="M32.878,7.1,7,5.063V26.111l25.878-2.038a1.117,1.117,0,0,0,1.085-1.057V8.158A1.117,1.117,0,0,0,32.878,7.1ZM12.551,20.894a1.131,1.131,0,0,1-1.19,1.061,1.131,1.131,0,0,1-1.19-1.061V10.28a1.131,1.131,0,0,1,1.19-1.061,1.131,1.131,0,0,1,1.19,1.061Zm6.344-.708a1.2,1.2,0,0,1-2.379,0v-9.2a1.2,1.2,0,0,1,2.379,0Zm6.344-.708a1.2,1.2,0,0,1-2.379,0V11.7a1.2,1.2,0,0,1,2.379,0Zm5.551-.354a1.2,1.2,0,0,1-2.379,0V12.4a1.2,1.2,0,0,1,2.379,0Z"/>
                   </g>
                 </svg>
-              </div>
+              </button>
             </div>
 
           </div>
         </div>
         <div class="LoginSignup">
-          <button type="button" name="button" id="Login">Login</button>
-          <button type="button" name="button" id="SignUp">SignUp</button>
+          <!-- <div id="Login">Login</div> -->
+          <!-- <div id="SignUp">SignUp</div> -->
+          <div class="Buttons">
+            <button type="button" name="button" id="Login">Login</button>
+            <button type="button" name="button" id="SignUp">SignUp</button>
+
+          </div>
         </div>
 
       </div>
 
     </div>
-    <div class="Layer1">
-      <div class="map" >
-          <div id="map">
 
-          </div>
-
-      </div>
-      <div class="Controls">
-        <v-btn
-           v-model="fab"
-           color="blue darken-2"
-           dark
-           fab
-         >
-           <v-icon>mdi-magnify</v-icon>
-         </v-btn>
-        <div class="VerticalNav">
-        </div>
-        <AddFab/>
-      </div>
-      </div>
-  </div>
 </v-app>
 </template>
 
 <script>
-import AddFab from '@/components/AddFab.vue'
+// import AddFab from '@/components/AddFab.vue'
 export default {
   components: {
-    AddFab
+    // AddFab
   }
 
 }
 </script>
 
 <style lang="css" scoped>
-.map{
-  width: 90%;
-  background-color: brown;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+#Login{
+  width: 45%;
+  font-family: Montserrat, sans-serif;
 }
-.Controls{
-  /* position: absolute; */
+#SignUp{
+  background-color: #0D1439;
+  width: 55%;
+  border-radius: 1.5rem;
+  font-family: Montserrat, sans-serif;
+  color: white
+}
+.Buttons{
+  width: 50%;
+  height: 32px;
+  background-color: white;
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
-  align-items: center;
-  width: 10%;
-  z-index: 1;
-  /* background-color: red; */
+  border-radius: 1.5rem;
+  -webkit-box-shadow: 0px 0px 14px -8px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 14px -8px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 14px -8px rgba(0,0,0,0.75);
 }
-.app{
-  width: 100vw;
-  height: 100vh;
-  background-color: grey;
+h3{
+  font-family: Quicksand, sans-serif;
+  color: black;
+  font-weight: 500;
 }
-
 .CargoButton svg{
-  height: 2.5vw;
-  width: 2vw;
+  height: 2.3rem;
+  width: 1.8rem;
+}
+.ShipButton svg{
+  height: 2.2rem;
+  width: 1.7rem;
 }
 .CargoButton{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 2.7vw;
-  width: 2.7vw;
+  height: 2.1rem;
+  width: 2.1rem;
   border-radius: 5vw;
-  background-color: purple;
+  background-color: white;
+  z-index: 2;
+  outline: none;
 }
 .ShipButton{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 2.7vw;
-  width: 2.7vw;
+  height: 2.1rem;
+  width: 2.1rem;
   border-radius: 5vw;
-  background-color: purple;
+  background-color: white;
+  z-index: 2;
+  outline: none;
 }
 .slideButton{
   display: flex;
   justify-content: space-around;
   border-radius: 6vw;
-  height: 2.7vw;
-  width: 70%;
-  background-color: red;
+  height: 2.3rem;
+  width: 65%;
+  background-color: #0E153A;
   align-self: center;
   align-items: center;
+  z-index: 2;
+}
+.Stats svg{
+  margin-left: 6%;
+  height: 1.5rem;
 }
 .Cargo{
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  width: 30%;
+  width: 35%;
 }
 .Ships{
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 30%;
+  width: 35%;
 }
 .Stats{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-#SignUp{
-  background-color: blue;
-  position: absolute;
-  border-radius: 25px;
-  border: none;
-  height: 2vw;
-  width: 5vw;
-  font-size: 1.1vw;
-  margin-left: 2.5%;
   z-index: 2;
-}
-#Login{
-  position: relative;
-  background-color: white;
-  border-radius: 25px;
-  border: none;
-  outline: none;
-  width: 7vw;
-  height: 2vw;
-  font-size: 1.1vw;
-  padding-right: 18%;
-  z-index: 0;
 }
 .Logo{
   display: flex;
@@ -207,22 +187,25 @@ export default {
 .Logo h1{
   font-family: Quicksand, sans-serif;
   font-weight: 400;
-  font-size: 2.1vw;
-  color: white
-  /* z-index: 3;
-  position: absolute; */
+  font-size: 2.1rem;
+  color: white;
+  z-index: 2;
+  color: black
 }
 .Logo svg{
-  height: 4.5vw;
+  height: 4.5rem;
   border: solid 10px transparent;
+  z-index: 2;
 }
 
 .LoginSignup{
+  /* position: relative; */
   display: flex;
   justify-content: center;
   align-items: center;
   width: 20%;
-  /* background-color: pink; */
+  z-index: 2;
+
 }
 .StatsToggle{
   display: flex;
@@ -241,42 +224,15 @@ export default {
   width: 40%;
   /* background-color: yellow; */
 }
-.Layer1{
-  /* position: absolute; */
-  /* height: 100vh; */
-  /* width: 100vw; */
-  /* z-index: 0; */
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  /* background-color: green; */
-  height: 87vh;
 
-}
-.Layer2{
-
+.Container{
   /* position: relative; */
-  height: 7vw;
-  width: 100vw;
-  background-color: transparent;
+  height: 90px;
+  width: 97vw;
+  /* background-color: blue; */
   /* z-index: 1; */
+}
 
-}
-#map{
-  /* padding-top: 20%; */
-  position: absolute;
-  /* z-index: 0; */
-  width: 100vw;
-  height: 100vh;
-  /* height: 200vh; */
-  /* margin-top: -7%; */
-  /* margin-left: -0.5%; */
-  /* margin-left: -1% */
-  /* left: -3%; */
-  /* height: 50%; */
-  /* overflow: hidden; */
-  /* overflow-y: hidden; */
-}
 .Header{
   display: flex;
   flex-direction: row;
@@ -286,19 +242,10 @@ export default {
   /* background-color: blue; */
 }
 
-.Header img{
+/* .Header img{
   width: 13vw;
 
-}
-.VerticalNav{
-  background-color: blue;
-  width: 3.2vw;
-  height: 25vw;
-  border: none;
-  border-radius: 5vw;
-
-}
-
+} */
 
 
 </style>
