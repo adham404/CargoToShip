@@ -5,21 +5,19 @@
       <div class="nav">
           <NavBar @HomePageChanged = 'RemoveComponents'/>
       </div>
-
-
       <div class="Body">
         <Header id="foot"/>
         <router-view id="head"></router-view>
 
       </div>
-
     </div>
-  </v-app>
+  </v-app >
 </template>
 
 <script>
 import Header from '@/Skeleton/Header.vue'
 import NavBar from '@/Skeleton/NavBar.vue'
+// import FindCargoShip from '../src/views/FindCargoShip'
 export default {
   name: 'App',
   data(){
@@ -29,7 +27,7 @@ export default {
   },
   components: {
     NavBar,
-    Header
+    Header,
     // HomePageNew
     // HomePage,
     // AddFab

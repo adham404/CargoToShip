@@ -3,8 +3,7 @@ import VueRouter from 'vue-router'
 import MyShips from '@/views/MyShips'
 import MyCargo from '@/views/MyCargo'
 import Orders from '@/views/Orders'
-
-
+import HomePage from '@/views/HomePage'
 Vue.use(VueRouter)
 
 const routes = [
@@ -23,6 +22,11 @@ const routes = [
     name: 'Orders',
     component: Orders,
   },
+  {
+    path: '/Home',
+    name: 'Home',
+    component: HomePage
+  }
   // {
     // path: '/about',
     // name: '',
