@@ -2,7 +2,6 @@
   <v-btn
     fab
     dark
-    small
     color="#0E153A"
   >
     <v-icon>mdi-magnify</v-icon>

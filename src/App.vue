@@ -71,7 +71,7 @@ export default {
   margin-top: 5vw;
   z-index: 2;
   height: 90vh;
-  width:90vw;
+  width:100%;
   }
   .v-application {
   background-color: #C5D7D9

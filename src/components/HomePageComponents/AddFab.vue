@@ -59,8 +59,8 @@ export default {
     hover: false,
     tabs: null,
     top: false,
-    right: true,
-    bottom: true,
+    right: false,
+    bottom: false,
     left: false,
     transition: 'slide-y-reverse-transition'
     }
