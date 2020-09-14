@@ -8,18 +8,22 @@
             <AddFab/>
             <SearchFab/>
         </div>
-
+        <FindCargoShip></FindCargoShip>
     </div>
 </template>
 
 <script>
 import AddFab from '@/components/HomePageComponents/AddFab'
 import SearchFab from '@/components/HomePageComponents/SearchFab'
+import FindCargoShip from "../views/FindCargoShip"
+
 export default {
     components:{
         AddFab,
-        SearchFab
+        SearchFab,
+        FindCargoShip
     }
+
 }
 </script>
 
