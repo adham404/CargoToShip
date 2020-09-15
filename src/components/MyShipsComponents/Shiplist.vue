@@ -9,7 +9,7 @@
     style="border-radius:15px;
     justify-content:center;
     align-self:center;
-    height:100%; width:100%;   overflow: auto;
+    height:90vh; width:100%;   overflow: auto;
  "
   >
     <h2 class="font-weight-medium pb-1 mt-4" style="margin-left:100px;">My Ships</h2>

@@ -313,7 +313,7 @@ export default {
 .FilterForm{
   width: 90%;
   /* border: 1px solid #ccc; */
-  height: 80%;
+  height: 100%;
   border-radius: 0.5vw;
   margin-left: 5%;
   background-color: white;

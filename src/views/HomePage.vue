@@ -2,13 +2,17 @@
     <div class="Home">
         <div class="left">
             <h1>Map</h1>
+            
         </div>
 
         <div class="right">
             <AddFab/>
             <SearchFab/>
         </div>
-        <FindCargoShip></FindCargoShip>
+        <div v-if = "show" class="Overlay">
+            <FindCargoShip></FindCargoShip>
+        </div>
+        
     </div>
 </template>
 
@@ -18,11 +22,17 @@ import SearchFab from '@/components/HomePageComponents/SearchFab'
 import FindCargoShip from "../views/FindCargoShip"
 
 export default {
+    data () {
+        return{
+            show: true
+        }
+    },
     components:{
         AddFab,
         SearchFab,
         FindCargoShip
     }
+
 
 }
 </script>
@@ -48,5 +58,10 @@ export default {
         height: 100%;
         padding-top: 1rem;
         padding-bottom: 1rem;
+    }
+    .Overlay{
+        position: absolute;
+        z-index: 2;
+
     }
 </style>

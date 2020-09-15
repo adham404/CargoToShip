@@ -8,7 +8,7 @@
     class="wight"
     style="border-radius:15px;
     justify-content:center;
-    align-self:center; width:100%;
+    align-self:center; width:97%;
     height:100%;  "
   >
     <div class="head">
@@ -327,10 +327,11 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="savebtn">
+        <div class="savebtn">
         <button class="btn" @click="save">Save</button>
       </div>
+      </div>
+      
     </div>
 
     <!-- <div v-show="set">
@@ -863,6 +864,10 @@ p {
 }
 .savebtn {
   margin: 12px;
+  /*to move the save button left*/
+  margin-left: auto;
+  /*to move the save button down a little bit*/
+  margin-top: 20%;
   display: flex;
   justify-content: flex-end;
   height: 50px;

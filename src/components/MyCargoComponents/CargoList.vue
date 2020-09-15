@@ -15,7 +15,7 @@
       style="border-radius:15px;
     justify-content:center;
     align-self:center;
-    height:85vh; width:80%;   overflow: auto; position: relative;
+    height:90vh; width:97%;   overflow: auto; position: relative;
  "
     >
       <h2 class="font-weight-medium pb-1 mt-4" style="margin-left:100px;">My Cargos</h2>

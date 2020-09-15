@@ -89,7 +89,7 @@ export default {
   width: 82vw;
   margin-left: 9vw;
   height: 40vw;
-  margin-top: 5%;
+  /* margin-top: 5%; */
   background-color: rgba(255, 255, 255, 0.7);
   display: flex;
   justify-content: space-between;
