@@ -1852,9 +1852,9 @@ var simplemaps_worldmap_mapinfo = {
         y: 719.3
     }],
     initial_view: {
-        y: -300,
-        x: -1,
-        x2: 2518.99,
+        y: -100,
+        x: -80,
+        x2: 2100,
         y2:  height*1.02 + 400,
     }
 }

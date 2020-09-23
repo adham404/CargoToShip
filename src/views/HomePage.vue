@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="Home">
         <div class="left">
-            <h1>Map</h1>
+            <div id = "map"></div>
             
         </div>
 
@@ -20,17 +20,23 @@
 import AddFab from '@/components/HomePageComponents/AddFab'
 import SearchFab from '@/components/HomePageComponents/SearchFab'
 import FindCargoShip from "../views/FindCargoShip"
+import {EventBus} from '@/main.js'
 
 export default {
     data () {
         return{
-            show: true
+            show: false
         }
     },
     components:{
         AddFab,
         SearchFab,
         FindCargoShip
+    },
+    mounted(){
+        EventBus.$on('SearchClicked', () => {
+            this.show = true
+        })
     }
 
 
@@ -44,7 +50,7 @@ export default {
 
     }
     .left{
-        background-color: green;
+        /* background-color: green; */
         width: 90%;
         height: 100%;
     }
@@ -53,7 +59,7 @@ export default {
         flex-direction: column;
         align-items: flex-start;
         justify-content: space-between;
-        background-color: red;
+        /* background-color: red; */
         width: 10%;
         height: 100%;
         padding-top: 1rem;
