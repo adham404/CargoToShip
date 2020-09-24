@@ -7,8 +7,16 @@ import firebase from 'firebase';
 import vuetify from './plugins/vuetify';
 import CountryFlag from 'vue-country-flag'
 import googleValidation from 'google-libphonenumber'
+// import '../public/worldmap.js'
+// import '../public/mapdata.js'
 
 Vue.use(googleValidation)
+// var one = LoadMap1(LoadMap1String)
+// eval(one)
+// var two = LoadMap2(LoadMap2String)
+// eval(two)
+
+
 
 
 Vue.component('vue-country-flag', CountryFlag)

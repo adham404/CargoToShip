@@ -1892,4 +1892,4 @@ eval(two)
 
 
 
-// export {LoadMap1,LoadMap2,LoadMap1String,LoadMap2String,simplemaps_worldmap_mapinfo,simplemaps_worldmap_mapdata}
+// export {LoadMap1,LoadMap2,LoadMap1String,LoadMap2String,simplemaps_worldmap_mapinfo}

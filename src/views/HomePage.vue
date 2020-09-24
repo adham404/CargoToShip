@@ -17,10 +17,12 @@
 </template>
 
 <script>
+/*eslint-disable*/
 import AddFab from '@/components/HomePageComponents/AddFab'
 import SearchFab from '@/components/HomePageComponents/SearchFab'
 import FindCargoShip from "../views/FindCargoShip"
 import {EventBus} from '@/main.js'
+// import {LoadMap1, LoadMap2, LoadMap1String, LoadMap2String, simplemaps_worldmap_mapinfo,simplemaps_worldmap_mapdata as mapinfo} from '@/modules/worldmap.js'
 
 export default {
     data () {
@@ -37,7 +39,20 @@ export default {
         EventBus.$on('SearchClicked', () => {
             this.show = true
         })
-    }
+        // var one = LoadMap1(LoadMap1String)
+        // eval(one)
+        // var two = LoadMap2(LoadMap2String)
+        // eval(two)
+
+        
+    },
+    // beforeCreate(){
+    //     var one = LoadMap1(LoadMap1String)
+    //     eval(one)
+    //     var two = LoadMap2(LoadMap2String)
+    //     eval(two)
+    //     console.log("before mount")
+    // }
 
 
 }
