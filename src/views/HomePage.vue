@@ -39,20 +39,16 @@ export default {
         EventBus.$on('SearchClicked', () => {
             this.show = true
         })
+       
         // var one = LoadMap1(LoadMap1String)
         // eval(one)
         // var two = LoadMap2(LoadMap2String)
         // eval(two)
+        window.LoadMap1(window.LoadMap1String)
+        window.LoadMap2(window.LoadMap2String)
 
         
     },
-    // beforeCreate(){
-    //     var one = LoadMap1(LoadMap1String)
-    //     eval(one)
-    //     var two = LoadMap2(LoadMap2String)
-    //     eval(two)
-    //     console.log("before mount")
-    // }
 
 
 }

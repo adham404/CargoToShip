@@ -7,9 +7,9 @@
       </div>
       <div class="Body">
         <Header id="foot"/>
-        <keep-alive>
+        <!-- <keep-alive> -->
           <router-view id="head"></router-view>
-          </keep-alive>
+          <!-- </keep-alive> -->
 
       </div>
     </div>
