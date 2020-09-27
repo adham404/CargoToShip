@@ -37,15 +37,15 @@
           </div>
           <div class="Toggle">
             <div class="slideButton">
-              <button class="ShipButton">
-                <svg xmlns="http://www.w3.org/2000/svg" width="29" height="25.637" viewBox="0 0 29 25.637">
+              <button @click="ToogleShip" class="ShipButton">
+                <svg :style="ShipToogleStyle" xmlns="http://www.w3.org/2000/svg" width="29" height="25.637" viewBox="0 0 29 25.637">
                   <g id="BlackShip" transform="translate(0 -35.488)">
                     <path id="Path_3" data-name="Path 3" d="M9.586,50.541a39.85,39.85,0,0,1-6.943,2.908V48.306a1.209,1.209,0,0,1,.529-1l1.981-1.347a1.423,1.423,0,0,1,.68-.209h3.18V43.877h3.579V45.75h2.742a.806.806,0,0,1,.806.806v1.114A51.055,51.055,0,0,0,9.586,50.541Zm-.573-8.514V43h3.579v-.972a.9.9,0,0,0-.9-.9H9.915A.9.9,0,0,0,9.013,42.027ZM6.935,39.192a1.846,1.846,0,0,0,.725-.148,1.357,1.357,0,0,0,1.559.505c0,.025-.008.049-.008.075a.863.863,0,1,0,.863-.863h0A1.39,1.39,0,0,0,8.787,36.84c-.026,0-.049.006-.075.008a1.849,1.849,0,1,0-1.778,2.345Zm18.13,18.13a.809.809,0,0,0,0,.895l1.067,1.6a.841.841,0,0,1-.764,1.305L1.631,59.257a1.519,1.519,0,0,1-1.35-1.131A7.623,7.623,0,0,1,0,56.3c0-1.239.5-1.47,1.517-1.713,9.111-2.174,11.616-7.414,26.818-8.272a.631.631,0,0,1,.66.715A27.135,27.135,0,0,1,25.065,57.322ZM23.9,53.406a.4.4,0,1,0-.806,0,1.381,1.381,0,0,1-.981,1.317V51.945a.918.918,0,1,0-.806,0v2.775a1.381,1.381,0,0,1-.981-1.317.4.4,0,1,0-.806,0,2.19,2.19,0,0,0,4.381,0Z"/>
                   </g>
                 </svg>
               </button>
-              <button class="CargoButton">
-                <svg xmlns="http://www.w3.org/2000/svg" width="33.962" height="21.048" viewBox="0 0 33.962 21.048">
+              <button @click="ToogleCargo" class="CargoButton">
+                <svg :style="CargoToogleStyle" xmlns="http://www.w3.org/2000/svg" width="33.962" height="21.048" viewBox="0 0 33.962 21.048">
                   <g id="BlackContainer" transform="translate(0 -5.063)">
                     <path id="Path_7" data-name="Path 7" d="M5.5,5.177.553,7.095A1.077,1.077,0,0,0,0,8.124V23.05a1.077,1.077,0,0,0,.553,1.029L5.5,26Z" transform="translate(0 0)"/>
                     <path id="Path_8" data-name="Path 8" d="M32.878,7.1,7,5.063V26.111l25.878-2.038a1.117,1.117,0,0,0,1.085-1.057V8.158A1.117,1.117,0,0,0,32.878,7.1ZM12.551,20.894a1.131,1.131,0,0,1-1.19,1.061,1.131,1.131,0,0,1-1.19-1.061V10.28a1.131,1.131,0,0,1,1.19-1.061,1.131,1.131,0,0,1,1.19,1.061Zm6.344-.708a1.2,1.2,0,0,1-2.379,0v-9.2a1.2,1.2,0,0,1,2.379,0Zm6.344-.708a1.2,1.2,0,0,1-2.379,0V11.7a1.2,1.2,0,0,1,2.379,0Zm5.551-.354a1.2,1.2,0,0,1-2.379,0V12.4a1.2,1.2,0,0,1,2.379,0Z"/>
@@ -74,10 +74,41 @@
 </template>
 
 <script>
+import {EventBus} from "../main";
 // import AddFab from '@/components/AddFab.vue'
 export default {
+  data()
+  {
+    return{
+      ShipToogleStyle:{
+        opacity:1
+      },
+      CargoToogleStyle:{
+        opacity:0.5
+      },
+      ToogleValue:""
+    }
+  },
   components: {
     // AddFab
+  },
+  methods:{
+    ToogleShip()
+    {
+      this.ToogleValue = "Ship"
+      this.ShipToogleStyle.opacity = 1;
+      this.CargoToogleStyle.opacity = 0.5;
+      EventBus.$emit("Toogle",this.ToogleValue);
+      console.log("Shipppps!");
+    },
+    ToogleCargo()
+    {
+      this.ToogleValue = "Cargo"
+      this.ShipToogleStyle.opacity = 0.5;
+      this.CargoToogleStyle.opacity = 1;
+      EventBus.$emit("Toogle",this.ToogleValue);
+      console.log("Cargoooos!");
+    }
   }
 
 }

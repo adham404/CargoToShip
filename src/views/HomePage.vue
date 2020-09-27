@@ -39,7 +39,9 @@ export default {
         EventBus.$on('SearchClicked', () => {
             this.show = true
         })
-       
+        EventBus.$on("Close", () =>{
+            this.show = false
+        })
         // var one = LoadMap1(LoadMap1String)
         // eval(one)
         // var two = LoadMap2(LoadMap2String)

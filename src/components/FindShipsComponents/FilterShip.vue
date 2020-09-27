@@ -1,11 +1,12 @@
 <template lang="html">
-  <div class="FilterForm">
+<div class="FilterContent">
   <div class="FilterHeading">
-    <p id="FilterTitle">Filters</p>
+    <p id="FilterTitle">Filter</p>
     <button @click="Filter" type="button" name="button">
-        Filter
+        |||
     </button>
   </div>
+  <div class="FilterForm">
   <div class="FirstSection">
     <div class="Location">
       <label  for="Location">Location</label>
@@ -113,6 +114,7 @@
         <input v-model="ToDate" style="width:100%;" id="to date" type="date" name="" value="">
     </div>
   </div>
+</div>
 </div>
 </template>
 
@@ -290,6 +292,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.FilterContent{
+  width: 100%;
+  height: 100%;
+}
 #FilterTitle{
   /* text-align: center; */
   font-size: 2vw;
@@ -298,12 +304,17 @@ export default {
 }
 .FilterHeading{
   margin-left: 40%;
-  margin-bottom: 2%;
   display: flex;
+  height: 8%;
   width:20%;
 }
 .FilterHeading button{
+  background-color: #3542bd;
+  color: white;
   width: 50%;
+  height: 80%;
+  margin-top: 5%;
+  border: 1px solid #ccc;
 }
 .FilterHeading button img{
   width: 2vw;
@@ -313,7 +324,7 @@ export default {
 .FilterForm{
   width: 90%;
   /* border: 1px solid #ccc; */
-  height: 100%;
+  height: 80%;
   border-radius: 0.5vw;
   margin-left: 5%;
   background-color: white;
@@ -335,7 +346,7 @@ export default {
   margin-left: 2%;
   margin-top: 2%;
   display: flex;
-  margin-bottom: 6%;
+  margin-bottom: 2%;
   justify-content: space-between;
   height: 10%;
 }
@@ -400,7 +411,7 @@ export default {
   height: 7%;
   margin-top: 2%;
   margin-left: 2%;
-  margin-bottom: 2%;
+  margin-bottom: 1%;
 }
 .InquiryInput{
   height: 99%;
