@@ -1,11 +1,12 @@
 <template lang="html">
-  <div class="FilterForm">
+<div class="FilterContent">
   <div class="FilterHeading">
-    <p id="FilterTitle">Filters</p>
+    <p id="FilterTitle">Filter</p>
     <button type="button" name="button">
-        Filter
+        |||
     </button>
   </div>
+  <div class="FilterForm">
   <div class="FirstSection">
     <div class="Location">
       <label  for="Location">Cargo Description</label>
@@ -135,6 +136,7 @@
     </div>
   </div>
 </div>
+</div>
 </template>
 
 <script>
@@ -169,6 +171,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.FilterContent{
+  width: 100%;
+  height: 100%;
+}
 #FilterTitle{
   /* text-align: center; */
   font-size: 2vw;
@@ -178,11 +184,17 @@ export default {
 .FilterHeading{
   margin-left: 40%;
   margin-bottom: 2%;
+  height: 8%;
   display: flex;
   width:20%;
 }
 .FilterHeading button{
   width: 50%;
+  background-color: #3542bd;
+  color: white;
+  height: 80%;
+  margin-top: 5%;
+  border: 1px solid #ccc;
 }
 .FilterHeading button img{
   width: 2vw;

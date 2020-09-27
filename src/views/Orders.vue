@@ -83,6 +83,7 @@ export default {
 *{
   padding: 0;
   margin: 0;
+  font-family: 'Quicksand', sans-serif;
 }
 .OrdersTable{
   width: 100%;

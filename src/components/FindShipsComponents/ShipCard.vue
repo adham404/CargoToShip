@@ -29,7 +29,9 @@
       </div>
     </div>
     </div>
-    <button id="MoreButton" v-if="ShowMoreTrigger">MORE</button>
+    <router-link to="/item">
+    <button id="MoreButton" v-if="ShowMoreTrigger">MORE</button>    
+    </router-link>
 </div>
 
 </template>
