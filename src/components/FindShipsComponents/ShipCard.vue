@@ -83,8 +83,8 @@ export default {
 
 <style lang="css" scoped>
 .ShipItem{
-  width: 100%;
-  height: 100%;
+  width: 98%;
+  height: 35%;
   display: block;
   margin-bottom:5%;
   margin-left: 1%;
@@ -150,7 +150,6 @@ export default {
 #MoreButton{
   width: 20%;
   margin-left: 40%;
-  margin-top: 1vw;
   font-size: 0.9vw;
   font-family: 'Quicksand', sans-serif;
   color: white;

@@ -7,10 +7,7 @@
       </div>
       <div class="Body">
         <Header id="foot"/>
-        <keep-alive>
-          <router-view id="head"></router-view>
-          </keep-alive>
-
+]       <router-view id="head"></router-view>
       </div>
     </div>
   </v-app >

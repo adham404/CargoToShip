@@ -44,10 +44,6 @@ export default {
 </script>
 
 <style>
-.ShipCard{
-  width: 98%;
-  height: 35%;
-}
 .FindShip{
   width: 48%;
   height: 100%;

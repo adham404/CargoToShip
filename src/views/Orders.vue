@@ -112,10 +112,12 @@ export default {
 #HistoryBtn{
     background-color: #0E153A;
     color: white;
+    outline: none;
 }
 #ActiveBtn{
   background-color: #06457C;
   color: black;
+  outline: none;
 }
 .OrdersComponent{
   /* margin-left: 9vw; */

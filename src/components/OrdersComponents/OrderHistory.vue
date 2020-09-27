@@ -66,6 +66,7 @@ export default {
   overflow-x: hidden;
   border: 1px solid #ccc;
   border-radius: 0.8vw;
+  background-color: white;
 }
 .RowHeader{
   height: 2.5vw;
