@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import MyShips from '@/views/MyShips'
 import MyCargo from '@/views/MyCargo'
 import Orders from '@/views/Orders'
-import Profile from '@/views/profile'
+import Profile from '@/views/Profile'
 import HomePage from '@/views/HomePage'
 import OrderConfirmation from '@/views/OrderConfirmation'
 import OrderData from '@/components/OrderConfirmationComponents/orderdata/orderdata'
@@ -13,29 +13,34 @@ import OrderPayment from '@/components/OrderConfirmationComponents/confirmorder/
 Vue.use(VueRouter)
 
 const routes = [
-    {
-      path:'/item',
-      name: 'Order',
-      component: OrderConfirmation,
-      redirect: { name: 'OrderData' },
-      children:[
-        {
-          path:"info/",
-          name: "OrderData",
-          component:OrderData,
-        },
-        {
-          path:"Payment/",
-          name: "OrderPayment",
-          component:OrderPayment,
-        },
-      ]
-    },
-    {
-      path:'/MyShips',
-      name: 'MyShips',
-      component: MyShips
-    },
+  {
+    path: '/',
+    name: 'Home',
+    component: HomePage,
+  },
+  {
+    path:'/item',
+    name: 'Order',
+    component: OrderConfirmation,
+    redirect: { name: 'OrderData' },
+    children:[
+      {
+        path:"info/",
+        name: "OrderData",
+        component:OrderData,
+      },
+      {
+        path:"Payment/",
+        name: "OrderPayment",
+        component:OrderPayment,
+      },
+    ]
+  },
+  {
+    path:'/MyShips',
+    name: 'MyShips',
+    component: MyShips
+  },
   {
     path: '/MyCargo',
     name: 'MyCargo',

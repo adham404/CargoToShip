@@ -112,6 +112,7 @@
 
             }
         },
+        /*eslint-disable*/
         mounted() {
             let self = this
             let userdata = firebase.auth().currentUser
@@ -119,7 +120,7 @@
                 self.user.email = userdata.email
                 var userId = firebase.auth().currentUser.uid;
                 firebase.database().ref('/Users/' + userId).once('value').then(function(snapshot) {
-                    console.log(snapshot.val())
+                    // console.log(snapshot.val())
                     self.datad = snapshot.val()
                     self.user.name = `${snapshot.val().FirstName} ${snapshot.val().LastName}`
                     self.user.phone = snapshot.val().Phone
@@ -130,18 +131,18 @@
                     snapshot.forEach(function(child){
                         const post = child.val();
                         self.recentordersid.push(post.ObjectID)
-                        console.log(self.recentordersid)
+                        // console.log(self.recentordersid)
 
                     })
-                    console.log(self.recentordersid)
-                    console.log(self.recentordersid.length)
+                    // console.log(self.recentordersid)
+                    // console.log(self.recentordersid.length)
                     let i ;
                     let shipdataoo
                     for ( i=0;i < self.recentordersid.length ;i++){
-                        console.log('ppp')
+                        // console.log('ppp')
                         if (self.recentordersid[i][0]=='s'){
                             firebase.database().ref('/Ships/' + self.recentordersid[i]).once('value').then(function(snapshot) {
-                                console.log(snapshot.val())
+                                // console.log(snapshot.val())
                                  shipdataoo = {
                                     type : 'ship',
                                     shipid : snapshot.val().ShipID,
@@ -151,7 +152,7 @@
 
                         }else if(self.recentordersid[i][0]=='c'){
                             firebase.database().ref('/Cargo/' + self.recentordersid[i]).once('value').then(function(snapshot) {
-                                console.log(snapshot.val())
+                                // console.log(snapshot.val())
                                  shipdataoo = {
                                     type : 'Cargo',
                                     shipid : snapshot.val().CargoID,
@@ -160,7 +161,7 @@
                             });
 
                         }
-                    console.log(shipdataoo)
+                    // console.log(shipdataoo)
 
 
                     }
@@ -244,14 +245,14 @@
                 }
             },
             changeemail(){
-                console.log(this.editdata.newvalue)
+                // console.log(this.editdata.newvalue)
                 var userId = firebase.auth().currentUser.uid;
                 var user = firebase.auth().currentUser;
                 var credentials = firebase.auth.EmailAuthProvider.credential(user.email, this.editdata.password);
                 user.reauthenticateWithCredential(credentials).then(function () {
-                    console.log("re-auth done successfully");
+                    // console.log("re-auth done successfully");
                 }).catch(function (e) {
-                    console.log(e)
+                    // console.log(e)
                 });
                 // firebase.auth().signInWithEmailAndPassword(user.email, this.editdata.password).catch(function(error) {
                 //     // Handle Errors here.
@@ -260,12 +261,12 @@
                 // });
                 user.updateEmail(this.editdata.newvalue).then(function() {
                     // Update successful.
-                    console.log('updated')
-                    console.log(user.email)
-                    console.log(this.editdata.newvalue)
+                    // console.log('updated')
+                    // console.log(user.email)
+                    // console.log(this.editdata.newvalue)
                 }).catch(function(error) {
                     // An error happened.
-                    console.log(error)
+                    // console.log(error)
                 });
                 firebase.database().ref('Users/' + userId ).update({
                     Email: this.editdata.newvalue,
@@ -275,17 +276,17 @@
                 var user = firebase.auth().currentUser;
                 var credentials = firebase.auth.EmailAuthProvider.credential(user.email, this.editdata.password);
                 user.reauthenticateWithCredential(credentials).then(function () {
-                    console.log("re-auth done successfully");
+                    // console.log("re-auth done successfully");
                 }).catch(function (e) {
-                    console.log(e)
+                    // console.log(e)
                 });
 
                 user.updatePassword(this.editdata.newvalue).then(function() {
                     // Update successful.
-                    console.log('updated')
+                    // console.log('updated')
                 }).catch(function(error) {
                     // An error happened.
-                    console.log(error)
+                    // console.log(error)
                 });
             },
             changephone(){
@@ -322,7 +323,7 @@
         font-family: Roboto ;
         width: 82vw;
         height: 43.4vw;
-        background-color: #ECEFF1;
+        background-color: #ffffff;
         margin: auto;
         border-radius: 2vw;
         box-shadow: 0px 3px 6px rgba(0,0,0,16%);

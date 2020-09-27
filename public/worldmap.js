@@ -1892,7 +1892,7 @@ var one = LoadMap1(LoadMap1String)
 eval(one)
 var two = LoadMap2(LoadMap2String)
 eval(two)
-alert("This should not work")
+alert("This is still the beta version of the webapp cargo to ship all the aspects of the app are only for initial review")
 
 
 

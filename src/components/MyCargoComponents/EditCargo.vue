@@ -511,7 +511,7 @@ export default {
             Object.keys(this.CargoDangerous)[i]
           ) {
             var key = Object.keys(this.CargoDangerous)[i];
-            console.log(key);
+            // console.log(key);
             this.CargoDangerous[key] = true;
           }
         }
@@ -647,7 +647,7 @@ export default {
             };
           } else {
             this.errContactInfo.splice(i, 1);
-            console.log(this.errContactInfo);
+            // console.log(this.errContactInfo);
             this.errContactInfo.splice(i, 0, true);
           }
           this.errContactInfo0(i);
@@ -779,7 +779,7 @@ export default {
     //   this.number.push(data);
     // });
     //for DangerousGoods
-    console.log(Object.keys(this.CargoDangerous).length);
+    // console.log(Object.keys(this.CargoDangerous).length);
     if (this.CargoData.DangerousGoods) {
       for (var d = 0; d < Object.keys(this.CargoDangerous).length; d++) {
         var key = Object.keys(this.CargoDangerous)[d];
@@ -793,7 +793,7 @@ export default {
     for (var p = 0; p < this.CargoData.ContactInfo.length; p++) {
       this.ContactInfo[p] = this.CargoData.ContactInfo[p].number;
       this.ContactInfoCode[p] = this.CargoData.ContactInfo[p].code;
-      console.log(this.CargoData.ContactInfo.length - 1);
+      // console.log(this.CargoData.ContactInfo.length - 1);
     }
     for (var a = 0; a < this.CargoData.ContactInfo.length - 1; a++) {
       this.AddPhone();
@@ -950,7 +950,8 @@ p {
   justify-content: flex-end;
   height: 50px;
   width: 70px;
-  margin-top: 90%;
+  margin-top: 25%;
+  margin-left: 75%;
 }
 .btn {
   border: none;
