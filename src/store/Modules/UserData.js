@@ -1,5 +1,15 @@
 import Firebase from "firebase"
+/*
+Username
+Email address
+Date created 
+Password change 
+Total number of orders
+Phone number
+Social login links
+Company website
 
+*/
 const state = {
     Data : {},
 

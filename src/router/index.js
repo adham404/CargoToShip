@@ -24,7 +24,19 @@ const routes = [
     name: "Marwan",
     component: () =>
       import(/* webpackChunkName: "about" */ "../components/Marwan.vue")
-  }
+  },
+  {
+    path: "/AddCard",
+    name: "AddCard",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../components/AddCridetCard.vue")
+  },
+  {
+    path: "/Success",
+    name: "Success",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../components/PymentSucsses.vue")
+  },
 ];
 
 const router = new VueRouter({
