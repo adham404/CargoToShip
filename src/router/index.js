@@ -37,6 +37,21 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../components/PymentSucsses.vue")
   },
+  {
+    path: "/Search",
+    name: "Search",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../components/SearchBar.vue")
+
+  },
+  {
+    path: "/ShortList",
+    name: "ShortList",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../components/ShortListing.vue")
+
+  }
+
 ];
 
 const router = new VueRouter({

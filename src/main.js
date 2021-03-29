@@ -26,7 +26,9 @@ const firebaseConfig = {
 
 !Firebase.apps.length ? Firebase.initializeApp(firebaseConfig) : '';
 
+console.log("Check outside");
 if(window.location.hostname === 'localhost') {
+  console.log("Check");
   Firebase.firestore().useEmulator('localhost', 7000 );
   Firebase.functions().useEmulator('localhost', 5001);
   /* OLD implementation */
