@@ -2,17 +2,17 @@
 var simplemaps_worldmap_mapdata={
   main_settings: {
     //General settings
-		width: "700", //or 'responsive'
+		width: 'responsive', //or 'responsive'
     background_color: "#FFFFFF",
     background_transparent: "yes",
     popups: "detect",
     
 		//State defaults
-		state_description: "State description",
-    state_color: "#88A4BC",
+		state_description: "",
+    state_color: "#0E153A",
     state_hover_color: "#3B729F",
-    state_url: "https://simplemaps.com",
-    border_size: 1.5,
+    // state_url: "https://simplemaps.com",
+    border_size: 0.1,
     border_color: "#ffffff",
     all_states_inactive: "no",
     all_states_zoomable: "no",
@@ -53,6 +53,7 @@ var simplemaps_worldmap_mapdata={
     zoom_out_incrementally: "yes",
     zoom_percentage: 0.99,
     zoom_time: 0.5,
+    zoom: "no",
     
 		//Popup settings
 		popup_color: "white",
@@ -1574,13 +1575,21 @@ var simplemaps_worldmap_mapdata={
   },
   locations: {
     "0": {
-      name: "Paris",
-      lat: "48.866666670",
-      lng: "2.333333333",
+      name: "Arctic Ocean",
+      lat: "65.45923086201427",
+      lng: "-60.40103916800455",
       color: "default",
       description: "default",
-      url: "default"
+      url: "default",
     },
+    // "0": {
+    //   name: "Paris",
+    //   lat: "48.866666670",
+    //   lng: "2.333333333",
+    //   color: "default",
+    //   description: "default",
+    //   url: "default"
+    // },
     "1": {
       name: "Tokyo",
       lat: "35.666666670",
@@ -1589,15 +1598,15 @@ var simplemaps_worldmap_mapdata={
       description: "default",
       url: "default"
     },
-    "3": {
-      name: "New York",
-      lat: "40.71",
-      lng: "-74.0059731",
-      description: "default",
-      color: "default",
-      url: "default",
-      size: "default"
-    }
+    // "3": {
+    //   name: "New York",
+    //   lat: "40.71",
+    //   lng: "-74.0059731",
+    //   description: "default",
+    //   color: "default",
+    //   url: "default",
+    //   size: "default"
+    // }
   },
   labels: {}
 };
