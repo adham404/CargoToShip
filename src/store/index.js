@@ -4,6 +4,7 @@ import UserData from "./Modules/UserData"
 import UserCards from "./Modules/UserCridetCards"
 import SearchBar from "./Modules/SearchBar"
 import Listing from "./Modules/Listing"
+import Map from "./Modules/Map"
 
 Vue.use(Vuex);
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     UserData,
     UserCards,
     SearchBar,
-    Listing
+    Listing,
+    Map
   }
 });

@@ -31,13 +31,36 @@
 
 <script>
 /*eslint-disable*/
+import {mapMutations,mapGetters} from "vuex";
+
 
     export default {
+        data(){
+            return{
+                hidden: false,
+            }
+        },
         mounted(){
+            let self = this;
             simplemaps_worldmap.load();
+            simplemaps_worldmap.hooks.click_location = function(id){
+                self.ChangeSector({name: simplemaps_worldmap_mapdata.locations[id].name, Macro: true});
+                // alert(self.Sector.name)
+                
+            };
+            alert(this.GetSector)
+            
+            
         },
         computed: {
-            simplemaps_worldmap: function () {return window.simplemaps_worldmap;}
+            simplemaps_worldmap: function () {return window.simplemaps_worldmap;},
+            ...mapGetters(["GetSector"])
+            
+        },
+        methods: {
+            ...mapMutations(["ChangeSector"]),
+
+
         }
 
     }
