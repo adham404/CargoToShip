@@ -11,7 +11,9 @@
     "@stripe/stripe-js": "^1.13.1",
     "core-js": "^3.6.5",
     "firebase": "^8.3.1",
+    "google-libphonenumber": "^3.2.19",
     "vue": "^2.6.11",
+    "vue-country-flag": "^2.0.3",
     "vue-router": "^3.2.0",
     "vuetify": "^2.4.0",
     "vuex": "^3.4.0"

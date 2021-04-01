@@ -7,6 +7,9 @@ import vuetify from "./plugins/vuetify";
 
 Vue.config.productionTip = false;
 
+
+export const EventBus = new Vue();
+
 //FireBase 
 // from -->  https://stackoverflow.com/questions/60536897/how-to-tell-a-vue-app-to-use-firebase-emulator
 import  Firebase from 'firebase/app';

@@ -53,7 +53,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "@/components/CargoForm.vue")
+      import(/* webpackChunkName: "about" */ "@/components/Forms/CargoForm/AddCargo.vue")
   },
   {
     path: "/ShipForm",
@@ -62,7 +62,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "@/components/ShipForm.vue")
+      import(/* webpackChunkName: "about" */ "@/components/Forms/ShipForm/AddShip.vue")
   },
   {
     path: "/Marwan",
