@@ -95,6 +95,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../components/ShortListing.vue")
 
+  },
+  {
+    path: "/TableList",
+    name: "TableList",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../components/TableListing.vue")
   }
 
 ];
