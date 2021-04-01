@@ -2,6 +2,7 @@
     <div>
         <h1>hello</h1>
         <div id="map"></div>
+        <ShortListing class="absolute" v-if="List" />
         <v-btn
             v-show="!hidden"
             color="pink"
@@ -14,6 +15,21 @@
         >
                   <v-icon>mdi-view-list</v-icon>
         </v-btn>
+
+        <v-btn
+            v-show="!hidden"
+            color="blue"
+            fab
+            dark
+            absolute
+            middle
+            right
+            class="mb-16 mr-8"
+            @click="List = !List"
+        >
+                  <v-icon>mdi-card-search</v-icon>
+        </v-btn>
+
         <v-btn
             v-show="!hidden"
             color="pink"
@@ -32,13 +48,18 @@
 <script>
 /*eslint-disable*/
 import {mapMutations,mapGetters} from "vuex";
+<<<<<<< HEAD
 import firebase from "firebase";
 
+=======
+import ShortListing from '../ShortListing.vue';
+>>>>>>> a94ceb495d374f438d143cd3b4a46c4606ffcd33
 
     export default {
         data(){
             return{
                 hidden: false,
+                List: false
             }
         },
         mounted(){
@@ -58,6 +79,9 @@ import firebase from "firebase";
             simplemaps_worldmap: function () {return window.simplemaps_worldmap;},
             ...mapGetters(["GetSector"])
             
+        },
+        components:{
+            ShortListing
         },
         methods: {
             ...mapMutations(["ChangeSector"]),

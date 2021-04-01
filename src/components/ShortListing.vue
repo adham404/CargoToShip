@@ -1,10 +1,11 @@
 <template>
   <v-main>
-      <v-btn v-if="!Listing" @click="Listing = !Listing">
+      <!-- <v-btn v-if="!Listing" @click="Listing = !Listing">
       <v-icon>mdi-card-search</v-icon>
-      </v-btn>
-      <v-container v-if="Listing">
-        <v-row>
+      </v-btn> -->
+      <v-container>
+        <v-row class="col-5">
+            <v-col>
             <v-btn-toggle rounded>
                 <v-btn>
                     <v-icon @click="cargo = true">
@@ -14,11 +15,23 @@
                 <v-btn @click="cargo = false">
                     <v-icon>mdi-ferry</v-icon>
                 </v-btn>
-                  </v-btn-toggle>                  
-              </v-row>
-          <v-row>
+            </v-btn-toggle> 
+            </v-col> 
+            <v-col>
+                <v-btn v-if="ShortList" @click="ShortList = false" class="mt-2">
+                    <v-icon left>mdi-table</v-icon>
+                    <v-text>Table Listing</v-text>
+                </v-btn>
+                <v-btn v-if="!ShortList" @click="ShortList = true" class="mt-2">
+                    <v-icon left>mdi-view-list</v-icon>
+                    <v-text>Short Listing</v-text>
+                </v-btn>
+            </v-col>                
+        </v-row>
+          <TableListing :cargo="cargo" v-if="!ShortList" />
+          <v-row v-if="ShortList">
               <v-col v-if="cargo" class="col-6 overflow:y">
-                  <v-card  class="my-10" v-for="(card,x) in FilteredCargoCards" :key="x">
+                  <v-card @click="LongList"  class="my-10" v-for="(card,x) in FilteredCargoCards" :key="x">
                       <v-row>
                         <v-icon x-large right>
                             mdi-package-variant-closed
@@ -257,7 +270,7 @@
                         </v-menu>                       
                       </v-col>
                   </v-row>
-                  <v-row>
+                  <!-- <v-row>
                   <v-col class="col-6">
                   <v-autocomplete
                   :items="SectorData"
@@ -278,35 +291,47 @@
                   >
                   </v-autocomplete> 
                       </v-col>
-                  </v-row>
+                  </v-row> -->
                   <v-row>
                       <v-col>
                           <v-checkbox 
-                          label="Dangerous Goods"
-                          v-model="DangerousGoodsFilter"
-                          @click="CargoCardFilteration"
+                          label="Ready to carry Dangerous Goods"
+                          v-model="ShipDangerousGoodsFilter"
                           ></v-checkbox>
                       </v-col>
                       <v-col>
                           <v-text-field
-                          label="Cargo Quantity"
+                          label="Dead Weight"
                           type="number"
-                          v-model="Quantity"
-                          @input="CargoCardFilteration"
+                          v-model="DeadWeight"
                           ></v-text-field>
                       </v-col>
                   </v-row>
                   </v-form>
-
               </v-col>
           </v-row>
+        <v-dialog v-model="dialog" max-width="600px" transition="dialog-bottom-transition">
+        <v-card>
+        <LongList />
+        <v-card-actions class="justify-end">
+            <v-btn
+            text
+            @click="dialog=!dialog"
+            >Close</v-btn>
+            <v-btn
+            text
+            >Buy</v-btn>
+        </v-card-actions>
+        </v-card>
+        </v-dialog>
       </v-container>
   </v-main>
 </template>
 
 <script>
 import {mapGetters,mapActions} from "vuex"
-
+import TableListing from "./TableListing"
+import LongList from "./LongList"
 export default {
     data(){
         return{
@@ -318,11 +343,19 @@ export default {
             LoadingPort:"",
             dateToFilter:"",
             dateFromFilter:"",
+            ShipDangerousGoodsFilter:"",
+            DeadWeight:0,
+            ShortList:true,
             menu1:false,
             menu2:false,
+            dialog:false,
             SectorData:[],
             FilteredCargoCards:[]
         }
+    },
+    components:{
+        TableListing,
+        LongList
     },
     computed:{
         ...mapGetters(["GetCargoCards","GetShipCards"])
@@ -399,7 +432,10 @@ export default {
                 this.FilteredCargoCards = NewCards
             }
         },
-
+        LongList()
+        {
+            this.dialog = true;
+        }
 
     },
     mounted()
