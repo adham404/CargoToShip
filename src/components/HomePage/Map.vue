@@ -45,10 +45,9 @@ import {mapMutations,mapGetters} from "vuex";
             simplemaps_worldmap.load();
             simplemaps_worldmap.hooks.click_location = function(id){
                 self.ChangeSector({name: simplemaps_worldmap_mapdata.locations[id].name, Macro: true});
-                // alert(self.Sector.name)
-                
+                // alert(self.Sector.name)  
             };
-            alert(this.GetSector)
+            alert(this.GetSector);
             
             
         },
