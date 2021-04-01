@@ -140,8 +140,8 @@
       ></v-text-field> -->
 
       <v-spacer></v-spacer>
-      <v-btn rounded>Login</v-btn>
-      <v-btn rounded>Sign Up</v-btn>
+      <v-btn @click="GoToLogin" rounded>Login</v-btn>
+      <v-btn @click="GoToSignUp" rounded>Sign Up</v-btn>
     </v-app-bar>
 
     </div>
@@ -163,6 +163,14 @@ import {mapMutations} from "vuex"
         EnterOption()
         {
             this.SetSectorDataFromTheDropDown(this.SelectedObj)
+        },
+        GoToLogin()
+        {
+          this.$router.push("Login2")
+        },
+        GoToSignUp()
+        {
+          this.$router.push("SignUp2")
         },
     },
     mounted()

@@ -101,6 +101,24 @@ const routes = [
     name: "TableList",
     component: () =>
       import(/* webpackChunkName: "about" */ "../components/TableListing.vue")
+  },
+  {
+    path: "/Orders",
+    name: "Orders",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../components/Orders.vue")
+  },
+  {
+    path: "/Login2",
+    name: "Login",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../components/Authentication/Login.vue")
+  },
+  {
+    path: "/SignUp2",
+    name: "SignUp",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../components/Authentication/SignUp.vue")
   }
 
 ];

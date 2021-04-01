@@ -1,9 +1,9 @@
 <template>
   <v-main>
-      <v-btn v-if="!Listing" @click="Listing = !Listing">
+      <!-- <v-btn v-if="!Listing" @click="Listing = !Listing">
       <v-icon>mdi-card-search</v-icon>
-      </v-btn>
-      <v-container v-if="Listing">
+      </v-btn> -->
+      <v-container>
         <v-row class="col-5">
             <v-col>
             <v-btn-toggle rounded>
