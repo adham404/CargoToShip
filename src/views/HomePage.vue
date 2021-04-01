@@ -16,7 +16,10 @@ import Map from "@/components/HomePage/Map.vue"
     components: {
       Header,
       Map
-    } 
+    },
+    mounted(){
+      
+    }
     }
 </script>
 

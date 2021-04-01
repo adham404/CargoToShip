@@ -685,15 +685,14 @@ export default {
     },
     save() {
       this.allValid();
+      const db = firebase.firestore()
       if (this.set) {
         this.Cargo.Availability = this.fromDate + " to " + this.toDate;
         this.Cargo.CargoQuantity = this.CQuantity + this.QuantityUnit;
         this.Cargo.Freight = this.Cargo.Freight + "$";
-        firebase
-          .database()
-          .ref("Cargo/" + this.Cargo.CargoID)
-          .set({
-            CargoID: this.Cargo.CargoID,
+        var test = db.collection("Cargo").add("")
+        db.collection("Cargo").doc(test.id).create({
+            CargoID: test.id,
             CargoType: this.Cargo.CargoType,
             CargoDescription: this.Cargo.CargoDescription,
             DangerousGoods: this.Cargo.DangerousGoods,
@@ -704,7 +703,23 @@ export default {
             Freight: this.Cargo.Freight,
             ContactInfo: this.Cargo.ContactInfo,
             UserID: 1
-          });
+          })
+        // firebase
+        //   .database()
+        //   .ref("Cargo/" + this.Cargo.CargoID)
+        //   .set({
+        //     CargoID: this.Cargo.CargoID,
+        //     CargoType: this.Cargo.CargoType,
+        //     CargoDescription: this.Cargo.CargoDescription,
+        //     DangerousGoods: this.Cargo.DangerousGoods,
+        //     CargoQuantity: this.Cargo.CargoQuantity,
+        //     LoadingPort: this.Cargo.LoadingPort,
+        //     DischargingPort: this.Cargo.DischargingPort,
+        //     Availability: this.Cargo.Availability,
+        //     Freight: this.Cargo.Freight,
+        //     ContactInfo: this.Cargo.ContactInfo,
+        //     UserID: 1
+        //   });
         if (this.Cargo.DangerousGoods) {
           firebase
             .database()
@@ -746,6 +761,8 @@ export default {
     }
   },
   mounted() {
+    const db = firebase.firestore();
+    db.collection("Cargo").add("");
     EventBus.$on("SendPhone", data => {
       console.log(data);
       this.number.push(data);

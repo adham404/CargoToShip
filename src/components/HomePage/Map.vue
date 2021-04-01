@@ -32,6 +32,7 @@
 <script>
 /*eslint-disable*/
 import {mapMutations,mapGetters} from "vuex";
+import firebase from "firebase";
 
 
     export default {
@@ -45,6 +46,8 @@ import {mapMutations,mapGetters} from "vuex";
             simplemaps_worldmap.load();
             simplemaps_worldmap.hooks.click_location = function(id){
                 self.ChangeSector({name: simplemaps_worldmap_mapdata.locations[id].name, Macro: true});
+                const db = firebase.firestore();
+                db.collection("Cargo").add({hello: "hello"})
                 // alert(self.Sector.name)  
             };
             alert(this.GetSector);
