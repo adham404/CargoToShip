@@ -715,7 +715,52 @@ export default {
         
         // var test = db.collection("Cargo").add({test: "test"})
 
-        
+         var arr = test;
+      var sector = "";
+
+
+           for ( var i = 0; i < arr.length; i++){
+        if (arr[i].ports.length != 0){
+          for( var j = 0; j<arr[i].ports.length; j++){
+            console.log(this.Cargo.LoadingPort)
+            if(this.Cargo.LoadingPort == arr[i].ports[j].title){
+              sector = {
+                Macro: arr[i].title,
+                Micro: "none",
+              }
+              console.log(sector)
+              console.log(this.Cargo.LoadingPort)
+            }else{
+              console.log(this.Cargo.LoadingPort + "Not Found")
+            }
+          
+        }
+          
+        }
+        if(arr[i].children.length != 0){
+          for( j = 0; j < arr[i].children.length; j++){
+            if(arr[i].children[j].ports.length != 0){
+            for( var z = 0; z<arr[i].children[j].ports.length; z++){
+            if(this.Cargo.LoadingPort == arr[i].children[j].ports[z].title){
+              sector =  {
+                Macro: arr[i].title,
+                Micro: arr[i].children[j].ports[z].title
+              }
+              console.log(sector)
+            }else{
+              console.log(this.Cargo.LoadingPort + "Not found")
+            }
+          }
+
+          }
+
+          }
+          
+          
+
+        }
+         
+      }
         // firebase
         //   .database()
         //   .ref("Cargo/" + this.Cargo.CargoID)
@@ -764,7 +809,8 @@ export default {
             Availability: this.Cargo.Availability,
             Freight: this.Cargo.Freight,
             ContactInfo: this.Cargo.ContactInfo,
-            UserID: 1
+            UserID: 1,
+            Sector: sector
           })
         } else {
         db.collection("Cargo").doc(this.CargoData.CargoID).set({
@@ -778,7 +824,8 @@ export default {
             Availability: this.Cargo.Availability,
             Freight: this.Cargo.Freight,
             ContactInfo: this.Cargo.ContactInfo,
-            UserID: 1
+            UserID: 1,
+            Sector: sector,
           })
 
         }

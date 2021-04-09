@@ -1974,7 +1974,7 @@ export default {
             TimeCharterring: this.ShipsVoyage.TimeCharterring,
             VoyageChartering: this.ShipsVoyage.VoyageChartering,
             UserID: this.ShipsVoyage.UserID,
-            ...sector
+            Sector: sector,
           })
         } else {
         db.collection("Ships").doc(empty.id).set({
@@ -2019,7 +2019,7 @@ export default {
             },
             VoyageChartering: this.ShipsVoyage.VoyageChartering,
             UserID: this.ShipsVoyage.UserID,
-            ...sector
+            Sector: sector
           })
 
         }
