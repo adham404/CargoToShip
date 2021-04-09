@@ -1871,16 +1871,20 @@ export default {
     },
     save() {
       this.allValid();
+      var db = firebase.firestore();
+      var test = await db.collection("Cargo").add({test: "test"});
       if (this.set) {
-        this.ShipData.LOA = this.LOAno + this.LOAUnit;
-        this.ShipData.LBP = this.LBPno + this.LBPUnit;
-        this.ShipData.Breadth = this.BreadthNo + this.BreadthUnit;
-        this.ShipTime.MouldeDepth = this.ModDepthNo + this.MouldeUnit;
-        this.ShipData.SummerDraft = this.SummerDraftNo + this.SummerDraftUnit;
-        this.ShipTime.SummerFreeBoard = this.SummerFreeNo + this.SummerFreeUnit;
-        this.ShipData.AirDraft = this.AirDraftNo + this.AirDraftUnit;
-        this.ShipData.Availability = this.fromDate + " to " + this.toDate;
-        this.ShipData.OwnerAddress =
+        this.ShipsVoyage.LOA = this.LOAno + this.LOAUnit;
+        this.ShipsVoyage.LBP = this.LBPno + this.LBPUnit;
+        this.ShipsVoyage.Breadth = this.BreadthNo + this.BreadthUnit;
+        this.ShipsTime.MouldeDepth = this.ModDepthNo + this.MouldeUnit;
+        this.ShipsVoyage.SummerDraft =
+          this.SummerDraftNo + this.SummerDraftUnit;
+        this.ShipsTime.SummerFreeBoard =
+          this.SummerFreeNo + this.SummerFreeUnit;
+        this.ShipsVoyage.AirDraft = this.AirDraftNo + this.AirDraftUnit;
+        this.ShipsVoyage.Availability = this.fromDate + " to " + this.toDate;
+        this.ShipsVoyage.OwnerAddress =
           this.OwnerAddressLine +
           " / " +
           this.OwnerAddressCountry +
@@ -1888,7 +1892,7 @@ export default {
           this.OwnerAddressZipCode +
           " / " +
           this.OwnerAddressPhone;
-        this.ShipData.OperatorAddress =
+        this.ShipsVoyage.OperatorAddress =
           this.OperatorAddressLine +
           " / " +
           this.OperatorAddressCountry +
@@ -1896,63 +1900,100 @@ export default {
           this.OperatorAddressZipCode +
           " / " +
           this.OperatorAddressPhone;
-        this.ShipData.NRT = this.NRT + "MT";
-        this.ShipData.GRT = this.GRT + "MT";
-        this.ShipData.HoldVolumeCubicMeter = this.HoldVolumeCubicMeter + "M³";
-        this.ShipData.DeadWeight = this.DeadWeight + "MT";
-        this.ShipTime.EnginePower = this.EnginePower + "HP";
-        this.ShipTime.EconomySpeed = this.EconomySpeed + "Knots";
+        this.ShipsVoyage.NRT = this.ShipsVoyage.NRT + "MT";
+        this.ShipsVoyage.GRT = this.ShipsVoyage.GRT + "MT";
+        this.ShipsVoyage.HoldVolumeCubicMeter =
+          this.ShipsVoyage.HoldVolumeCubicMeter + "M³";
+        this.ShipsVoyage.DeadWeight = this.ShipsVoyage.DeadWeight + "MT";
+        this.ShipsTime.EnginePower = this.ShipsTime.EnginePower + "HP";
+        this.ShipsTime.EconomySpeed = this.ShipsTime.EconomySpeed + "Knots";
 
-        firebase
-          .database()
-          .ref("ShipsVoyage/" + this.ShipData.ShipID)
-          .set({
+        // firebase
+        //   .database()
+        //   .ref("ShipsVoyage/" + this.ShipsVoyage.ShipID)
+        //   .set();
+
+
+
+        if (this.ShipsVoyage.VoyageChartering) {
+        db.collection("Ships").doc(this.ShipData.ShipID).set({
             ShipID: this.ShipData.ShipID,
-            ShipName: this.ShipData.ShipName,
-            Nationality: this.ShipData.Nationality,
-            PortOfRegistry: this.ShipData.PortOfRegistry,
-            TypeOfShip: this.ShipData.TypeOfShip,
-            IMO: this.ShipData.IMO,
-            LOA: this.ShipData.LOA,
-            LBP: this.ShipData.LBP,
-            Breadth: this.ShipData.Breadth,
-            GRT: this.ShipData.GRT,
-            NRT: this.ShipData.NRT,
-            GrainCapacity: this.ShipData.GrainCapacity,
-            BaleCapacity: this.ShipData.BaleCapacity,
-            HoldVolumeCubicMeter: this.ShipData.HoldVolumeCubicMeter,
-            HoldType: this.ShipData.HoldType,
-            ReadyToCarryDangerousGoods: this.ShipData
+            ShipName: this.ShipsVoyage.ShipName,
+            Nationality: this.ShipsVoyage.Nationality,
+            PortOfRegistry: this.ShipsVoyage.PortOfRegistry,
+            TypeOfShip: this.ShipsVoyage.TypeOfShip,
+            IMO: this.ShipsVoyage.IMO,
+            LOA: this.ShipsVoyage.LOA,
+            LBP: this.ShipsVoyage.LBP,
+            Breadth: this.ShipsVoyage.Breadth,
+            GRT: this.ShipsVoyage.GRT,
+            NRT: this.ShipsVoyage.NRT,
+            GrainCapacity: this.ShipsVoyage.GrainCapacity,
+            BaleCapacity: this.ShipsVoyage.BaleCapacity,
+            HoldVolumeCubicMeter: this.ShipsVoyage.HoldVolumeCubicMeter,
+            HoldType: this.ShipsVoyage.HoldType,
+            ReadyToCarryDangerousGoods: this.ShipsVoyage
               .ReadyToCarryDangerousGoods,
-            SummerDraft: this.ShipData.SummerDraft,
-            DeadWeight: this.ShipData.DeadWeight,
-            AirDraft: this.ShipData.AirDraft,
-            Owner: this.ShipData.Owner,
-            OwnerAddress: this.ShipData.OwnerAddress,
-            Operator: this.ShipData.Operator,
-            OperatorAddress: this.ShipData.OperatorAddress,
-            BuildYear: this.ShipData.BuildYear,
-            Availability: this.ShipData.Availability,
-            AvailabilitySector: this.ShipData.AvailabilitySector,
-            TimeCharterring: this.ShipData.TimeCharterring,
-            VoyageChartering: this.ShipData.VoyageChartering,
-            UserID: this.ShipData.UserID
-          });
-        if (this.ShipData.TimeCharterring) {
-          firebase
-            .database()
-            .ref("ShipsTime/" + this.ShipTime.ShipID)
-            .set({
-              ShipID: this.ShipTime.ShipID,
-              EconomySpeed: this.ShipTime.EconomySpeed,
-              EnginePower: this.ShipTime.EnginePower,
-              Class: this.ShipTime.Class,
-              SummerFreeBoard: this.ShipTime.SummerFreeBoard,
+            SummerDraft: this.ShipsVoyage.SummerDraft,
+            DeadWeight: this.ShipsVoyage.DeadWeight,
+            AirDraft: this.ShipsVoyage.AirDraft,
+            Owner: this.ShipsVoyage.Owner,
+            OwnerAddress: this.ShipsVoyage.OwnerAddress,
+            Operator: this.ShipsVoyage.Operator,
+            OperatorAddress: this.ShipsVoyage.OperatorAddress,
+            BuildYear: this.ShipsVoyage.BuildYear,
+            Availability: this.ShipsVoyage.Availability,
+            AvailabilitySector: this.ShipsVoyage.AvailabilitySector,
+            ContactInfo: this.ShipsVoyage.ContactInfo,
+            TimeCharterring: this.ShipsVoyage.TimeCharterring,
+            VoyageChartering: this.ShipsVoyage.VoyageChartering,
+            UserID: this.ShipsVoyage.UserID
+          })
+        } else {
+        db.collection("Ships").doc(this.ShipData.ShipID).set({
+            ShipID: this.ShipData.ShipID,
+            ShipName: this.ShipsVoyage.ShipName,
+            Nationality: this.ShipsVoyage.Nationality,
+            PortOfRegistry: this.ShipsVoyage.PortOfRegistry,
+            TypeOfShip: this.ShipsVoyage.TypeOfShip,
+            IMO: this.ShipsVoyage.IMO,
+            LOA: this.ShipsVoyage.LOA,
+            LBP: this.ShipsVoyage.LBP,
+            Breadth: this.ShipsVoyage.Breadth,
+            GRT: this.ShipsVoyage.GRT,
+            NRT: this.ShipsVoyage.NRT,
+            GrainCapacity: this.ShipsVoyage.GrainCapacity,
+            BaleCapacity: this.ShipsVoyage.BaleCapacity,
+            HoldVolumeCubicMeter: this.ShipsVoyage.HoldVolumeCubicMeter,
+            HoldType: this.ShipsVoyage.HoldType,
+            ReadyToCarryDangerousGoods: this.ShipsVoyage
+              .ReadyToCarryDangerousGoods,
+            SummerDraft: this.ShipsVoyage.SummerDraft,
+            DeadWeight: this.ShipsVoyage.DeadWeight,
+            AirDraft: this.ShipsVoyage.AirDraft,
+            Owner: this.ShipsVoyage.Owner,
+            OwnerAddress: this.ShipsVoyage.OwnerAddress,
+            Operator: this.ShipsVoyage.Operator,
+            OperatorAddress: this.ShipsVoyage.OperatorAddress,
+            BuildYear: this.ShipsVoyage.BuildYear,
+            Availability: this.ShipsVoyage.Availability,
+            AvailabilitySector: this.ShipsVoyage.AvailabilitySector,
+            ContactInfo: this.ShipsVoyage.ContactInfo,
+            TimeCharterring: this.ShipsVoyage.TimeCharterring,
+            TimeCharterringData: {
+              EconomySpeed: this.ShipsTime.EconomySpeed,
+              EnginePower: this.ShipsTime.EnginePower,
+              Class: this.ShipsTime.Class,
+              SummerFreeBoard: this.ShipsTime.SummerFreeBoard,
               MouldeDepth: this.ShipsTime.MouldeDepth,
-              MMSIno: this.ShipTime.MMSIno,
-              CallSign: this.ShipTime.CallSign,
-              OfficialNo: this.ShipTime.OfficialNo
-            });
+              MMSIno: this.ShipsTime.MMSIno,
+              CallSign: this.ShipsTime.CallSign,
+              OfficialNo: this.ShipsTime.OfficialNo
+            },
+            VoyageChartering: this.ShipsVoyage.VoyageChartering,
+            UserID: this.ShipsVoyage.UserID
+          })
+
         }
       }
     }

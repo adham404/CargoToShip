@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="d-flex flex-column">
         <Header/>
-        <Map/>      
+        <Map/>              
     </div>
 </template>
 

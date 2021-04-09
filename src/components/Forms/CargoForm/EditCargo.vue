@@ -703,52 +703,84 @@ export default {
         this.set = false;
       }
     },
-    save() {
+    async save() {
       this.allValid();
+      var db = firebase.firestore();
+
+      /*eslint-disable-next-line*/
       if (this.set) {
-        this.CargoData.Availability = this.fromDate + " to " + this.toDate;
-        this.CargoData.CargoQuantity = this.CQuantity + this.QuantityUnit;
-        this.CargoData.Freight = this.Freight + "$";
-        firebase
-          .database()
-          .ref("Cargo/" + this.CargoData.CargoID)
-          .set({
+        this.Cargo.Availability = this.fromDate + " to " + this.toDate;
+        this.Cargo.CargoQuantity = this.CQuantity + this.QuantityUnit;
+        this.Cargo.Freight = this.Cargo.Freight + "$";
+        
+        // var test = db.collection("Cargo").add({test: "test"})
+
+        
+        // firebase
+        //   .database()
+        //   .ref("Cargo/" + this.Cargo.CargoID)
+        //   .set({
+        //     CargoID: this.Cargo.CargoID,
+        //     CargoType: this.Cargo.CargoType,
+        //     CargoDescription: this.Cargo.CargoDescription,
+        //     DangerousGoods: this.Cargo.DangerousGoods,
+        //     CargoQuantity: this.Cargo.CargoQuantity,
+        //     LoadingPort: this.Cargo.LoadingPort,
+        //     DischargingPort: this.Cargo.DischargingPort,
+        //     Availability: this.Cargo.Availability,
+        //     Freight: this.Cargo.Freight,
+        //     ContactInfo: this.Cargo.ContactInfo,
+        //     UserID: 1
+        //   });
+        if (this.Cargo.DangerousGoods) {
+        db.collection("Cargo").doc(this.CargoData.CargoID).set({
             CargoID: this.CargoData.CargoID,
-            CargoType: this.CargoData.CargoType,
-            CargoDescription: this.CargoData.CargoDescription,
-            DangerousGoods: this.CargoData.DangerousGoods,
-            CargoQuantity: this.CargoData.CargoQuantity,
-            LoadingPort: this.CargoData.LoadingPort,
-            DischargingPort: this.CargoData.DischargingPort,
-            Availability: this.CargoData.Availability,
-            Freight: this.CargoData.Freight,
-            ContactInfo: this.CargoData.ContactInfo,
-            UserID: this.CargoData.UserID
-          });
-        if (this.CargoData.DangerousGoods) {
-          firebase
-            .database()
-            .ref("DangerousGoods/" + this.CargoData.CargoID)
-            .set({
-              CargoID: this.CargoData.CargoID,
-              Corrosive: this.CargoDangerous.Corrosive,
-              DangerousWhenWet: this.CargoDangerous.DangerousWhenWet,
-              Explosive: this.CargoDangerous.Explosive,
-              FlammableGas: this.CargoDangerous.FlammableGas,
-              FlammableLiquid: this.CargoDangerous.FlammableLiquid,
-              FlammableSolid: this.CargoDangerous.FlammableSolid,
-              InfectiousSubstance: this.CargoDangerous.InfectiousSubstance,
-              MarinePollutant: this.CargoDangerous.MarinePollutant,
-              Miscellaneous: this.CargoDangerous.Miscellaneous,
-              NonflammableCompressedGas: this.CargoDangerous
+            CargoType: this.Cargo.CargoType,
+            CargoDescription: this.Cargo.CargoDescription,
+            DangerousGoods: this.Cargo.DangerousGoods,
+            DangerousGoodsTypes: {
+              CargoID: this.Cargo.CargoID,
+              Corrosive: this.DangerousGoods.Corrosive,
+              DangerousWhenWet: this.DangerousGoods.DangerousWhenWet,
+              Explosive: this.DangerousGoods.Explosive,
+              FlammableGas: this.DangerousGoods.FlammableGas,
+              FlammableLiquid: this.DangerousGoods.FlammableLiquid,
+              FlammableSolid: this.DangerousGoods.FlammableSolid,
+              InfectiousSubstance: this.DangerousGoods.InfectiousSubstance,
+              MarinePollutant: this.DangerousGoods.MarinePollutant,
+              Miscellaneous: this.DangerousGoods.Miscellaneous,
+              NonflammableCompressedGas: this.DangerousGoods
                 .NonflammableCompressedGas,
-              OrganicPeroxide: this.CargoDangerous.OrganicPeroxide,
-              OxidizingAgent: this.CargoDangerous.OxidizingAgent,
-              Radioactive: this.CargoDangerous.Radioactive,
-              SpontaneouslyCombustible: this.CargoDangerous
+              OrganicPeroxide: this.DangerousGoods.OrganicPeroxide,
+              OxidizingAgent: this.DangerousGoods.OxidizingAgent,
+              Radioactive: this.DangerousGoods.Radioactive,
+              SpontaneouslyCombustible: this.DangerousGoods
                 .SpontaneouslyCombustible,
-              ToxicGas: this.CargoDangerous.ToxicGas
-            });
+              ToxicGas: this.DangerousGoods.ToxicGas
+            },
+            CargoQuantity: this.Cargo.CargoQuantity,
+            LoadingPort: this.Cargo.LoadingPort,
+            DischargingPort: this.Cargo.DischargingPort,
+            Availability: this.Cargo.Availability,
+            Freight: this.Cargo.Freight,
+            ContactInfo: this.Cargo.ContactInfo,
+            UserID: 1
+          })
+        } else {
+        db.collection("Cargo").doc(this.CargoData.CargoID).set({
+            CargoID: this.CargoData.CargoID,
+            CargoType: this.Cargo.CargoType,
+            CargoDescription: this.Cargo.CargoDescription,
+            DangerousGoods: this.Cargo.DangerousGoods,
+            CargoQuantity: this.Cargo.CargoQuantity,
+            LoadingPort: this.Cargo.LoadingPort,
+            DischargingPort: this.Cargo.DischargingPort,
+            Availability: this.Cargo.Availability,
+            Freight: this.Cargo.Freight,
+            ContactInfo: this.Cargo.ContactInfo,
+            UserID: 1
+          })
+
         }
       }
     },

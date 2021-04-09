@@ -1822,8 +1822,80 @@ export default {
         }
       }
     },
-    save() {
+    async save() {
+      // test.forEach((element,this.AvailabilitySector)  {
+      //   if (ele)
+
+      // })
+
+      // function findMacro(element, port){
+      //   if(port in element.children.ports){
+      //     return {
+      //       macro: element.title,
+      //       micro: element.children
+      //     }
+      //   }
+      // }
+      // alert(test);
+      var arr = test;
+      var sector = "";
+      // this.ShipsVoyage.AvailabilitySector = this.ShipsVoyage.AvailabilitySector
+      // console.log(arr[6].ports)
+
+
+
+
+            for ( var i = 0; i < arr.length; i++){
+        if (arr[i].ports.length != 0){
+          for( var j = 0; j<arr[i].ports.length; j++){
+            console.log(this.ShipsVoyage.AvailabilitySector)
+            if(this.ShipsVoyage.AvailabilitySector == arr[i].ports[j].title){
+              sector = {
+                Macro: arr[i].title,
+                Micro: "none",
+              }
+              console.log(sector)
+              console.log(this.ShipsVoyage.AvailabilitySector)
+            }else{
+              console.log(this.ShipsVoyage.AvailabilitySector + "Not Found")
+            }
+          
+        }
+          
+        }
+        if(arr[i].children.length != 0){
+          for( j = 0; j < arr[i].children.length; j++){
+            if(arr[i].children[j].ports.length != 0){
+            for( var z = 0; z<arr[i].children[j].ports.length; z++){
+            if(this.ShipsVoyage.AvailabilitySector == arr[i].children[j].ports[z].title){
+              sector =  {
+                Macro: arr[i].title,
+                Micro: arr[i].children[j].ports[z].title
+              }
+              console.log(sector)
+            }else{
+              console.log(this.ShipsVoyage.AvailabilitySector + "Not found")
+            }
+          }
+
+          }
+
+          }
+          
+          
+
+        }
+         
+      }
+
+
+
+
+
+
       this.allValid();
+      var db = firebase.firestore();
+      var empty = await db.collection("Cargo").add({empty: "test"});
       if (this.set) {
         this.ShipsVoyage.LOA = this.LOAno + this.LOAUnit;
         this.ShipsVoyage.LBP = this.LBPno + this.LBPUnit;
@@ -1859,11 +1931,19 @@ export default {
         this.ShipsTime.EnginePower = this.ShipsTime.EnginePower + "HP";
         this.ShipsTime.EconomySpeed = this.ShipsTime.EconomySpeed + "Knots";
 
-        firebase
-          .database()
-          .ref("ShipsVoyage/" + this.ShipsVoyage.ShipID)
-          .set({
-            ShipID: this.ShipsVoyage.ShipID,
+        // firebase
+        //   .database()
+        //   .ref("ShipsVoyage/" + this.ShipsVoyage.ShipID)
+        //   .set();
+
+//-----------------------------------------
+
+
+//---------------------------------------------------------------------------
+
+        if (this.ShipsVoyage.VoyageChartering) {
+        db.collection("Ships").doc(empty.id).set({
+            ShipID: empty.id,
             ShipName: this.ShipsVoyage.ShipName,
             Nationality: this.ShipsVoyage.Nationality,
             PortOfRegistry: this.ShipsVoyage.PortOfRegistry,
@@ -1893,14 +1973,41 @@ export default {
             ContactInfo: this.ShipsVoyage.ContactInfo,
             TimeCharterring: this.ShipsVoyage.TimeCharterring,
             VoyageChartering: this.ShipsVoyage.VoyageChartering,
-            UserID: this.ShipsVoyage.UserID
-          });
-        if (this.ShipsVoyage.TimeCharterring) {
-          firebase
-            .database()
-            .ref("ShipsTime/" + this.ShipsTime.ShipID)
-            .set({
-              ShipID: this.ShipsTime.ShipID,
+            UserID: this.ShipsVoyage.UserID,
+            ...sector
+          })
+        } else {
+        db.collection("Ships").doc(empty.id).set({
+            ShipID: empty.id,
+            ShipName: this.ShipsVoyage.ShipName,
+            Nationality: this.ShipsVoyage.Nationality,
+            PortOfRegistry: this.ShipsVoyage.PortOfRegistry,
+            TypeOfShip: this.ShipsVoyage.TypeOfShip,
+            IMO: this.ShipsVoyage.IMO,
+            LOA: this.ShipsVoyage.LOA,
+            LBP: this.ShipsVoyage.LBP,
+            Breadth: this.ShipsVoyage.Breadth,
+            GRT: this.ShipsVoyage.GRT,
+            NRT: this.ShipsVoyage.NRT,
+            GrainCapacity: this.ShipsVoyage.GrainCapacity,
+            BaleCapacity: this.ShipsVoyage.BaleCapacity,
+            HoldVolumeCubicMeter: this.ShipsVoyage.HoldVolumeCubicMeter,
+            HoldType: this.ShipsVoyage.HoldType,
+            ReadyToCarryDangerousGoods: this.ShipsVoyage
+              .ReadyToCarryDangerousGoods,
+            SummerDraft: this.ShipsVoyage.SummerDraft,
+            DeadWeight: this.ShipsVoyage.DeadWeight,
+            AirDraft: this.ShipsVoyage.AirDraft,
+            Owner: this.ShipsVoyage.Owner,
+            OwnerAddress: this.ShipsVoyage.OwnerAddress,
+            Operator: this.ShipsVoyage.Operator,
+            OperatorAddress: this.ShipsVoyage.OperatorAddress,
+            BuildYear: this.ShipsVoyage.BuildYear,
+            Availability: this.ShipsVoyage.Availability,
+            AvailabilitySector: this.ShipsVoyage.AvailabilitySector,
+            ContactInfo: this.ShipsVoyage.ContactInfo,
+            TimeCharterring: this.ShipsVoyage.TimeCharterring,
+            TimeCharterringData: {
               EconomySpeed: this.ShipsTime.EconomySpeed,
               EnginePower: this.ShipsTime.EnginePower,
               Class: this.ShipsTime.Class,
@@ -1909,7 +2016,12 @@ export default {
               MMSIno: this.ShipsTime.MMSIno,
               CallSign: this.ShipsTime.CallSign,
               OfficialNo: this.ShipsTime.OfficialNo
-            });
+            },
+            VoyageChartering: this.ShipsVoyage.VoyageChartering,
+            UserID: this.ShipsVoyage.UserID,
+            ...sector
+          })
+
         }
       }
     }

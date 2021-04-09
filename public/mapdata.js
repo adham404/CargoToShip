@@ -10,7 +10,7 @@ var simplemaps_worldmap_mapdata={
 		//State defaults
 		state_description: "",
     state_color: "#0E153A",
-    state_hover_color: "#3B729F",
+    state_hover_color: "#0E153A",
     // state_url: "https://simplemaps.com",
     border_size: 0.1,
     border_color: "#ffffff",
@@ -24,10 +24,10 @@ var simplemaps_worldmap_mapdata={
     location_hover_opacity: 1,
     location_url: "",
     location_size: 25,
-    location_type: "square",
+    location_type: "marker",
     location_border_color: "#FFFFFF",
-    location_border: 2,
-    location_hover_border: 2.5,
+    location_border: 0.1,
+    location_hover_border: 0.1,
     all_locations_inactive: "no",
     all_locations_hidden: "no",
     
@@ -39,7 +39,7 @@ var simplemaps_worldmap_mapdata={
     hide_labels: "no",
    
 		//Zoom settings
-		manual_zoom: "no",
+		manual_zoom: "yes",
     back_image: "no",
     arrow_box: "no",
     navigation_size: "40",
@@ -1573,40 +1573,191 @@ var simplemaps_worldmap_mapdata={
       url: "default"
     }
   },
-  locations: {
-    "0": {
-      name: "Arctic Ocean",
-      lat: "65.45923086201427",
-      lng: "-60.40103916800455",
-      color: "default",
-      description: "default",
-      url: "default",
+  locations : {
+    0:{
+        "name": "Arctic Ocean",
+        "lat": 65.2481624,
+        "lng": -60.4620977,
+        "color": "default",
+        "description": "default",
+        "url": "default"
     },
-    // "0": {
-    //   name: "Paris",
-    //   lat: "48.866666670",
-    //   lng: "2.333333333",
-    //   color: "default",
-    //   description: "default",
-    //   url: "default"
-    // },
-    "1": {
-      name: "Tokyo",
-      lat: "35.666666670",
-      lng: "139.750000000",
-      color: "default",
-      description: "default",
-      url: "default"
+    1:{
+        "name": "Australia",
+        "lat": -25.274398,
+        "lng": 133.775136,
+        "color": "default",
+        "description": "default",
+        "url": "default"
     },
-    // "3": {
-    //   name: "New York",
-    //   lat: "40.71",
-    //   lng: "-74.0059731",
-    //   description: "default",
-    //   color: "default",
-    //   url: "default",
-    //   size: "default"
-    // }
-  },
+    2:{
+        "name": "Azov Sea",
+        "lat": 46.15648969999999,
+        "lng": 36.58661439999999,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    3:{
+        "name": "Black Sea",
+        "lat": 43.41302899999999,
+        "lng": 34.299316,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    4:{
+        "name": "Caribbean",
+        "lat": 21.4691137,
+        "lng": -78.6568942,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    5:{
+        "name": "Caspian Sea",
+        "lat": 41.934977,
+        "lng": 50.66894500000001,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    6:{
+        "name": "Danube River",
+        "lat": 46.3108097,
+        "lng": 18.9257117,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    7:{
+        "name": "East Africa",
+        "lat": 1.957709,
+        "lng": 37.2972044,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    8:{
+        "name": "East Coast Of South America",
+        "lat": 25.8627759,
+        "lng": -80.4604643,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    9:{
+        "name": "Far East",
+        "lat": 39.0463026,
+        "lng": -77.1041169,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    10:{
+        "name": "Marmara Sea",
+        "lat": 40.6681407,
+        "lng": 28.1122679,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    11:{
+        "name": "Mediterranean Sea",
+        "lat": 34.5531284,
+        "lng": 18.0480105,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    12:{
+        "name": "Middle East",
+        "lat": 29.2985278,
+        "lng": 42.5509603,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    13:{
+        "name": "North Atlantic",
+        "lat": 29.8440407,
+        "lng": -95.15859329999999,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    14:{
+        "name": "North Europe",
+        "lat": 62.27864750000001,
+        "lng": 12.3401709,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    15:{
+        "name": "North Pacific Ocean",
+        "lat": -8.783195,
+        "lng": -124.508523,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    16:{
+        "name": "Russian Far East",
+        "lat": 63.3109245,
+        "lng": 135,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    17:{
+        "name": "Russian Rivers",
+        "lat": 38.9119799,
+        "lng": -123.0537083,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    18:{
+        "name": "Siberian Coast",
+        "lat": 36.4742904,
+        "lng": -118.3077149,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    19:{
+        "name": "South Asia",
+        "lat": 25.03764,
+        "lng": 76.4563087,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    20:{
+        "name": "South-East Asia",
+        "lat": -2.2179704,
+        "lng": 115.66283,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    21:{
+        "name": "West Africa",
+        "lat": 13.531665,
+        "lng": -2.4604145,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    },
+    22:{
+        "name": "West Coast Of South America",
+        "lat": 36.6788422,
+        "lng": -118.4006099,
+        "color": "default",
+        "description": "default",
+        "url": "default"
+    }
+},
   labels: {}
 };

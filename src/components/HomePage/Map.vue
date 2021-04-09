@@ -1,9 +1,8 @@
 <template>
     <div>
-        <h1>hello</h1>
-        <div id="map"></div>
+        <div id="map" class="mt-5"></div>
         <ShortListing class="absolute" v-if="List" />
-        <v-btn
+        <!-- <v-btn
             v-show="!hidden"
             color="pink"
             fab
@@ -14,9 +13,9 @@
             class="mt-16"
         >
                   <v-icon>mdi-view-list</v-icon>
-        </v-btn>
+        </v-btn> -->
 
-        <v-btn
+        <!-- <v-btn
             v-show="!hidden"
             color="blue"
             fab
@@ -28,9 +27,9 @@
             @click="List = !List"
         >
                   <v-icon>mdi-card-search</v-icon>
-        </v-btn>
+        </v-btn> -->
 
-        <v-btn
+        <!-- <v-btn
             v-show="!hidden"
             color="pink"
             fab
@@ -41,19 +40,16 @@
             class="mb-16 mr-8"
         >
                   <v-icon>mdi-account-circle</v-icon>
-        </v-btn>
+        </v-btn> -->
     </div>
 </template>
 
 <script>
 /*eslint-disable*/
 import {mapMutations,mapGetters} from "vuex";
-<<<<<<< HEAD
 import firebase from "firebase";
 
-=======
 import ShortListing from '../ShortListing.vue';
->>>>>>> a94ceb495d374f438d143cd3b4a46c4606ffcd33
 
     export default {
         data(){
@@ -69,9 +65,13 @@ import ShortListing from '../ShortListing.vue';
                 self.ChangeSector({name: simplemaps_worldmap_mapdata.locations[id].name, Macro: true});
                 const db = firebase.firestore();
                 db.collection("Cargo").add({hello: "hello"})
+                simplemaps_worldmap.location_zoom(id, '4');
                 // alert(self.Sector.name)  
             };
-            alert(this.GetSector);
+            // alert(this.GetSector);
+            simplemaps_worldmap.location_zoom('0', '4');
+            
+
             
             
         },
@@ -94,8 +94,8 @@ import ShortListing from '../ShortListing.vue';
 
 <style scoped>
 #map{
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 60%;
 }
 
 </style>
