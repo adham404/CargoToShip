@@ -143,7 +143,8 @@
       <v-btn v-if="!GetAuthState" @click="GoToLogin" rounded>Login</v-btn>
       <v-btn v-if="!GetAuthState" @click="GoToSignUp" rounded>Sign Up</v-btn>
       <v-btn v-if="GetAuthState" @click="SignOut" rounded>Sign Out</v-btn>
-      <v-btn  @click="Dirt" rounded>Dirt</v-btn>      
+      <!-- <v-btn @click="FormTravel">Go TO Form</v-btn>
+      <v-btn @click="Random">Random Data Generator</v-btn> -->
       <div>{{GetUserData.Name}}</div>
     </v-app-bar>
 
@@ -172,6 +173,14 @@ export default {
         {
           alert(this.GetAuthState);
           alert(this.GetUserData);
+        },
+        Random()
+        {
+          this.$router.push("/Random")
+        },
+        FormTravel()
+        {
+          this.$router.push("/ShipForm")
         },
         SignOut()
         {

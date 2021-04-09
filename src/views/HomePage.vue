@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="d-flex flex-column">
         <Header/>
-        <Map/>      
+        <Map/>              
     </div>
 </template>
 
@@ -16,7 +16,10 @@ import Map from "@/components/HomePage/Map.vue"
     components: {
       Header,
       Map
-    } 
+    },
+    mounted(){
+      
+    }
     }
 </script>
 

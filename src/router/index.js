@@ -119,7 +119,14 @@ const routes = [
     name: "SignUp",
     component: () =>
       import(/* webpackChunkName: "about" */ "../components/Authentication/SignUp.vue")
+  },
+  {
+    path: "/Random",
+    name: "Random",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../components/Random.vue")
   }
+
 
 ];
 
