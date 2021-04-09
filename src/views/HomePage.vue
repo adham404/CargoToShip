@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-column hello">
         <Header/>
         <Map/>              
     </div>
@@ -24,5 +24,9 @@ import Map from "@/components/HomePage/Map.vue"
 </script>
 
 <style scoped>
+.hello{
+  background-color: #C5D7D9;
+  height: 100%;
+}
 
 </style>

@@ -1,21 +1,16 @@
 <template>
-    <div>
+    <div >
         <div id="map" class="mt-5"></div>
-        <ShortListing class="absolute" v-if="List" />
-        <!-- <v-btn
-            v-show="!hidden"
-            color="pink"
-            fab
-            dark
-            absolute
-            top
-            right
-            class="mt-16"
-        >
-                  <v-icon>mdi-view-list</v-icon>
-        </v-btn> -->
-
-        <!-- <v-btn
+        <v-dialog
+      v-model="dialog"
+      max-width="1200"
+    >
+        <v-card>
+            <ShortListing class="absolute" v-if="List" />
+        </v-card>
+    </v-dialog>
+        
+        <v-btn
             v-show="!hidden"
             color="blue"
             fab
@@ -24,12 +19,12 @@
             middle
             right
             class="mb-16 mr-8"
-            @click="List = !List"
+            @click=" dialog=!dialog"
         >
                   <v-icon>mdi-card-search</v-icon>
-        </v-btn> -->
+        </v-btn>
 
-        <!-- <v-btn
+        <v-btn
             v-show="!hidden"
             color="pink"
             fab
@@ -40,7 +35,7 @@
             class="mb-16 mr-8"
         >
                   <v-icon>mdi-account-circle</v-icon>
-        </v-btn> -->
+        </v-btn>
     </div>
 </template>
 
@@ -55,7 +50,8 @@ import ShortListing from '../ShortListing.vue';
         data(){
             return{
                 hidden: false,
-                List: false
+                List: true,
+                dialog: false,
             }
         },
         mounted(){
@@ -69,7 +65,6 @@ import ShortListing from '../ShortListing.vue';
                 // alert(self.Sector.name)  
             };
             // alert(this.GetSector);
-            simplemaps_worldmap.location_zoom('0', '4');
             
 
             
@@ -94,7 +89,7 @@ import ShortListing from '../ShortListing.vue';
 
 <style scoped>
 #map{
-    width: 95%;
+    width: 94%;
     height: 60%;
 }
 

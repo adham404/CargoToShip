@@ -1912,6 +1912,52 @@ export default {
         //   .database()
         //   .ref("ShipsVoyage/" + this.ShipsVoyage.ShipID)
         //   .set();
+        var arr = test;
+        var sector = "";
+
+        
+            for ( var i = 0; i < arr.length; i++){
+        if (arr[i].ports.length != 0){
+          for( var j = 0; j<arr[i].ports.length; j++){
+            console.log(this.ShipsVoyage.AvailabilitySector)
+            if(this.ShipsVoyage.AvailabilitySector == arr[i].ports[j].title){
+              sector = {
+                Macro: arr[i].title,
+                Micro: "none",
+              }
+              console.log(sector)
+              console.log(this.ShipsVoyage.AvailabilitySector)
+            }else{
+              console.log(this.ShipsVoyage.AvailabilitySector + "Not Found")
+            }
+          
+        }
+          
+        }
+        if(arr[i].children.length != 0){
+          for( j = 0; j < arr[i].children.length; j++){
+            if(arr[i].children[j].ports.length != 0){
+            for( var z = 0; z<arr[i].children[j].ports.length; z++){
+            if(this.ShipsVoyage.AvailabilitySector == arr[i].children[j].ports[z].title){
+              sector =  {
+                Macro: arr[i].title,
+                Micro: arr[i].children[j].ports[z].title
+              }
+              console.log(sector)
+            }else{
+              console.log(this.ShipsVoyage.AvailabilitySector + "Not found")
+            }
+          }
+
+          }
+
+          }
+          
+          
+
+        }
+         
+      }
 
 
 
@@ -1947,7 +1993,8 @@ export default {
             ContactInfo: this.ShipsVoyage.ContactInfo,
             TimeCharterring: this.ShipsVoyage.TimeCharterring,
             VoyageChartering: this.ShipsVoyage.VoyageChartering,
-            UserID: this.ShipsVoyage.UserID
+            UserID: this.ShipsVoyage.UserID,
+            Sector: sector,
           })
         } else {
         db.collection("Ships").doc(this.ShipData.ShipID).set({
@@ -1988,10 +2035,11 @@ export default {
               MouldeDepth: this.ShipsTime.MouldeDepth,
               MMSIno: this.ShipsTime.MMSIno,
               CallSign: this.ShipsTime.CallSign,
-              OfficialNo: this.ShipsTime.OfficialNo
+              OfficialNo: this.ShipsTime.OfficialNo,
             },
             VoyageChartering: this.ShipsVoyage.VoyageChartering,
-            UserID: this.ShipsVoyage.UserID
+            UserID: this.ShipsVoyage.UserID,
+            Sector: sector
           })
 
         }

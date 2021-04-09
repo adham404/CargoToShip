@@ -687,7 +687,8 @@ export default {
       this.allValid();
       var db = firebase.firestore();
       var test = await db.collection("Cargo").add({test: "test"});
-
+       var arr = test;
+      var sector = "";
       /*eslint-disable-next-line*/
       if (this.set) {
         this.Cargo.Availability = this.fromDate + " to " + this.toDate;
@@ -695,7 +696,48 @@ export default {
         this.Cargo.Freight = this.Cargo.Freight + "$";
         
         // var test = db.collection("Cargo").add({test: "test"})
+        for ( var i = 0; i < arr.length; i++){
+        if (arr[i].ports.length != 0){
+          for( var j = 0; j<arr[i].ports.length; j++){
+            console.log(this.Cargo.LoadingPort)
+            if(this.Cargo.LoadingPort == arr[i].ports[j].title){
+              sector = {
+                Macro: arr[i].title,
+                Micro: "none",
+              }
+              console.log(sector)
+              console.log(this.Cargo.LoadingPort)
+            }else{
+              console.log(this.Cargo.LoadingPort + "Not Found")
+            }
+          
+        }
+          
+        }
+        if(arr[i].children.length != 0){
+          for( j = 0; j < arr[i].children.length; j++){
+            if(arr[i].children[j].ports.length != 0){
+            for( var z = 0; z<arr[i].children[j].ports.length; z++){
+            if(this.Cargo.LoadingPort == arr[i].children[j].ports[z].title){
+              sector =  {
+                Macro: arr[i].title,
+                Micro: arr[i].children[j].ports[z].title
+              }
+              console.log(sector)
+            }else{
+              console.log(this.Cargo.LoadingPort + "Not found")
+            }
+          }
 
+          }
+
+          }
+          
+          
+
+        }
+         
+      }
         
         // firebase
         //   .database()
