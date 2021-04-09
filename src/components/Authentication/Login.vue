@@ -19,8 +19,11 @@
       label="Password"
       ></v-text-field>
       </v-row>
+      <v-row class="mb-2">
+          <div><a @click="Forgot">Forgot your password</a></div>
+      </v-row>
       <v-row>
-    <v-btn @click="Login">Login</v-btn>
+         <v-btn @click="Login">Login</v-btn>
       </v-row>
       </v-col>
   </v-form>
@@ -29,31 +32,49 @@
 
 <script>
 import firebase from "firebase"
+import {mapActions} from "vuex"
+
 export default {
 data()
 {
     return{
         Email:"",
-        Password:""
+        Password:"",
+        LoginSuccess:true
     }
 },
 methods:{
-    Login()
+    ...mapActions(["CheckAuth","FetchCurrentUserData"]),
+    async Login()
     {
-        if(this.Email != "" && this.Password != "")
+        if(this.Email != "" && this.Password != "") //Quick Validation
         {
             var auth = firebase.auth()
-            auth.signInWithEmailAndPassword(this.Email,this.Password).then(() => {
+            await auth.signInWithEmailAndPassword(this.Email,this.Password).then(() => {
                 this.$router.push({ path: "/"})
             }).catch((err) => {
+                this.LoginSuccess = false;
                 alert(err.message);
             })
+            if(this.LoginSuccess)
+            {
+                //Check Auth
+                await this.CheckAuth()            
+                //Fetch User Current Data
+                await this.FetchCurrentUserData()
+                //Route to HomePage
+                this.$router.push({ path: "/"})
+            }
 
         }
         else
         {
-            alert("Wrong Input");
+            alert("Please Fill in the Missing Details");
         }
+    },
+    Forgot()
+    {
+
     },
     GoToSignUp()
     {

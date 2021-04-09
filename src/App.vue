@@ -42,7 +42,8 @@
 
 <script>
 // import HelloWorld from "./components/HelloWorld";
-
+import {mapActions} from "vuex"
+import firebase from "firebase"
 export default {
   name: "App",
 
@@ -50,7 +51,42 @@ export default {
     // HelloWorld
     
   },
+  methods:{
+    ...mapActions(["CheckAuth","FetchCurrentUserData"])
+  },
+  computed:{
+    // ...mapGetters(["GetAuthState"])
+  },
+  async mounted()
+  {
+    var auth = firebase.auth()
+    await auth.onAuthStateChanged(async (user) =>{
+      if(user)
+      {
+        await this.CheckAuth()
+        //Fetch User Data
+        await this.FetchCurrentUserData()
+        //Route To Homepage
+        this.$router.push({path: "/"})
 
+      }
+      else{
+        //Route To SignUp/Login
+        this.$router.push({path: "/Login2"})
+      }
+    })
+    //Check Auth
+    //Is User Logged in or not
+    // var flag = await this.GetAuthState 
+    // alert("Hey: "+ flag);
+    // if(flag)
+    // {
+    // }
+    // else {
+
+    // }
+
+  },
   data: () => ({
     //
   })

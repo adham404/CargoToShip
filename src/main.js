@@ -35,6 +35,7 @@ if(window.location.hostname === 'localhost') {
   console.log("Check");
   Firebase.firestore().useEmulator('localhost', 7000 );
   Firebase.functions().useEmulator('localhost', 5001);
+  Firebase.auth().useEmulator("http://localhost:9099");  
   /* OLD implementation */
   // Firebase.firestore().settings({ host: 'localhost:8080', ssl: false });
   // Firebase.functions().useFunctionsEmulator('http://localhost:5001');

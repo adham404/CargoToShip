@@ -64,7 +64,6 @@ import ShortListing from '../ShortListing.vue';
                 self.ChangeSector({name: simplemaps_worldmap_mapdata.locations[id].name, Macro: true});
                 // alert(self.Sector.name)  
             };
-            alert(this.GetSector);
             
             
         },
