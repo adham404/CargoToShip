@@ -4,6 +4,7 @@ admin.initializeApp();
 exports.Customer = require("./Stripe/Customer")
 exports.Session = require("./Stripe/Session")
 exports.Cards = require("./Stripe/Cards")
+exports.payment = require("./Stripe/Payment")
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions

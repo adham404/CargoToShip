@@ -95,16 +95,34 @@
         </v-row>
         
     </v-card-actions>
+    <v-btn color="success" @click="odrder">pay</v-btn>
+    <v-btn color="success" @click="confermodrder">confirm</v-btn>
   </v-card>
 </template>
 
 <script>
 import {mapGetters,mapActions}  from "vuex"
+import firebase from "firebase"
 export default {
      computed:{
-        ...mapGetters(["UserCridetCards"]) , 
+        ...mapGetters(["UserCridetCards"]) ,
+
     },
     methods:{
+        async odrder(){
+            console.log("paymemt by :", this.UserCridetCards[this.selectedItem ].id)
+           const pay = await firebase.functions().httpsCallable("payment-CreatePyment")
+           const pymentinit =  await pay({CardId : this.UserCridetCards[this.selectedItem ].id })
+           console.log(pymentinit)
+            
+        },
+        async confermodrder(){
+            
+           const pay = await firebase.functions().httpsCallable("payment-ConfirmPyment")
+           const pymentinit =  await pay({paymentIntentID : "pi_1IYZvPJeByZuBuxOOM5iuqbS" })
+           console.log(pymentinit)
+            
+        },
         ...mapActions(["GetUserCards","DeletUserCard"]),
         mmd(s){
             this.DeletUserCard(s)
