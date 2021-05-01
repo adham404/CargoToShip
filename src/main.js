@@ -4,7 +4,11 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 
+
 Vue.config.productionTip = false;
+
+
+export const EventBus = new Vue();
 
 //FireBase 
 // from -->  https://stackoverflow.com/questions/60536897/how-to-tell-a-vue-app-to-use-firebase-emulator
@@ -26,9 +30,12 @@ const firebaseConfig = {
 
 !Firebase.apps.length ? Firebase.initializeApp(firebaseConfig) : '';
 
+console.log("Check outside");
 if(window.location.hostname === 'localhost') {
+  console.log("Check");
   Firebase.firestore().useEmulator('localhost', 7000 );
   Firebase.functions().useEmulator('localhost', 5001);
+  Firebase.auth().useEmulator("http://localhost:9099");  
   /* OLD implementation */
   // Firebase.firestore().settings({ host: 'localhost:8080', ssl: false });
   // Firebase.functions().useFunctionsEmulator('http://localhost:5001');
@@ -38,5 +45,5 @@ new Vue({
   router,
   store,
   vuetify,
-  render: h => h(App)
+  render: h => h(App) //F:\CargoToShip_M2\CargoToShip\seed
 }).$mount("#app");
