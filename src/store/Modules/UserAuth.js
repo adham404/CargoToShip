@@ -55,6 +55,17 @@ const actions = {
             commit('SetCurrentUserData',doc.data())
         })
     },
+    async UpdateUserData({state},data)
+    {
+        var db = firebase.firestore()
+        console.log("ID of doc to be edited: "+ state.UserId)
+        await db.collection("Users").doc(state.UserId).update({
+            Name: data.Fn + " " + data.Ln,
+            PhoneNumber: data.Ph,
+            Country: data.Country,
+            CompanyWebsite: data.CWebsite
+        }) 
+    },
     async CreateUserDoc({state})
     {
         // alert("Recieved form here the id: "+ x.Uid);
@@ -73,7 +84,8 @@ const actions = {
                     Email: state.PreUserData.Email,
                     NumOfOrders: 0,
                     PhoneNumber: "",
-                    CompanyWebsite: ""
+                    CompanyWebsite: "",
+                    Country:""
                 }
 
                 db.collection("Users").doc(user.uid).set(UserObj)
