@@ -18,28 +18,48 @@ import 'firebase/firestore';
 import 'firebase/functions';
 import 'firebase/storage';
 
+
+
+//This firbase config works fine with firebase production
+
+// var firebaseConfig = {
+//   apiKey: "AIzaSyBSMAICYcm8WxTIlEPTCmRLuoR6s4vwiLM",
+//   authDomain: "cargo2ship-c9662.firebaseapp.com",
+//   databaseURL: "https://cargo2ship-c9662.firebaseio.com",
+//   projectId: "cargo2ship-c9662",
+//   storageBucket: "cargo2ship-c9662.appspot.com",
+//   messagingSenderId: "1062829855943",
+//   appId: "1:1062829855943:web:809c71cde7d3af29ccdae2",
+//   measurementId: "G-W62MFYZRES"
+// };
+
+//This firbase config works fine with firebase emulator
+
+
 const firebaseConfig = {
-  apiKey: "AIzaSyA-QrgH-0iuyy92uMGNATb-qFctc5APgGQ",
-  authDomain: "cargotoship2.firebaseapp.com",
-  databaseURL: "https://cargotoship2.firebaseio.com",
-  projectId: "cargotoship2",
-  storageBucket: "cargotoship2.appspot.com",
-  messagingSenderId: "193072313981",
-  appId: "1:193072313981:web:6bc531d009af01efc92314"
-};
-
-!Firebase.apps.length ? Firebase.initializeApp(firebaseConfig) : '';
-
-console.log("Check outside");
-if(window.location.hostname === 'localhost') {
-  console.log("Check");
-  Firebase.firestore().useEmulator('localhost', 7000 );
-  Firebase.functions().useEmulator('localhost', 5001);
-  Firebase.auth().useEmulator("http://localhost:9099");  
-  /* OLD implementation */
-  // Firebase.firestore().settings({ host: 'localhost:8080', ssl: false });
-  // Firebase.functions().useFunctionsEmulator('http://localhost:5001');
-}
+    apiKey: "AIzaSyA-QrgH-0iuyy92uMGNATb-qFctc5APgGQ",
+    authDomain: "cargotoship2.firebaseapp.com",
+    databaseURL: "https://cargotoship2.firebaseio.com",
+    projectId: "cargotoship2",
+    storageBucket: "cargotoship2.appspot.com",
+    messagingSenderId: "193072313981",
+    appId: "1:193072313981:web:6bc531d009af01efc92314"
+  };
+  
+  !Firebase.apps.length ? Firebase.initializeApp(firebaseConfig) : '';
+  
+  // Firebase.initializeApp(firebaseConfig)
+  
+  console.log("Check outside");
+  if(window.location.hostname === 'localhost') {
+    console.log("Check");
+    Firebase.firestore().useEmulator('localhost', 7000 );
+    Firebase.functions().useEmulator('localhost', 5001);
+    Firebase.auth().useEmulator("http://localhost:9099");  
+    /* OLD implementation */
+    // Firebase.firestore().settings({ host: 'localhost:8080', ssl: false });
+    // Firebase.functions().useFunctionsEmulator('http://localhost:5001');
+  }
 
 new Vue({
   router,

@@ -125,7 +125,14 @@ const routes = [
     name: "Random",
     component: () =>
       import(/* webpackChunkName: "about" */ "../components/Random.vue")
+  },
+  {
+    path: "/ProfileSettings",
+    name: "ProfileSettings",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../components/Authentication/ProfileSettings")
   }
+
 
 
 ];

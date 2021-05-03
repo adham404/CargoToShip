@@ -34,6 +34,7 @@
             bottom
             right
             class="mb-16 mr-8"
+            @click="GoToProfile"
         >
                   <v-icon>mdi-account-circle</v-icon>
         </v-btn>
@@ -91,7 +92,13 @@ import ShortListing from '../ShortListing.vue';
         },
         methods: {
             ...mapMutations(["ChangeSector","MapRegionSelect","InitializeCargoAndShips"]),
-            ...mapActions(["FetchCargoAndShipCards"])
+            ...mapActions(["FetchCargoAndShipCards"]),
+            GoToProfile()
+            {
+                //Go to Profile Settings
+                this.$router.push("/ProfileSettings")
+
+            }
 
 
         }

@@ -102,7 +102,7 @@ Validate()
         console.log(user);
         }).catch((error) => {
         this.SignUpSuccess = false;
-        alert(error.message);
+        alert("This is error: "+error.message);
       })
         if(this.SignUpSuccess)
         {

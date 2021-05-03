@@ -5,7 +5,6 @@
       dense
       elevation="0"
       class="pt-5"
-      
       height="80"
     >
       <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
@@ -160,8 +159,8 @@
       <v-btn v-if="!GetAuthState" @click="GoToLogin" rounded>Login</v-btn>
       <v-btn v-if="!GetAuthState" @click="GoToSignUp" rounded>Sign Up</v-btn>
       <v-btn v-if="GetAuthState" @click="SignOut" rounded>Sign Out</v-btn>
-      <!-- <v-btn @click="FormTravel">Go TO Form</v-btn>
-      <v-btn @click="Random">Random Data Generator</v-btn> -->
+      <v-btn @click="FormTravel">Go TO Form</v-btn>
+      <!-- <v-btn @click="Random">Random Data Generator</v-btn> -->
       <div>{{GetUserData.Name}}</div>
     </v-app-bar>
 
@@ -197,7 +196,7 @@ export default {
         },
         FormTravel()
         {
-          this.$router.push("/ShipForm")
+          this.$router.push("/CargoForm")
         },
         SignOut()
         {
