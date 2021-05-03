@@ -4,8 +4,10 @@ const stripe = require('stripe')('sk_test_51IXoICJeByZuBuxO4F0Iaeo34VusE93uZo4Ak
 exports.GetCards = functions.https.onCall(async (data,context)=>{
     
     let CardsData = [] ;
-    //var customer = await admin.firestore().collection('Users').doc(context.auth.uid).get();
-    var customer = await admin.firestore().collection('Users').doc("r7DhHLKQIDmgKN07wEH8").get();
+    console.log(context.auth.uid)
+    var customer = await admin.firestore().collection('Users').doc(context.auth.uid).get();
+    //var customer = await admin.firestore().collection('Users').doc("r7DhHLKQIDmgKN07wEH8").get();
+    console.log(customer.data())
     var customerid = await customer.data().customer_id
     
     const paymentMethods = await stripe.paymentMethods.list({

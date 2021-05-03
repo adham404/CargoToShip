@@ -16,17 +16,20 @@ export default {
        ListCards 
     },
     computed:{
-        ...mapGetters(["UserData","UserCridetCards"]) , 
+        ...mapGetters(["UserData","UserCridetCards","GetUserData"]) , 
     },
     async mounted(){
-        await this.GETUserData() ;
+        await this.CheckAuth() ;
+        
         await this.GetUserCards() ;
-        console.log(this.UserData)
+        await this.FetchCurrentUserData() ;
+        //console.log(this.UserData)
         console.log(this.UserCridetCards)
+        console.log(this.GetUserData)
 
     },
     methods:{
-        ...mapActions(["GETUserData","GetUserCards"]),
+        ...mapActions(["GetUserCards","CheckAuth","FetchCurrentUserData"]),
     }
 
 }

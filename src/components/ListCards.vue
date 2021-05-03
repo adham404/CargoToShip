@@ -112,14 +112,14 @@ export default {
         async odrder(){
             console.log("paymemt by :", this.UserCridetCards[this.selectedItem ].id)
            const pay = await firebase.functions().httpsCallable("payment-CreatePyment")
-           const pymentinit =  await pay({CardId : this.UserCridetCards[this.selectedItem ].id })
+           const pymentinit =  await pay({CardId : this.UserCridetCards[this.selectedItem ].id , ItemId : "oo", Itype: "ship"})
            console.log(pymentinit)
             
         },
         async confermodrder(){
             
-           const pay = await firebase.functions().httpsCallable("payment-ConfirmPyment")
-           const pymentinit =  await pay({paymentIntentID : "pi_1IYZvPJeByZuBuxOOM5iuqbS" })
+           const pay = await firebase.functions().httpsCallable("payment-Confirm_order")
+           const pymentinit =  await pay({orderId : "yvcoTIHhY72UQdmW7yON" })
            console.log(pymentinit)
             
         },

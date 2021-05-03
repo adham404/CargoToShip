@@ -68,7 +68,7 @@ export default {
   // computed:{
   //   },
   methods:{
-    ...mapActions(["CreateUserDoc"]),
+    ...mapActions(["CreateUserDoc","CheckAuth","FetchCurrentUserData"]),
     ...mapMutations(["SetUserDataToSignUp"]),
 Validate()
   {
