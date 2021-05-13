@@ -67,6 +67,7 @@
                     background-color = "white"
                     dense
                     rounded
+                    height="5"
                     >
                     </v-text-field>
                 </template>    
