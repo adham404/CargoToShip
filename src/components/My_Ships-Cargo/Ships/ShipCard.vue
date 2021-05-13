@@ -18,12 +18,12 @@
                         <v-col>
                             <v-row>Ready to carry Dangerous Goods {{card.DangerousGoods}}</v-row>
                             <v-row>Dead weight {{card.DeadWeight}}</v-row>
-                            <v-row>Available Sector {{card.AvailableSector}}</v-row>
+                            <v-row>Available Sector {{card.AvailabilitySector}}</v-row>
                         </v-col>
                         <v-col>
-                            <v-row>From Date {{card.FromDate}}</v-row>
-                            <v-row>To Date {{card.ToDate}}</v-row>
-                            <v-row>Charterting Type {{card.CharteringType}}</v-row>
+                            <v-row>From Date {{card.Availability.split(" ")[0]}}</v-row>
+                            <v-row>To Date {{card.Availability.split(" ")[2]}}</v-row>
+                            <v-row>Charterting Type {{card.TypeOfShip}}</v-row>
                         </v-col>
                     </v-row>
                     </v-card-text>
@@ -32,12 +32,16 @@
 
 <script>
 export default {
+    props:["card"],
     data(){
         return{
-            card : {
-                // Id:"dfffdggefgfgf"
-            }
+            // card : {
+            //     // Id:"dfffdggefgfgf"
+            // }
         }
+    },
+    mounted(){
+        console.log(this.card)
     }
 
 }

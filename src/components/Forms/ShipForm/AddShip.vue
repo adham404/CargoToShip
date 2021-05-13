@@ -1823,6 +1823,8 @@ export default {
       }
     },
     async save() {
+      const user = await firebase.auth().currentUser
+      this.ShipsVoyage.UserID = user.uid
       // test.forEach((element,this.AvailabilitySector)  {
       //   if (ele)
 

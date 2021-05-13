@@ -25,8 +25,8 @@
                         <v-col>
                             <v-row>Loading Port {{card.LoadingPort}}</v-row>
                             <v-row>Discharging Port {{card.DischargingPort}}</v-row>
-                            <v-row>From Date {{card.FromDate}}</v-row>
-                            <v-row>To Date {{card.ToDate}}</v-row>
+                            <v-row>From Date {{card.Availability.split(" ")[0]}}</v-row>
+                            <v-row>To Date {{card.Availability.split(" ")[2]}}</v-row>
                         </v-col>
                     </v-row>
                     </v-card-text>
@@ -35,9 +35,10 @@
 
 <script>
 export default {
+    props:["card"],
     data(){
         return{
-            card : {}
+            //card : {}
         }
     }
 

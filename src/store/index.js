@@ -7,7 +7,8 @@ import Listing from "./Modules/Listing"
 import Map from "./Modules/Map"
 import UserAuth from "./Modules/UserAuth"
 import UserOrders from "./Modules/UserOders"
-
+import MyShips from "./Modules/MyShips"
+import MyCargo from "./Modules/MyCargo"
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -21,6 +22,8 @@ export default new Vuex.Store({
     SearchBar,
     Listing,
     Map,
-    UserOrders
+    UserOrders,
+    MyShips,
+    MyCargo
   }
 });
