@@ -65,7 +65,7 @@
                   </v-card>
               </v-col>
               <v-col v-if="!cargo" class="col-6 overflow:y">
-                  <v-card  class="my-10" v-for="(card,x) in GetShipCards" :key="x">
+                  <v-card  class="my-10" v-for="(card,x) in GetShipList" :key="x">
                       <v-row>
                         <v-icon x-large right>
                             mdi-ferry
@@ -358,7 +358,7 @@ export default {
         LongList
     },
     computed:{
-        ...mapGetters(["GetCargoCards","GetShipCards"])
+        ...mapGetters(["GetCargoList","GetShipList"])
     },
     methods:{
         ...mapActions(["FetchCargoAndShipCards"]),
@@ -374,7 +374,7 @@ export default {
         },
         CargoCardFilteration()
         {
-            this.FilteredCargoCards = this.GetCargoCards
+            this.FilteredCargoCards = this.GetCargoList
             var NewCards = [];
             if(this.dateFromFilter != "" && this.dateToFilter != "")
             {                
@@ -440,12 +440,9 @@ export default {
     },
     mounted()
     {
-        var num = "10";
-        var x = 0;
-        x = num + 2;
-        console.log(x);
-        this.FetchCargoAndShipCards()
-        this.FilteredCargoCards = this.GetCargoCards
+        // this.FetchCargoAndShipCards()
+        this.FilteredCargoCards = this.GetCargoList
+        console.log("List From Here: "+ this.GetCargoList);
         this.SectorData = require("../sectors.json");        
     }
 }

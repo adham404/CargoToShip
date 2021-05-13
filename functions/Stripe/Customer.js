@@ -7,7 +7,7 @@ exports.NewcreateStripeCustomer = functions.firestore.document("Users/{id}").onC
     const customer = await stripe.customers.create({ 
         email: snap.data().Email ,
         metadata: {
-            "UserId" : snap.data().UserId
+            "UserId" : snap.data().UserID
         },
     });
     

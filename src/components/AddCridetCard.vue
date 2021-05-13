@@ -9,6 +9,9 @@ var stripePromise = loadStripe(
   "pk_test_51IXoICJeByZuBuxO3SfLNwfj950aXljSrAuJcKDeO4b9LQQavZCpWEhcwsB4iUxnoU3yr0PBK0BuUGZiCDQpJjj300KtcAWzXW"
 );
 export default {
+  mounted(){
+    this.addCard()
+  },
     methods:{
         async addCard(){
         //let self = this ;

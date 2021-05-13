@@ -1,5 +1,9 @@
 # emulator-trial
 
+## Run emlator
+```
+Firebase emulators:start --import=./seed --export-on-exit
+```
 ## Project setup
 ```
 npm install

@@ -1,6 +1,10 @@
 import firebase from "firebase"
 
 const state = {
+    CargoCards:[],
+    ShipCards:[],
+    MapCargo:[],
+    MapShip:[],
     CargoListing:[],
     ShipListing:[],
     ObjectLongListing:[],
@@ -8,8 +12,8 @@ const state = {
 }
 
 const getters = {
-GetCargoCards: state => state.CargoListing,
-GetShipCards: state => state.ShipListing,
+GetCargoList: state => state.MapCargo,
+GetShipList: state => state.MapShip,
 GetLongListObject: state => state.ObjectLongListing,
 GetCargoStatus: state => state.CargoStatus
 }
@@ -100,6 +104,34 @@ const mutations = {
             ]
         }
     },
+    InitializeCargoAndShips(state)
+    {
+        state.MapCargo = state.CargoCards
+        state.MapShip = state.ShipCards
+    },
+    MapRegionSelect(state,Sector)
+    {
+        state.MapCargo = []
+        state.MapShip = []
+        alert("Sector clicked is: "+ Sector);
+        state.CargoCards.forEach((card) => {
+            if(card.Macro == Sector)
+            {
+                state.MapCargo.push(card);
+            }
+        })
+        state.ShipCards.forEach((card) => {
+            if(card.Macro == Sector)
+            {
+                state.MapShip.push(card);
+            }            
+        })
+        //Assign the Listing Array from the map array
+        // console.log("Filtered Cargos on Map: "+ state.MapCargo)
+        // state.CargoListing = state.MapCargo
+        // state.ShipListing = state.MapShip
+
+    },
     SetCargoStatus(state,x)
     {
         state.CargoStatus = x
@@ -109,17 +141,25 @@ const mutations = {
 const actions = {
 async FetchCargoAndShipCards({state})
 {
+    //Set the Original Cargo and ship states
     var db = firebase.firestore()
-    await db.collection("Cargo").get().then((query) => {
-        query.forEach((doc) => {
-            state.CargoListing.push(doc.data())
+    await db.collection("Cargo").get().then(async (query) => {
+        await query.forEach((doc) => {
+            state.CargoCards.push(doc.data())
         })
+        state.MapCargo = state.CargoCards
+        // state.CargoListing = state.CargoCards
+        // console.log("Hey list "+state.CargoListing);
     })
-    await db.collection("Ship").get().then((query) => {
-        query.forEach((doc) => {
-            state.ShipListing.push(doc.data())
+    await db.collection("Ships").get().then(async (query) => {
+        await query.forEach((doc) => {
+            state.ShipCards.push(doc.data())
         })
+        state.MapShip = state.ShipCards
+        // state.ShipListing = state.ShipCards
     })
+    //Initialize the Ship and Cargo Listing and Map Data
+
 }
 
 }

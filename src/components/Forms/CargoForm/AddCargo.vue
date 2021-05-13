@@ -684,6 +684,8 @@ export default {
       }
     },
     async save() {
+      const UserData = await firebase.auth().currentUser
+      this.UserUID = UserData.uid
       this.allValid();
       var db = firebase.firestore();
       var test = await db.collection("Cargo").add({test: "test"});
@@ -787,7 +789,7 @@ export default {
             Availability: this.Cargo.Availability,
             Freight: this.Cargo.Freight,
             ContactInfo: this.Cargo.ContactInfo,
-            UserID: 1
+            UserID: this.UserUID
           })
         } else {
         db.collection("Cargo").doc(test.id).set({
@@ -801,7 +803,7 @@ export default {
             Availability: this.Cargo.Availability,
             Freight: this.Cargo.Freight,
             ContactInfo: this.Cargo.ContactInfo,
-            UserID: 1
+            UserID: this.UserUID
           })
 
         }

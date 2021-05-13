@@ -5,7 +5,6 @@
       dense
       elevation="0"
       class="pt-5"
-      
       height="80"
     >
       <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
@@ -129,16 +128,51 @@
                   </v-btn-toggle>
               </v-col>
           </v-row>
-      <v-btn @click="GoToLogin" rounded>Login</v-btn>
-      <v-btn @click="GoToSignUp" rounded>Sign Up</v-btn>
+    <!-- <v-sheet color = "white">
+      hello
+    </v-sheet>
+    <v-switch
+      v-model="switch1"
+      :label="`Switch 1: ${switch1.toString()}`"
+    ></v-switch> -->
+      <!-- <v-text-field
+            label="Outlined"
+            placeholder="Placeholder"
+            outlined
+            rounded
+            dense
+      >
+      </v-text-field> -->
+      <!-- <v-text-field
+            label="Prepend"
+            prepend-icon="mdi-map-marker"
+            dense
+            rounded
+      ></v-text-field>
+      <v-text-field
+            label="Prepend"
+            prepend-icon="mdi-calendar"
+            dense
+            rounded
+      ></v-text-field> -->
+
+      <v-spacer></v-spacer>
+      <v-btn v-if="!GetAuthState" @click="GoToLogin" rounded>Login</v-btn>
+      <v-btn v-if="!GetAuthState" @click="GoToSignUp" rounded>Sign Up</v-btn>
+      <v-btn v-if="GetAuthState" @click="SignOut" rounded>Sign Out</v-btn>
+      <v-btn @click="FormTravel">Go TO Form</v-btn>
+      <!-- <v-btn @click="Random">Random Data Generator</v-btn> -->
+      <div>{{GetUserData.Name}}</div>
     </v-app-bar>
 
     </div>
 </template>
 
 <script>
-import {mapMutations} from "vuex"
-    export default {
+import {mapMutations,mapGetters} from "vuex"
+import firebase from "firebase"
+
+export default {
         data () {
       return {
         switch1: true,
@@ -147,8 +181,36 @@ import {mapMutations} from "vuex"
         SectorData:""
       }
     },
+    computed:{
+      ...mapGetters(["GetUserData","GetAuthState"])
+    },
     methods:{
         ...mapMutations(["SetSectorDataFromTheDropDown"]),
+        Dirt()
+        {
+          alert(this.GetAuthState);
+          alert(this.GetUserData);
+        },
+        Random()
+        {
+          this.$router.push("/Random")
+        },
+        FormTravel()
+        {
+          this.$router.push("/CargoForm")
+        },
+        SignOut()
+        {
+          //Sign User Out
+          var auth = firebase.auth()
+          auth.signOut().then(() => {
+          //Route to LogIn/SignUp
+          this.$router.push("Login2")
+          }).catch((err) => {
+            alert(err.message);
+          })
+
+        },
         EnterOption()
         {
             this.SetSectorDataFromTheDropDown(this.SelectedObj)

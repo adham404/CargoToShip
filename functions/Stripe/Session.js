@@ -4,17 +4,17 @@ const stripe = require('stripe')('sk_test_51IXoICJeByZuBuxO4F0Iaeo34VusE93uZo4Ak
 exports.createcheckout = functions.https.onCall(async (data,context)=>{
     
     
-    //var customer = await admin.firestore().collection('Users').doc(context.auth.uid).get();
-    var customer = await admin.firestore().collection('Users').doc("r7DhHLKQIDmgKN07wEH8").get();
+    var customer = await admin.firestore().collection('Users').doc(context.auth.uid).get();
+    //var customer = await admin.firestore().collection('Users').doc("r7DhHLKQIDmgKN07wEH8").get();
     var customerid = await customer.data().customer_id
     
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         customer: customerid ,
-      
+        // "livemode": false,
         mode: 'setup',
-        success_url: `${data.url}/Success`,
-        cancel_url: `${data.url}/Cancel`,
+        success_url: "https://example.com/success",
+        cancel_url: "https://example.com/success",
       });
     
     return session.id
