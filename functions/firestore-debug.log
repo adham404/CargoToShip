@@ -1,0 +1,10 @@
+Exception in thread "main" com.google.cloud.datastore.core.exception.DatastoreException: F:\CargoToShip_M2\CargoToShip\functions\seed\firestore_export\all_namespaces\all_kinds\all_namespaces_all_kinds.export_metadata (The system cannot find the path specified)
+	at com.google.cloud.datastore.emulator.impl.ExportImportUtil.parseBackupFile(ExportImportUtil.java:316)
+	at com.google.cloud.datastore.emulator.impl.ExportImportUtil.fetchEntities(ExportImportUtil.java:62)
+	at com.google.cloud.datastore.emulator.firestore.CloudFirestore.main(CloudFirestore.java:90)
+Caused by: java.io.FileNotFoundException: F:\CargoToShip_M2\CargoToShip\functions\seed\firestore_export\all_namespaces\all_kinds\all_namespaces_all_kinds.export_metadata (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at com.google.cloud.datastore.emulator.impl.ExportImportUtil.parseBackupFile(ExportImportUtil.java:312)
+	... 2 more

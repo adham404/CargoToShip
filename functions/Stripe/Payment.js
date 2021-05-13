@@ -42,15 +42,16 @@ exports.CreatePyment = functions.https.onCall(async (data,context)=>{
       
 })
 exports.Confirm_order = functions.https.onCall(async(data,context)=>{
+  //console.log(await GetOrderData("WCK1Af22VCw0AgT6VyeQ"))
   order = await admin.firestore().collection("orders").doc(data.orderId).get()
   paymentID = order.data().paymentIntentId
-
   const intent = await stripe.paymentIntents.capture(paymentID, {
     // amount_to_capture: 500,
   })
   //status: "succeeded"
   if (intent.status == "succeeded"){
-    await admin.firestore().collection("orders").doc(data.orderId).update({status : "Confirmed" , order_confirmed : admin.firestore.FieldValue.serverTimestamp() })
+    const {ContactInfo,Name} =await  GetOrderData(data.orderId)
+    await admin.firestore().collection("orders").doc(data.orderId).update({status : "Confirmed" , order_confirmed : admin.firestore.FieldValue.serverTimestamp(),Name,ContactInfo })
     return "OK"
   }else{
     await admin.firestore().collection("orders").doc(data.orderId).update({status : "payment_error"})
@@ -67,3 +68,23 @@ exports.ConfirmPyment = functions.https.onCall(async(data,context)=>{
       })
       return intent
 })
+
+GetOrderData = async(Order_id)=> {
+  OrderDoc = await admin.firestore().collection("orders").doc(Order_id).get()
+  const {type , Productid}  = await OrderDoc.data()
+  //console.log(Productid)
+  if(type == "ship"){
+    ShipDoc = await admin.firestore().collection("Ships").doc(Productid).get()
+    const {ContactInfo , ShipName} =await ShipDoc.data()
+    //console.log(await ContactInfo)
+    return await{ ContactInfo,Name: ShipName}
+  
+  }
+  else if(type == "cargo"){
+    ShipDoc = await admin.firestore().collection("Cargo").doc(Productid).get()
+    const {ContactInfo , CargoDescription} =await ShipDoc.data()
+
+    return {ContactInfo ,Name: CargoDescription}
+  }
+}
+
