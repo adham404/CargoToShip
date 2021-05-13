@@ -29,9 +29,101 @@
         text
       >
         <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+        <v-icon class="ml-3" large>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar> -->
+    <v-navigation-drawer color="#0E153A" width="50" app>
+      <v-tooltip  right>
+      <template  v-slot:activator="{ on, attrs }">
+        <v-btn
+        class="mb-6 mt-4"
+          color="white"
+          icon
+          v-bind="attrs"
+          v-on="on"
+          @click="$router.push('/Profile')"
+        >
+          <v-icon class="ml-3" large>mdi-account-circle</v-icon>
+        </v-btn>
+      </template>
+      <span>Profile</span>
+    </v-tooltip>
+
+
+      <v-tooltip right>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+        class="mb-6"
+          color="white"
+          icon
+          v-bind="attrs"
+          v-on="on"
+           @click="$router.push('/MyShips')"
+        >
+          <v-icon class="ml-3" large>mdi-ferry</v-icon>
+        </v-btn>
+      </template>
+      <span>My Ships</span>
+    </v-tooltip>
+
+
+      <v-tooltip right>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+        class="mb-6"
+          color="white"
+          icon
+          v-bind="attrs"
+          v-on="on"
+           @click="$router.push('/MyCargo')"
+        >
+          <v-icon class="ml-3" large>mdi-package-variant-closed</v-icon>
+        </v-btn>
+      </template>
+      <span>My Cargo</span>
+    </v-tooltip>
+
+
+      <v-tooltip right>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+        class="mb-6"
+          color="white"
+          icon
+          v-bind="attrs"
+          v-on="on"
+           @click="$router.push('/Orders')"
+        >
+          <v-icon class="ml-3" large>mdi-card-account-phone</v-icon>
+        </v-btn>
+      </template>
+      <span>My Orders</span>
+    </v-tooltip>
+
+
+      <v-tooltip right>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+        class="mb-6"
+          color="white"
+          icon
+          v-bind="attrs"
+          v-on="on"
+           @click="$router.push('/')"
+        >
+          <v-icon class="ml-3" large>mdi-home</v-icon>
+        </v-btn>1
+      </template>
+      <span>Home</span>
+    </v-tooltip>
+
+      
+      
+      
+      
+      
+    
+  </v-navigation-drawer>
 
     <v-main>
       <!-- <HelloWorld /> -->
@@ -67,7 +159,7 @@ export default {
         //Fetch User Data
         await this.FetchCurrentUserData()
         //Route To Homepage
-        this.$router.push({path: "/"})
+        //this.$router.push({path: "/"})
 
       }
       else{

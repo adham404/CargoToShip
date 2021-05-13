@@ -29,6 +29,33 @@ const routes = [
       import(/* webpackChunkName: "about" */ "@/components/HomePage/Map.vue")
   },
   {
+    path: "/Profile",
+    name: "Profile",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "@/components/Profile/profilePage.vue")
+  },
+  {
+    path: "/MyShips",
+    name: "MyShips",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "@/components/My_Ships-Cargo/MyShips.vue")
+  },
+  {
+    path: "/MyCargo",
+    name: "MyCargo",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "@/components/My_Ships-Cargo/MyCargo.vue")
+  },
+  {
     path: "/Login",
     name: "Login",
     // route level code-splitting

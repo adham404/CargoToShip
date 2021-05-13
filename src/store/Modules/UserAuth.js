@@ -49,10 +49,10 @@ const actions = {
     },
     async FetchCurrentUserData({commit,state})
     {
-        alert("FetchCurrentUserData"+state.UserId)
+        //alert("FetchCurrentUserData"+state.UserId)
         var db = firebase.firestore()
         const doc = await db.collection("Users").doc(state.UserId).get()
-        alert("Hey Username from fetching here is: " + doc.data());
+        //alert("Hey Username from fetching here is: " + doc.data());
         commit('SetCurrentUserData',doc.data())
         
     },
@@ -73,13 +73,13 @@ const actions = {
         var db = firebase.firestore()
         //Check If User Is logged in or not
         var auth = firebase.auth()
-        console.log("ppopoppop")
+        console.log("ppopoppopaaaaaa")
         await auth.onAuthStateChanged(async (user) => {
             console.log(user)
             if(user)
             {
                 
-                 alert("Recieved form here the email123456: "+ state.PreUserData.FirstName);
+                 console.log("creating doc")
                 //User Is Logged in create it's doc
                 var UserObj = {
                     UserID: user.uid,
@@ -90,9 +90,15 @@ const actions = {
                     CompanyWebsite: "",
                     Country:""
                 }
+                try{
+                    const vv = await db.collection("Users").doc(user.uid).set(UserObj)
+                    console.log("pp", vv.data())
 
-                const vv = await db.collection("Users").doc(user.uid).set(UserObj)
-                console.log("pp", vv)
+                }catch(e){
+                    console.log("doc no")
+                    console.log(e)
+                }
+
             }
             else
             {

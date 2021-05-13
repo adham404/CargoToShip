@@ -115,8 +115,8 @@ Validate()
           await this.SetUserDataToSignUp(UserObj);
           await this.CreateUserDoc();
           //Initialize the User State with the User Credentials (UserData & IsUserIN)
-          await this.CheckAuth()            
-          await this.FetchCurrentUserData()
+           await this.CheckAuth()            
+           await this.FetchCurrentUserData()
           //Route To The Home Page
           this.$router.push({ path: "/"})
         }

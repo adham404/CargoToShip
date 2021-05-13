@@ -96,7 +96,7 @@ import ShortListing from '../ShortListing.vue';
             GoToProfile()
             {
                 //Go to Profile Settings
-                this.$router.push("/ProfileSettings")
+                this.$router.push("/Profile")
 
             }
 
