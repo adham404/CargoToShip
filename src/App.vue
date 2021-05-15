@@ -32,7 +32,7 @@
         <v-icon class="ml-3" large>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar> -->
-    <v-navigation-drawer color="#0E153A" width="50" app>
+    <v-navigation-drawer permanent color="#0E153A" width="50" app>
       <v-tooltip  right>
       <template  v-slot:activator="{ on, attrs }">
         <v-btn
